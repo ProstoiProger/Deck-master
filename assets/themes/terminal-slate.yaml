@@ -1,0 +1,16 @@
+name: terminal-slate
+mode: dark
+description: Developer-console palette (GitHub-dark inspired). Mono labels, green for success.
+colors:
+  bg: "#0D1117"
+  surface: "#161B22"
+  primary: "#58A6FF"
+  secondary: "#BC8CFF"
+  accent: "#3FB950"
+  text: "#E6EDF3"
+  muted: "#8B949E"
+  success: "#3FB950"
+  warning: "#D29922"
+  danger: "#F85149"
+fonts: {heading: Inter, body: Inter, mono: JetBrainsMono}
+style: {corner: square, border: thin, shadow: none, pattern: grid}

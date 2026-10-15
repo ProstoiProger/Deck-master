@@ -1,0 +1,17 @@
+name: classic-craft
+mode: light
+description: "Light classic block-game look: sky blue, inventory-gray panels, grass and dirt ground, pixel clouds and sun. Original shapes only."
+colors:
+  bg: "#D6EBFF"
+  surface: "#C6C6C6"
+  primary: "#2E6A14"
+  secondary: "#7A4B1F"
+  accent: "#6B4A00"
+  text: "#1B1B1B"
+  muted: "#4A4A4A"
+  success: "#2F6B16"
+  warning: "#7A4F00"
+  danger: "#8F1D1D"
+  info: "#0B5EA8"
+fonts: {heading: PressStart2P, body: Inter, mono: JetBrainsMono}
+style: {corner: pixel, border: bevel, shadow: hard, pattern: classic, metaphor: game, heading_scale: 0.55, heading_line_h: 1.6, min_font: 12}

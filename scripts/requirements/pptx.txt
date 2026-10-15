@@ -1,0 +1,2 @@
+-r core.txt
+python-pptx>=1.0

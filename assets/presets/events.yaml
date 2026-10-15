@@ -1,0 +1,35 @@
+# Event presets: slide cap, talk length and the default skeleton. Numbers follow the ds-master communication notes
+# (datathon about 10 slides in 5 to 7 minutes, hackathon 6 to 8 slides in 3 to 5 minutes) and are defaults, not rules:
+# a brief that states other limits overrides them (record that in the profile).
+hackathon:
+  max_slides: 8
+  min_slides: 6
+  minutes: 5
+  wpm: 150
+  theme: midnight-navy
+  skeleton: [title, problem, solution, architecture, demo, kpi, roadmap, closing]
+  judged_on: [impact, innovation, feasibility, user experience, demo]
+datathon:
+  max_slides: 10
+  min_slides: 8
+  minutes: 7
+  wpm: 150
+  theme: ultraviolet-core
+  skeleton: [title, problem, pipeline, kpi, chart_insight, chart_insight, comparison, impact, roadmap, closing]
+  judged_on: [insight quality, method soundness, business value, clarity, reproducibility]
+assignment:
+  max_slides: 15
+  min_slides: 8
+  minutes: 10
+  wpm: 140
+  theme: cloud-light
+  skeleton: [title, agenda, problem, bullets, pipeline, chart_insight, comparison, kpi, impact, roadmap, closing]
+  judged_on: [coverage of the task, correctness, structure, references, clarity]
+research-talk:
+  max_slides: 14
+  min_slides: 8
+  minutes: 12
+  wpm: 140
+  theme: graphite-cyan
+  skeleton: [title, problem, bullets, pipeline, comparison, chart_insight, kpi, impact, closing]
+  judged_on: [novelty, rigor, evidence, clarity]

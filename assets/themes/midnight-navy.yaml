@@ -1,0 +1,16 @@
+name: midnight-navy
+mode: dark
+description: Default IT look. Deep navy, electric blue, cyan accent. Safe for any tech pitch.
+colors:
+  bg: "#0B1220"
+  surface: "#131C31"
+  primary: "#3B82F6"
+  secondary: "#818CF8"
+  accent: "#22D3EE"
+  text: "#F1F5F9"
+  muted: "#94A3B8"
+  success: "#34D399"
+  warning: "#FBBF24"
+  danger: "#F87171"
+fonts: {heading: Inter, body: Inter, mono: JetBrainsMono}
+style: {corner: round, border: thin, shadow: soft, pattern: grid}

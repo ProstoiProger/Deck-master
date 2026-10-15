@@ -1,0 +1,16 @@
+name: graphite-cyan
+mode: dark
+description: Dark gray with a cyan accent. Calm, engineering feel; good for research talks and architecture.
+colors:
+  bg: "#14161B"
+  surface: "#1F232B"
+  primary: "#00B8D9"
+  secondary: "#8B98B0"
+  accent: "#7DF9FF"
+  text: "#E8EAED"
+  muted: "#9AA3B2"
+  success: "#4ADE80"
+  warning: "#FBBF24"
+  danger: "#F87171"
+fonts: {heading: Inter, body: Inter, mono: JetBrainsMono}
+style: {corner: round, border: thin, shadow: soft, pattern: grid}

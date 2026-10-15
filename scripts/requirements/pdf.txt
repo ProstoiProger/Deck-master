@@ -1,0 +1,2 @@
+-r core.txt
+reportlab>=4.0

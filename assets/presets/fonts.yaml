@@ -1,0 +1,22 @@
+# Font families known to the renderer. Files live in assets/fonts (all SIL OFL, see LICENSES.md).
+# `pptx` is the name written into .pptx files: the viewer must have it installed, else `fallback` is what we advise.
+# Coverage measured with fontTools on 2026-10: Inter and PressStart2P cover Latin, Cyrillic and all Kazakh letters;
+# JetBrainsMono covers Latin and Cyrillic but misses most Kazakh-specific letters (use it for digits and code only).
+Inter:
+  regular: Inter-Regular.ttf
+  bold: Inter-Bold.ttf
+  pptx: Inter
+  fallback: Segoe UI
+  scripts: [latin, cyrillic, kazakh]
+JetBrainsMono:
+  regular: JetBrainsMono-Regular.ttf
+  bold: JetBrainsMono-Bold.ttf
+  pptx: JetBrains Mono
+  fallback: Consolas
+  scripts: [latin, cyrillic]
+PressStart2P:
+  regular: PressStart2P-Regular.ttf
+  bold: PressStart2P-Regular.ttf
+  pptx: Press Start 2P
+  fallback: Consolas
+  scripts: [latin, cyrillic, kazakh]

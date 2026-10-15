@@ -1,0 +1,16 @@
+name: cloud-light
+mode: light
+description: Light variant for printed handouts, assignments and projectors in bright rooms.
+colors:
+  bg: "#F8FAFC"
+  surface: "#FFFFFF"
+  primary: "#1D4ED8"
+  secondary: "#6D28D9"
+  accent: "#0E7490"
+  text: "#0F172A"
+  muted: "#475569"
+  success: "#15803D"
+  warning: "#B45309"
+  danger: "#B91C1C"
+fonts: {heading: Inter, body: Inter, mono: JetBrainsMono}
+style: {corner: round, border: thin, shadow: soft, pattern: none}

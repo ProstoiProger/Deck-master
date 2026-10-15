@@ -1,0 +1,17 @@
+name: obsidian-craft
+mode: dark
+description: "Dark obsidian look with purple veins and IT cyan highlights; pixel blocks, nether-portal title art. Original shapes only."
+colors:
+  bg: "#0E0818"
+  surface: "#1C1030"
+  primary: "#8B5CF6"
+  secondary: "#C084FC"
+  accent: "#E879F9"
+  text: "#F3E8FF"
+  muted: "#B8A5D6"
+  success: "#4ADE80"
+  warning: "#FBBF24"
+  danger: "#F87171"
+  info: "#22D3EE"
+fonts: {heading: PressStart2P, body: Inter, mono: JetBrainsMono}
+style: {corner: pixel, border: bevel, shadow: hard, pattern: obsidian, metaphor: game, heading_scale: 0.55, heading_line_h: 1.6, min_font: 12}

@@ -1,0 +1,2 @@
+-r core.txt
+pymupdf>=1.24

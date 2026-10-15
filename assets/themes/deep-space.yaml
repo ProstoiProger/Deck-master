@@ -1,0 +1,16 @@
+name: deep-space
+mode: dark
+description: Navy and violet with a hot pink accent. Loud, hackathon-stage energy.
+colors:
+  bg: "#0A0F2C"
+  surface: "#141B45"
+  primary: "#6C5CE7"
+  secondary: "#00D4FF"
+  accent: "#FF4F9A"
+  text: "#FFFFFF"
+  muted: "#A9B4DC"
+  success: "#2EE6A6"
+  warning: "#FFC857"
+  danger: "#FF6B6B"
+fonts: {heading: Inter, body: Inter, mono: JetBrainsMono}
+style: {corner: round, border: thin, shadow: soft, pattern: grid}

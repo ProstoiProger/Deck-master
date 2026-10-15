@@ -1,0 +1,2 @@
+-r core.txt
+matplotlib>=3.8

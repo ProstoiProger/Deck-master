@@ -1,0 +1,16 @@
+name: ultraviolet-core
+mode: dark
+description: Purple-led dark theme for data and AI stories. Cyan accent for the key number.
+colors:
+  bg: "#120B2E"
+  surface: "#1E1546"
+  primary: "#8B5CF6"
+  secondary: "#C4B5FD"
+  accent: "#00E5FF"
+  text: "#F5F3FF"
+  muted: "#B4A9D6"
+  success: "#4ADE80"
+  warning: "#FACC15"
+  danger: "#FB7185"
+fonts: {heading: Inter, body: Inter, mono: JetBrainsMono}
+style: {corner: round, border: thin, shadow: soft, pattern: grid}
