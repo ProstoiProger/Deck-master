@@ -45,3 +45,11 @@ order: decision, scorecard, trend, drivers, risks, plan.
 - `matrix` fits SWOT (`tone: swot`) or any four-way split (`tone: neutral`); `funnel` widths follow the values, so stages with
   tiny values keep a minimum width and show their number as a label.
 - `gantt` periods are columns (`periods: Q1, Q2, Q3, Q4`); each row is `Task | first | last | owner`.
+
+## Newer options (2026-10)
+
+- **Layouts**: `canvas9` (business model canvas), `okr` (objectives with progress bars), `kpi_table` (metrics with change and status),
+  `customer_case`, `ask` (amount and use of funds), `proof_wall` (awards, press, partners), `statement` (a sentence with its number).
+- **Events**: `product-launch`, `product-roadmap`, `okr-review`, `market-analysis`, `go-to-market` (`playbooks/product-launch.md`,
+  `playbooks/product-planning.md`).
+- **Looks**: `signal-yellow`, `coral-market`, `harbor`, `navy-gold`, `sunset-mesh`, `plum` next to the older business themes.

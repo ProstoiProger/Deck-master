@@ -1,0 +1,19 @@
+name: terracotta
+mode: light
+scopes: [education, portfolio, nonprofit, humanities]
+description: "Warm cream with clay red and amber, editorial rules. For humanities, education and culture talks."
+colors:
+  bg: "#FBF3E8"
+  surface: "#F3E1CC"
+  primary: "#A14646"
+  secondary: "#C4623F"
+  accent: "#9A4A0E"
+  text: "#2E1A12"
+  muted: "#684F40"
+  success: "#3F6B3A"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#3A6A8F"
+series: ["#A14646", "#E08A4E", "#3A6A8F", "#3F6B3A", "#684F40"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: none, card: flat, title_rule: line, footer: plain, chips: text, show_source: False, radius: 0.08, pattern: rules}

@@ -1,0 +1,19 @@
+name: cobalt-pop
+mode: dark
+scopes: [hackathon, event, creative, pitch]
+description: "Saturated cobalt with yellow, pink and mint, concentric rings. For hackathon openings and event talks."
+colors:
+  bg: "#1A2BC8"
+  surface: "#2638DE"
+  primary: "#FFE14D"
+  secondary: "#FF7AC6"
+  accent: "#7CF5E0"
+  text: "#FFFFFF"
+  muted: "#D2D9FF"
+  success: "#7CF5E0"
+  warning: "#FFE14D"
+  danger: "#FFB0C8"
+  info: "#B7D4FF"
+series: ["#FFE14D", "#FF7AC6", "#7CF5E0", "#FFFFFF", "#D2D9FF"]
+fonts: {heading: Unbounded, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: none, shadow: none, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.2, pattern: rings, heading_scale: 0.86}

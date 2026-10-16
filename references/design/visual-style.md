@@ -2,7 +2,8 @@
 
 Patterns behind the looks of each scope and how style packs work. The skill is formal by default (`design/scopes.md`); the
 IT dark look below is one of several, and the game packs are on request only. The IT observations were gathered as follows. Observations come from browsing Canva technology, startup
-pitch, hackathon and data-science template grids and Dribbble tech presentation searches in 2026-10; they are
+pitch, hackathon and data-science template grids and Dribbble tech presentation searches in 2026-10, extended on 2026-10-16 with
+Pitch templates, Behance presentation projects, Coolors, Color Hunt and Meshy (`design/research-2026-10.md`); they are
 general patterns, not copied artwork. Canva was viewed at grid level (plain fetches are blocked), so treat the
 observations as indicative. Add your own references in `design/inspiration/`.
 
@@ -14,7 +15,8 @@ observations as indicative. Add your own references in `design/inspiration/`.
 4. Looks by scope
 5. The block-game themes
 6. Dark versus light
-7. Using references
+7. Mesh gradients
+8. Using references
 
 ---
 
@@ -55,7 +57,9 @@ A theme's `style:` block tells the layouts how to draw:
 | `chips` | `pill`, `text` | rounded labels, or plain uppercase text with a hairline |
 | `show_source` | true, false | print the slide's `source:` as a footnote |
 | `radius` | inches | corner radius of cards |
-| `pattern` | `clean`, `rules`, `band`, `grid`, `blocks`, `obsidian`, `classic`, `none` | title and closing backdrop |
+| `pattern` | `clean`, `rules`, `band`, `grid`, `none`, `mesh`, `hatch`, `corner`, `dots`, `blueprint`, `rings`, `bars`, and the game packs `blocks`, `obsidian`, `classic` | title, cover and closing backdrop |
+| `mesh`, `mesh_veil` | four hex colours, 0 to 1 | colours and page-colour veil of the `mesh` backdrop (default: the first four `series` colours, veil 0.5) |
+| `deco` | `none`, `tri`, `tab` | a small accent triangle in the top-right corner, or an accent tab on the left edge, of every content slide |
 | `metaphor` | `none`, `game` | game variants: hotbar agenda, XP bars, "press start" closing |
 | `heading_scale`, `heading_line_h` | numbers | size and leading for wide fonts |
 | `min_font` | points | lint floor for heading text |
@@ -73,6 +77,9 @@ images are the ones you add, including the optional character images (`design/en
 | Education | `chalkboard`, `forest`, `cloud-light` | warm, soft cards, generous spacing |
 | Portfolio | `portfolio-mono`, `portfolio-warm`, `editorial` | large type, thin frames, one accent, little chrome; editorial adds a thick rule and a serif display face |
 | IT | `midnight-navy`, `ultraviolet-core`, `graphite-cyan`, `deep-space`, `terminal-slate` | the patterns in section 1 |
+| Hackathon and data (2026-10) | `aurora-mesh`, `datablue`, `matrix-green`, `synthwave`, `cobalt-pop`, `blueprint` | mesh-gradient covers, hatched panel, monospaced headings with a drafting grid, concentric rings; see `design/research-2026-10.md` |
+| Product and brand (2026-10) | `signal-yellow`, `coral-market`, `sunset-mesh`, `plum`, `ember` | one loud accent, corner triangles, dot fields, wide display headings, bar-chart silhouette |
+| Calm and institutional (2026-10) | `quantum-teal`, `deep-ocean`, `petrol`, `harbor`, `navy-gold`, `sage`, `terracotta`, `lavender`, `swiss` | pale aqua or pastel mesh, concentric rings, serif display, hairline rules, outline cards |
 
 ## 5. The block-game themes (on request only)
 
@@ -100,7 +107,15 @@ and are not affiliated with any game: no logos, wordmarks or textures (`ops/secu
 Dark themes dominate tech templates and suit screens, stages and recorded talks. Use a light theme (`cloud-light`,
 `academic`, `boardroom`, `consulting`) for printing, PDF handouts and bright rooms. Switch with `cli.py build deck.md --theme cloud-light` (or `classic-craft` for the game look); the content does not change.
 
-## 7. Using references
+## 7. Mesh gradients
+
+Five themes (`aurora-mesh`, `sunset-mesh`, `quantum-teal`, `synthwave`, `lavender`) open and close with a mesh-gradient picture: four colours blended
+by soft blobs with a gentle warp, rendered once by `deckkit/charts/mesh.py` into the cache folder and embedded as a JPEG of the slide size. A veil of
+the page colour is strongest under the text zone (the left two thirds), so the lint can check text against the lightest or darkest pixel
+there. Change the colours with `mesh: ["#...", ...]` and `mesh_veil:` in a custom theme. Content slides stay flat: a gradient behind
+body text costs contrast and file size. Mesh needs numpy; without it the cover falls back to the glow pattern and lint reports a Low finding.
+
+## 8. Using references
 
 Add links and screenshots as described in `design/inspiration/README.md`. Extract palette, grid, density and
 motifs; never reproduce a template's artwork or text.

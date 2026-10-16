@@ -1,0 +1,19 @@
+name: blueprint
+mode: dark
+scopes: [engineering, science, tech, architecture]
+description: "Drafting-sheet blue with white linework and a title block. For architecture, hardware and systems design reviews."
+colors:
+  bg: "#0B2A5C"
+  surface: "#133A78"
+  primary: "#7FD4FF"
+  secondary: "#FFD54A"
+  accent: "#FFD54A"
+  text: "#F4F8FF"
+  muted: "#B9CCEE"
+  success: "#7BE0A8"
+  warning: "#FFD54A"
+  danger: "#FF9AA6"
+  info: "#7FD4FF"
+series: ["#7FD4FF", "#FFD54A", "#7BE0A8", "#FF9AA6", "#B9CCEE"]
+fonts: {heading: IBMPlexMono, body: Inter, mono: IBMPlexMono}
+style: {corner: square, border: thin, shadow: none, card: outline, title_rule: line, footer: rule, chips: text, show_source: False, radius: 0.03, pattern: blueprint}

@@ -38,3 +38,24 @@ Montserrat:
   pptx: Montserrat
   fallback: Segoe UI
   scripts: [latin, cyrillic, kazakh]
+# Added 2026-10 for the extra palettes. Manrope and Unbounded cover Latin and Cyrillic but not the Kazakh-specific letters:
+# a heading that contains them falls back to the body font automatically. IBMPlexMono covers all three scripts, so it is the
+# safe mono choice for Kazakh text.
+Manrope:
+  regular: Manrope-Regular.ttf
+  bold: Manrope-Bold.ttf
+  pptx: Manrope
+  fallback: Segoe UI
+  scripts: [latin, cyrillic]
+Unbounded:
+  regular: Unbounded-Regular.ttf
+  bold: Unbounded-Bold.ttf
+  pptx: Unbounded
+  fallback: Segoe UI Black
+  scripts: [latin, cyrillic]
+IBMPlexMono:
+  regular: IBMPlexMono-Regular.ttf
+  bold: IBMPlexMono-Bold.ttf
+  pptx: IBM Plex Mono
+  fallback: Consolas
+  scripts: [latin, cyrillic, kazakh]

@@ -1,0 +1,19 @@
+name: matrix-green
+mode: dark
+scopes: [hackathon, security, tech, engineering]
+description: "Near-black green with phosphor accents, monospaced headings and a blueprint grid. For security, dev-tool and terminal-style talks."
+colors:
+  bg: "#06100A"
+  surface: "#0D1F14"
+  primary: "#19E58C"
+  secondary: "#A4DD00"
+  accent: "#B6F500"
+  text: "#E8FFF1"
+  muted: "#8FB9A0"
+  success: "#19E58C"
+  warning: "#F5D90A"
+  danger: "#FF6B8A"
+  info: "#00CAFF"
+series: ["#19E58C", "#A4DD00", "#00CAFF", "#F5D90A", "#8FB9A0"]
+fonts: {heading: IBMPlexMono, body: Inter, mono: IBMPlexMono}
+style: {corner: square, border: thin, shadow: none, card: outline, title_rule: line, footer: plain, chips: text, show_source: False, radius: 0.04, pattern: blueprint}

@@ -60,6 +60,7 @@ class Image:
     w: float
     h: float
     path: str
+    tone: str = None   # a representative color for the contrast lint (set for decorative backdrops)
 
 
 @dataclass

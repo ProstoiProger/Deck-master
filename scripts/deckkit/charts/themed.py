@@ -7,7 +7,7 @@ from pathlib import Path
 
 from ..core.numbers import number
 
-KINDS = ("bar", "hbar", "line", "area", "stacked", "waterfall", "donut", "scatter", "confusion")
+KINDS = ("bar", "hbar", "line", "area", "stacked", "waterfall", "donut", "scatter", "confusion", "heatmap", "radar", "lollipop", "slope")
 
 
 def _num(v):
@@ -39,7 +39,8 @@ def _setup(theme):
 
 
 def render_chart(theme, kind, table, w_in, h_in, deck=None, index=0, ylabel=""):
-    """kinds: bar, hbar, line, area, stacked, waterfall, donut, scatter, confusion. Tables: header row first, label in column 1."""
+    """kinds: bar, hbar, line, area, stacked, waterfall, donut, scatter, confusion, heatmap, radar, lollipop, slope.
+    Tables: header row first, label in column 1."""
     if kind not in KINDS:
         raise ValueError(f"unknown chart kind {kind!r}; choose from {KINDS}")
     if len(table) < 2:
@@ -148,29 +149,87 @@ def render_chart(theme, kind, table, w_in, h_in, deck=None, index=0, ylabel=""):
         ax.scatter(xs, ys, s=60, color=palette[0], alpha=0.85)
         ax.set_xlabel(head[0])
         ax.set_ylabel(head[1])
-    else:  # confusion: header = column labels (first cell is the corner), rows = [row label, values...]
+    elif kind == "radar":  # rows = axes (labels), columns = series; every value is scaled by the largest in the table
+        fig.delaxes(ax)
+        ax = fig.add_subplot(111, polar=True)
+        vals = [[_num(r[j + 1]) for r in rows] for j in range(len(head) - 1)]
+        top = max(max(v) for v in vals) or 1.0
+        ang = [2 * np.pi * i / len(rows) for i in range(len(rows))]
+        for j, ys in enumerate(vals):
+            col = palette[j % len(palette)]
+            ax.plot(ang + ang[:1], [v / top for v in ys] + [ys[0] / top], color=col, linewidth=3, label=head[j + 1])
+            ax.fill(ang + ang[:1], [v / top for v in ys] + [ys[0] / top], color=col, alpha=0.18)
+        ax.set_xticks(ang)
+        ax.set_xticklabels(wrap_labels(len(rows)), color=c["text"], fontsize=13)
+        ax.set_yticks([0.25, 0.5, 0.75, 1.0])
+        ax.set_yticklabels([])
+        ax.set_ylim(0, 1.05)
+        ax.set_facecolor("none")
+        ax.grid(color=grid, linewidth=0.9)
+        ax.spines["polar"].set_color(grid)
+        if len(head) > 2:
+            ax.legend(frameon=False, labelcolor=c["text"], loc="center left", bbox_to_anchor=(1.12, 0.5))
+    elif kind == "lollipop":  # one series ranked from the largest: a stem and a dot per row
+        order = sorted(range(len(rows)), key=lambda i: -_num(rows[i][1]))
+        vs = [_num(rows[i][1]) for i in order]
+        names = [labels[i] for i in order]
+        ys = list(range(len(vs)))
+        ax.hlines(ys, 0, vs, color=grid, linewidth=3)
+        ax.scatter(vs, ys, s=170, color=[palette[1 % len(palette)] if k == 0 else palette[0] for k in ys], zorder=3)
+        for y_, v in zip(ys, vs):
+            ax.text(v, y_, f"  {v:g}", ha="left", va="center", color=c["text"], fontsize=13)
+        ax.set_yticks(ys)
+        ax.set_yticklabels(names)
+        ax.invert_yaxis()
+        ax.set_xlim(0, max(vs) * 1.18)
+    elif kind == "slope":  # rows: label | before | after
+        a_lbl, b_lbl = (head + ["", ""])[1], (head + ["", ""])[2]
+        for r in rows:
+            va, vb = _num(r[1]), _num(r[2])
+            col = c["success"] if vb >= va else c["danger"]
+            ax.plot([0, 1], [va, vb], color=col, linewidth=3, marker="o", markersize=9)
+            ax.text(-0.04, va, f"{r[0]}  {va:g}", ha="right", va="center", color=c["text"], fontsize=13)
+            ax.text(1.04, vb, f"{vb:g}", ha="left", va="center", color=c["text"], fontsize=13)
+        ax.set_xlim(-0.75, 1.2)
+        ax.set_xticks([0, 1])
+        ax.set_xticklabels([a_lbl, b_lbl])
+        ax.set_yticks([])
+    else:  # confusion and heatmap: header = column labels (first cell is the corner), rows = [row label, values...]
         m = np.array([[_num(v) for v in r[1:]] for r in rows])
         from matplotlib.colors import LinearSegmentedColormap
-        cmap = LinearSegmentedColormap.from_list("t", [c["surface"], palette[0], palette[1 % len(palette)]])
-        ax.imshow(m, cmap=cmap)
+        if kind == "heatmap" and m.min() < 0:  # diverging around zero
+            lim = max(abs(m.min()), abs(m.max())) or 1.0
+            cmap = LinearSegmentedColormap.from_list("t", [c["danger"], c["surface"], c["success"]])
+            ax.imshow(m, cmap=cmap, vmin=-lim, vmax=lim, aspect="auto")
+            shade = lambda v: (v + lim) / (2 * lim)
+        else:
+            cmap = LinearSegmentedColormap.from_list("t", [c["surface"], palette[0], palette[1 % len(palette)]])
+            ax.imshow(m, cmap=cmap, aspect="auto" if kind == "heatmap" else "equal")
+            shade = lambda v: v / (m.max() or 1)
         ax.set_xticks(range(len(head) - 1))
         ax.set_xticklabels(head[1:])
         ax.set_yticks(range(len(rows)))
         ax.set_yticklabels(labels)
         for (i, j), v in np.ndenumerate(m):
-            ax.text(j, i, f"{v:g}", ha="center", va="center", color=_on(cmap(v / (m.max() or 1)), c), fontsize=15, fontweight="bold")
+            ax.text(j, i, f"{v:g}", ha="center", va="center", color=_on(cmap(shade(v)), c), fontsize=15, fontweight="bold")
         ax.tick_params(length=0)
     if ylabel:
         ax.set_ylabel(ylabel)
     if kind == "donut":
         ax.axis("off")
+    elif kind == "radar":
+        pass
+    elif kind == "slope":
+        for side in ("top", "right", "left", "bottom"):
+            ax.spines[side].set_visible(False)
+        ax.tick_params(length=0, labelsize=14)
     else:
         for side in ("top", "right"):
             ax.spines[side].set_visible(False)
         for side in ("left", "bottom"):
             ax.spines[side].set_color(grid)
-        if kind != "confusion":
-            ax.grid(axis="y" if kind not in ("hbar",) else "x", color=grid, linewidth=0.8, alpha=0.9)
+        if kind not in ("confusion", "heatmap"):
+            ax.grid(axis="y" if kind not in ("hbar", "lollipop") else "x", color=grid, linewidth=0.8, alpha=0.9)
             ax.set_axisbelow(True)
     fig.tight_layout()
     fig.savefig(out, transparent=True, bbox_inches="tight" if kind == "donut" else None, pad_inches=0.1)

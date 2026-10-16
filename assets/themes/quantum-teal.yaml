@@ -1,0 +1,19 @@
+name: quantum-teal
+mode: light
+scopes: [science, health, tech, report]
+description: "Pale aqua with a liquid teal mesh and deep teal type. For research, health-tech and calm technical reports."
+colors:
+  bg: "#F1FBF8"
+  surface: "#DAF1EC"
+  primary: "#0B7A75"
+  secondary: "#1F6FB2"
+  accent: "#B8430C"
+  text: "#0B2527"
+  muted: "#41666A"
+  success: "#0F7B5C"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#1F6FB2"
+series: ["#0B7A75", "#1F6FB2", "#E08A2E", "#0F7B5C", "#41666A"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: none, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.18, pattern: mesh, mesh: ["#7DE2D1", "#8EC5FF", "#CFF6EE", "#5BCFC2"], mesh_veil: 0.3}

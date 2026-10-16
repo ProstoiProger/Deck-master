@@ -1,0 +1,19 @@
+name: aurora-mesh
+mode: dark
+scopes: [tech, hackathon, pitch, data]
+description: "Deep navy with a mint-to-cyan mesh gradient on title and closing slides. For hackathon demos and AI products."
+colors:
+  bg: "#07121F"
+  surface: "#0F2236"
+  primary: "#4DFFB2"
+  secondary: "#507CE2"
+  accent: "#0FF5DA"
+  text: "#EAF6FF"
+  muted: "#9DB4C8"
+  success: "#4DFFB2"
+  warning: "#FFC247"
+  danger: "#FF7A7A"
+  info: "#507CE2"
+series: ["#4DFFB2", "#507CE2", "#0FF5DA", "#FFC247", "#9DB4C8"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.18, pattern: mesh, mesh: ["#4DFFB2", "#507CE2", "#0FF5DA", "#2A3FA8"], mesh_veil: 0.52}

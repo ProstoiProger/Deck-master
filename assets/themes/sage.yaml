@@ -1,0 +1,19 @@
+name: sage
+mode: light
+scopes: [health, sustainability, education, report]
+description: "Soft sage greens on off-white with a left stripe. For wellbeing, sustainability and policy reports."
+colors:
+  bg: "#F5F8F2"
+  surface: "#E2EBDC"
+  primary: "#3F6B4F"
+  secondary: "#5B7F73"
+  accent: "#8F5A1C"
+  text: "#1E2A22"
+  muted: "#4B5B52"
+  success: "#2F7A4B"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#2F6E8F"
+series: ["#3F6B4F", "#8F5A1C", "#2F6E8F", "#7C9A6A", "#4B5B52"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: none, shadow: none, card: fill, title_rule: bar, footer: plain, chips: text, show_source: False, radius: 0.16, pattern: clean}

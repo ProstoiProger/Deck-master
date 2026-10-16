@@ -15,28 +15,40 @@ run the script after adding a layout or theme. `python scripts/build_catalog.py 
 
 | Layout | Family | Max words | Purpose |
 |---|---|---|---|
+| `ask` | business | 70 | The ask: the amount, what the money is used for as a split bar, and what it unlocks. |
+| `canvas9` | business | 100 | Business model canvas: nine labelled blocks in the standard arrangement, each with a few short bullets. |
+| `customer_case` | business | 90 | Customer story: who the customer is, problem, solution and result, with the headline result as a big number. |
 | `exec_summary` | business | 80 | Executive summary: situation, complication, resolution and the ask as labelled rows. |
 | `feature_matrix` | business | 70 | Feature or competitor matrix: rows of capabilities, columns of options, with ticks and crosses. |
 | `funnel` | business | 60 | Conversion funnel: stages narrowing from top to bottom, each with a value and a note. |
 | `gantt` | business | 70 | Plan on a timeline: tasks as bars across periods, with owners and milestones. |
+| `kpi_table` | business | 90 | KPI table with a change column: value, delta with an up or down marker, a status dot and a note per metric. |
 | `market` | business | 55 | Market size as nested circles: total, serviceable and obtainable market with a value each. |
 | `matrix` | business | 80 | Two by two matrix: SWOT or any four-way split, each cell with its own bullets. |
+| `okr` | business | 80 | OKRs: up to three objectives, each with key results shown as progress bars against their targets. |
 | `org` | business | 60 | Organisation or team chart: a lead and the people who report to them, up to three levels. |
 | `pricing` | business | 70 | Plan cards with a price and a short feature list; one plan can be highlighted. |
 | `process` | business | 60 | Chevron process: two to six steps in order, each with a short description. |
+| `proof_wall` | business | 70 | Wall of proof: awards, press, partners and milestones as a grid of short headlines with a caption each. |
 | `risk` | business | 90 | Risk register: each risk with likelihood and impact chips and its mitigation. |
 | `scorecard` | business | 90 | KPI scorecard: metric, actual, target and a status dot for each row. |
 | `bullets` | content | 70 | Plain titled bullet list with an optional image; the safe fallback layout. |
 | `chart_insight` | data | 50 | One chart on the left and the so-what on the right. |
 | `comparison` | data | 60 | Table or side-by-side cards comparing our approach with baselines; the winner is highlighted. |
+| `insight_cards` | data | 80 | Three or four findings, each as a headline, its evidence number and the action it leads to. |
 | `kpi` | data | 50 | Two to four headline numbers, each with a label and its context or baseline. |
+| `model_card` | data | 110 | Model card: key facts about the model and data, its headline metrics as tiles, and its known limits. |
+| `schema` | data | 80 | Data dictionary: up to four tables as cards listing their columns, types and keys, with the relations underneath. |
 | `agenda` | frame | 45 | Three to seven numbered steps: what the talk covers or how the work was structured. |
 | `big_number` | frame | 40 | One hero number with its meaning and a few supporting points. |
 | `closing` | frame | 25 | Closing slide: thanks or questions, where to find the code and the team. |
 | `columns` | frame | 70 | Two or three titled columns of bullets; for options, phases or parallel arguments. |
+| `cover_poster` | frame | 30 | Poster-style opening: an oversized title across the whole slide with small meta lines; for hackathons, events and bold decks. |
+| `cover_split` | frame | 35 | Split opening: the title on a solid color panel on the left, subtitle and meta on the right; optional picture on the right. |
 | `image_full` | frame | 25 | A full-slide image with the title as a caption bar; for a photo, a product shot or a figure. |
 | `quote` | frame | 45 | One large quotation with its author; use it for a testimonial, a principle or a user voice. |
 | `section` | frame | 25 | Section divider: a very large number and the section title. |
+| `statement` | frame | 30 | One big sentence with its key figure or phrase blown up in the accent color; for the problem, a surprising fact or a thesis. |
 | `title` | frame | 40 | Opening slide: project name, one-line value proposition, event and team. |
 | `advancements` | game | 60 | Advancement tree: milestones as framed icons joined by a path, done, current or locked. |
 | `book` | game | 70 | Open book: two parchment pages for what was done and what remains, or any two lists. |
@@ -55,6 +67,12 @@ run the script after adding a layout or theme. `python scripts/build_catalog.py 
 | `profile` | portfolio | 70 | About me: portrait, a short bio, facts and contact lines. |
 | `skills` | portfolio | 60 | Skills as bars (with a level) or as chips under group headings. |
 | `timeline` | portfolio | 80 | Vertical timeline for a career, a project history or a study path: when, what, detail. |
+| `checklist` | product | 80 | Checklist with status: each requirement or deliverable with done, doing, to do or blocked and a note. |
+| `hmw` | product | 55 | The challenge as a how-might-we question, with who it is for, the constraint and what success looks like. |
+| `journey` | product | 80 | Journey map: stages left to right, what the user does, how they feel as a curve, and the opportunity at each stage. |
+| `kanban` | product | 70 | Kanban board: up to four columns such as To do, Doing and Done, each with task cards and owners. |
+| `links` | product | 50 | Where to find it: demo, code, slides and contact as large rows with a label, an address and a note. |
+| `persona` | product | 90 | User persona: a name and role, a few facts, goals, frustrations and needs, and one quote. |
 | `abstract` | science | 110 | Structured abstract: background, methods, results and conclusion as labelled rows. |
 | `equation` | science | 60 | A formula shown large and typeset, with a legend of its symbols. |
 | `factsheet` | science | 80 | Fact sheet: key and value rows for a dataset, a study design or a specification. |
@@ -73,6 +91,75 @@ run the script after adding a layout or theme. `python scripts/build_catalog.py 
 | `tech_stack` | tech | 45 | Technology tiles grouped by layer: language, framework, data, cloud. |
 
 ## 2. Layout inputs
+
+### ask
+
+Accepts: props: amount, detail, milestones (list separated by semicolons); items: `Use | share | note` (up to 5, shares become the bar); set `source:`
+
+```markdown
+# We are raising 1.5 M to reach break-even in 18 months
+layout: ask
+source: finance/plan-2027.xlsx
+amount: 1.5 M
+detail: 18 months of runway
+milestones: 1,000 schools; Break-even; Second country
+- Product | 45 | four engineers and one designer
+- Sales | 35 | school partnerships team
+- Operations | 20 | support and compliance
+```
+
+### canvas9
+
+Accepts: groups: up to nine `## heading` sections named like Key partners, Key activities, Key resources, Value propositions, Customer relationships, Channels, Customer segments, Cost structure, Revenue streams (matched by name, else in that order); keep bullets to three or four words
+
+```markdown
+# A tutoring marketplace in one page
+layout: canvas9
+## Key partners
+- Schools
+- Payment provider
+## Key activities
+- Vetting tutors
+- Matching
+## Key resources
+- Tutor network
+- Matching model
+## Value propositions
+- Verified tutors
+- First lesson free
+## Customer relationships
+- Self-service
+- Lesson reminders
+## Channels
+- Parent groups
+- School newsletters
+## Customer segments
+- Parents of teens
+- Exam candidates
+## Cost structure
+- Tutor payouts
+- Cloud and support
+## Revenue streams
+- 15% lesson fee
+- Monthly subscription
+```
+
+### customer_case
+
+Accepts: props: customer, industry, quote, stat `-42% | support tickets`; items: `Problem | text`, `Solution | text`, `Result | text`; set `source:`
+
+```markdown
+# A regional bank cut ticket volume by 42 percent
+layout: customer_case
+source: customers/bank-case.md
+customer: Northern Savings Bank
+industry: Retail banking, 900 staff
+quote: We stopped answering the same ten questions every day.
+stat: -42% | support tickets in 90 days
+- Problem | Agents repeated the same answers all day
+- Solution | A searchable help assistant inside the agent desktop
+- Result | Faster first replies and fewer escalations
+```
 
 ### exec_summary
 
@@ -130,6 +217,20 @@ periods: Q1, Q2, Q3, Q4
 - Launch | 4 | 4 | All
 ```
 
+### kpi_table
+
+Accepts: items: `Metric | value | delta | green, amber or red | note` (up to 8); a delta starting with + points up, - points down; set `source:`
+
+```markdown
+# Revenue is up and churn is flat
+layout: kpi_table
+source: bi/q3.xlsx
+- Revenue | 4.1 M | +8% | green | ahead of plan
+- Active users | 61,000 | +12% | green | all regions
+- Churn | 3.2% | -0.1 pt | amber | one segment worse
+- Support tickets | 1,840 | +21% | red | release 5.2
+```
+
 ### market
 
 Accepts: items: `Name | value | description` from the largest to the smallest (up to 3), e.g. TAM, SAM, SOM
@@ -158,6 +259,25 @@ layout: matrix
 - New market
 ## Threats
 - Big incumbents
+```
+
+### okr
+
+Accepts: groups: one `## Objective` per card (up to three); bullets `Key result | current | target` (up to three each); set `source:` for the numbers
+
+```markdown
+# Two of three objectives are on track for the quarter
+layout: okr
+source: bi/okr-q3.xlsx
+## Grow active learners
+- Weekly active users | 4,200 | 6,000
+- Day-7 retention | 31 | 40
+## Raise revenue quality
+- Paid conversion | 3.1 | 4
+- Refund rate | 2 | 2
+## Ship the mobile app
+- Beta users | 120 | 500
+- Crash-free sessions | 97 | 99
 ```
 
 ### org
@@ -199,6 +319,22 @@ layout: process
 - Pay | funds arrive in 3 days
 ```
 
+### proof_wall
+
+Accepts: items: `Headline | caption` (up to 8); the headline is a short claim or name, the caption its source or date; set `source:` when a number appears
+
+```markdown
+# Schools, press and prizes back the product
+layout: proof_wall
+source: press/clippings.md
+- Top 10 | Education apps, App Store 2026
+- 40 schools | Paying pilots in two countries
+- Best Product | Regional EdTech Awards
+- Featured | National Education Weekly
+- 2x growth | Active classes since January
+- Partner | District education office
+```
+
 ### risk
 
 Accepts: items: `Risk | likelihood | impact | mitigation` with low, medium or high (up to 6)
@@ -235,7 +371,7 @@ Accepts: items: bullets; first paragraph becomes a lede; image: picture on the r
 
 ### chart_insight
 
-Accepts: chart: bar | hbar | line | scatter | confusion; table rows `| label | value |` as data, or image: ready chart; takeaway: prop or bullets
+Accepts: chart: bar | hbar | line | area | stacked | waterfall | donut | scatter | confusion | heatmap | radar | lollipop | slope; table rows `| label | value |` as data, or image: ready chart; takeaway: prop or bullets
 
 ```markdown
 # Recall rises with every added feature family
@@ -264,6 +400,19 @@ source: runs/log.jsonl
 | Latency | 9 s | **2 s** |
 ```
 
+### insight_cards
+
+Accepts: items: `Finding | evidence number | evidence caption | action` (up to four); set `source:` for the numbers
+
+```markdown
+# Three findings explain most of the churn
+layout: insight_cards
+source: analysis/churn.ipynb
+- Late onboarding hurts | 2.4x | churn when setup takes over 3 days | Offer a guided setup
+- Weekend users stay | 61% | still active after 90 days | Send weekend prompts
+- Price is not the driver | 4% | of cancellations cite price | Keep the price
+```
+
 ### kpi
 
 Accepts: items: `92% | F1 score | vs 81% baseline`; first paragraph: takeaway; set `source:` for the numbers
@@ -274,6 +423,50 @@ layout: kpi
 source: runs/log.jsonl#champion
 - 92% | F1 | vs 81% baseline
 - 2 s | latency | p95
+```
+
+### model_card
+
+Accepts: groups: `## Facts` (`Label | value` rows), `## Metrics` (`name | value | note`, up to four), `## Limits` (bullets); set `source:` for the metrics
+
+```markdown
+# The model is accurate on holdout and weak on new merchants
+layout: model_card
+source: runs/log.jsonl#champion
+## Facts
+- Task | Fraud probability per payment
+- Model | Gradient boosting, 400 trees
+- Data | 2.1 M payments, 12 weeks
+- Split | Time-ordered holdout
+## Metrics
+- PR-AUC | 0.74 | holdout
+- Recall at 1% | 0.61 | holdout
+- Latency | 38 ms | p95
+## Limits
+- Drops on merchants with under 30 payments
+- Not tested outside the card market
+```
+
+### schema
+
+Accepts: groups: one `## table` per card; bullets `column | type | note` (note containing key marks the column); props: relations (one line)
+
+```markdown
+# Four tables hold everything the model reads
+layout: schema
+relations: orders.user_id -> users.id, events.order_id -> orders.id
+## users
+- id | int | primary key
+- country | text
+- joined_at | date
+## orders
+- id | int | primary key
+- user_id | int | foreign key
+- amount | float
+## events
+- id | int | primary key
+- order_id | int | foreign key
+- kind | text
 ```
 
 ### agenda
@@ -327,6 +520,32 @@ layout: columns
 - Cache and batch
 ```
 
+### cover_poster
+
+Accepts: props: eyebrow, subtitle, team, date; the title can be long, it is sized to fill the width
+
+```markdown
+# Build it in a weekend, ship it on Monday
+layout: cover_poster
+eyebrow: Hack the Campus 2026
+subtitle: Team Atlas, track: AI for education
+team: Team Atlas
+date: 2026-10-24
+```
+
+### cover_split
+
+Accepts: props: eyebrow, subtitle, team, date, image (a picture filling the right side)
+
+```markdown
+# Fraud alerts ranked by expected loss
+layout: cover_split
+eyebrow: Fintech Hack 2026
+subtitle: A queue that puts the costliest alert first
+team: Team Atlas
+date: 2026-10-24
+```
+
 ### image_full
 
 Accepts: image: picture; the title is the caption; credit: photo credit
@@ -359,6 +578,17 @@ Accepts: props: number (default counts section slides); first paragraph: one-lin
 layout: section
 number: 02
 What the experiments show.
+```
+
+### statement
+
+Accepts: items: one line `lead-in | key figure or phrase | continuation`; the title is the small kicker above; set `source:` when the key is a number
+
+```markdown
+# The cost of meetings
+layout: statement
+source: survey/2026-q2.csv
+- Teams spend | 31 hours | in unproductive meetings every month
 ```
 
 ### title
@@ -592,6 +822,101 @@ layout: timeline
 - 2025 | Design lead | Team of five
 ```
 
+### checklist
+
+Accepts: items: `Item | done, doing, todo or blocked | note` (up to 10, two columns above six)
+
+```markdown
+# Seven of nine deliverables are done
+layout: checklist
+- Working demo | done | live on the team laptop
+- Source code | done | public repository
+- Slides | doing | final pass tonight
+- Video | todo | record after the demo
+- Dataset licence | blocked | waiting for the organisers
+```
+
+### hmw
+
+Accepts: props: question (defaults to the title); items: `Who | text`, `Constraint | text`, `Success | text`; the title is the small kicker above
+
+```markdown
+# The challenge we picked
+layout: hmw
+question: How might we help first-year students keep a daily study habit?
+- Who | First-year students on weak connections
+- Constraint | Works offline, ten minutes a day
+- Success | Seven-day streaks double in four weeks
+```
+
+### journey
+
+Accepts: items: `Stage | what the user does | feeling 1-5 | opportunity` (three to six); 1 is frustrated, 5 is delighted
+
+```markdown
+# The journey breaks at the first lesson
+layout: journey
+- Discover | Sees a friend's streak | 4 | Share cards
+- Sign up | Needs an email and a password | 2 | One-tap sign-in
+- First lesson | Ten minutes, no hint | 1 | Add a guided start
+- Habit | Daily reminder | 4 | Streak freeze
+- Refer | Invites a friend | 5 | Reward both
+```
+
+### kanban
+
+Accepts: groups: one `## Column` per column; bullets `Task | owner`; the cards in a Done column get a tick
+
+```markdown
+# Two thirds of the plan is done with a day to go
+layout: kanban
+## To do
+- Record demo video | Dana
+- Write README | Sam
+## Doing
+- Polish the queue UI | Lee
+- Load test | Ana
+## Done
+- Scoring model | Ana
+- Ranking API | Sam
+- Landing page | Dana
+```
+
+### links
+
+Accepts: items: `Label | address | note` (up to five); props: cta (one line above the rows)
+
+```markdown
+# Try it, read it, break it
+layout: links
+cta: Everything is public and free to use.
+- Demo | atlas.example.org | live, no sign-up
+- Code | github.com/team-atlas/atlas | MIT licence
+- Slides | atlas.example.org/slides | PDF and PPTX
+```
+
+### persona
+
+Accepts: props: name, role, facts (`28 | Almaty | student`), quote; groups: `## Goals`, `## Frustrations`, `## Needs` with up to three bullets each
+
+```markdown
+# Aigerim studies at night and loses her streak
+layout: persona
+name: Aigerim, 20
+role: Second-year student
+facts: Almaty | Works part-time | Phone first
+quote: I only have the bus ride to study.
+## Goals
+- Pass the exams
+- Keep a daily habit
+## Frustrations
+- Long lessons
+- Lost progress offline
+## Needs
+- Five-minute sessions
+- Works without internet
+```
+
 ### abstract
 
 Accepts: items: `Label | text` (up to 4; defaults Background, Methods, Results, Conclusion); keywords: comma list
@@ -804,24 +1129,44 @@ layout: tech_stack
 | Theme | Mode | bg | surface | primary | accent | text | Text/bg | Muted/bg | Corner | Pattern |
 |---|---|---|---|---|---|---|---|---|---|---|
 | `academic` | light | #FBFAF6 | #EFEDE4 | #1F3C88 | #9B1C2E | #1A1A1A | 16.66 | 8.49 | square | rules |
+| `aurora-mesh` | dark | #07121F | #0F2236 | #4DFFB2 | #0FF5DA | #EAF6FF | 17.15 | 8.78 | round | mesh |
+| `blueprint` | dark | #0B2A5C | #133A78 | #7FD4FF | #FFD54A | #F4F8FF | 13.15 | 8.62 | square | blueprint |
 | `boardroom` | light | #FFFFFF | #F1F4F8 | #1B365D | #8A5A00 | #14213D | 15.97 | 7.56 | square | band |
 | `chalkboard` | dark | #1F3A2E | #29483A | #F2E6B1 | #FFB4A2 | #F4F1E6 | 10.91 | 8.27 | square | rules |
 | `classic-craft` | light | #D6EBFF | #C6C6C6 | #2E6A14 | #6B4A00 | #1B1B1B | 14.1 | 7.25 | pixel | classic |
 | `clinical` | light | #FFFFFF | #EAF4F5 | #0B6E79 | #B54708 | #10272B | 15.59 | 7.38 | round | clean |
 | `cloud-light` | light | #F8FAFC | #FFFFFF | #1D4ED8 | #0E7490 | #0F172A | 17.06 | 7.24 | round | none |
+| `cobalt-pop` | dark | #1A2BC8 | #2638DE | #FFE14D | #7CF5E0 | #FFFFFF | 9.44 | 6.8 | round | rings |
 | `conference-dark` | dark | #0E1621 | #172433 | #6FA8DC | #F2C14E | #EEF2F6 | 16.16 | 8.99 | square | rules |
 | `consulting` | light | #FFFFFF | #F3F4F6 | #0B5D3B | #8A5A00 | #111827 | 17.74 | 7.56 | square | clean |
+| `coral-market` | light | #FFF8F4 | #FFE8DF | #D93A52 | #B3263E | #2B1620 | 16.14 | 7.57 | round | dots |
+| `datablue` | dark | #060B2B | #0F1A52 | #3B82FF | #00FFDE | #F1F5FF | 17.65 | 9.86 | round | hatch |
+| `deep-ocean` | dark | #031126 | #0A2342 | #00B4D8 | #90E0EF | #EAF8FF | 17.42 | 9.39 | round | rings |
 | `deep-space` | dark | #0A0F2C | #141B45 | #6C5CE7 | #FF4F9A | #FFFFFF | 18.79 | 9.17 | round | grid |
 | `editorial` | light | #F6F1E7 | #EBE3D0 | #161616 | #B03A0E | #141414 | 16.36 | 7.21 | square | rules |
+| `ember` | dark | #0B0707 | #1D1212 | #E5332A | #FFB4A2 | #FFF1EC | 18.18 | 9.44 | round | bars |
 | `forest` | light | #F7FAF5 | #E4EFDD | #1F5D3A | #8A4B00 | #14231A | 15.52 | 7.23 | round | clean |
 | `graphite-cyan` | dark | #14161B | #1F232B | #00B8D9 | #7DF9FF | #E8EAED | 15.02 | 7.11 | round | grid |
+| `harbor` | light | #F1FAEE | #DDEBE2 | #1D3557 | #B3141F | #122338 | 14.85 | 6.14 | round | corner |
+| `lavender` | light | #FBF8FF | #EFE6FA | #6B43B5 | #8C2F7E | #2A2140 | 14.37 | 7.03 | round | mesh |
 | `ledger` | light | #F6F7F9 | #FFFFFF | #12355B | #1D6B52 | #0F1B2D | 16.12 | 7.07 | square | band |
+| `matrix-green` | dark | #06100A | #0D1F14 | #19E58C | #B6F500 | #E8FFF1 | 18.42 | 8.85 | square | blueprint |
 | `midnight-navy` | dark | #0B1220 | #131C31 | #3B82F6 | #22D3EE | #F1F5F9 | 17.09 | 7.3 | round | grid |
+| `navy-gold` | dark | #000814 | #0A1D3A | #FFC300 | #FFD60A | #F5F7FA | 18.73 | 9.88 | round | rules |
 | `obsidian-craft` | dark | #0E0818 | #1C1030 | #8B5CF6 | #E879F9 | #F3E8FF | 16.69 | 8.8 | pixel | obsidian |
+| `petrol` | dark | #001A22 | #06303B | #0A9396 | #E9D8A6 | #F1F7F2 | 16.51 | 9.15 | round | grid |
+| `plum` | dark | #1A0F24 | #2A1840 | #F25912 | #FFB38A | #F7EEFF | 16.37 | 8.69 | round | dots |
 | `portfolio-mono` | dark | #0A0A0A | #161616 | #F5F5F5 | #C8FF3D | #F5F5F5 | 18.16 | 7.85 | square | clean |
 | `portfolio-warm` | light | #FFF8F1 | #FBE9DA | #A63D1F | #2B6A58 | #2B1B12 | 15.73 | 7.78 | round | band |
+| `quantum-teal` | light | #F1FBF8 | #DAF1EC | #0B7A75 | #B8430C | #0B2527 | 15.21 | 5.97 | round | mesh |
+| `sage` | light | #F5F8F2 | #E2EBDC | #3F6B4F | #8F5A1C | #1E2A22 | 13.9 | 6.72 | round | clean |
+| `signal-yellow` | dark | #0E0E0E | #1C1C1C | #FFC933 | #FFE45C | #FFFFFF | 19.3 | 10.28 | round | corner |
 | `startup-bright` | light | #FFFFFF | #F3EFFF | #5B2EFF | #B4195B | #12112B | 18.41 | 7.92 | round | band |
+| `sunset-mesh` | dark | #14090F | #26121E | #FF4D4D | #FFDB9E | #FFF4E8 | 17.99 | 10.28 | round | mesh |
+| `swiss` | light | #FFFFFF | #F1F1F1 | #111111 | #D10A00 | #111111 | 18.88 | 7.46 | square | rules |
+| `synthwave` | dark | #0F0524 | #1C0B3F | #C21CA8 | #4CC9F0 | #FFF0FB | 17.9 | 9.6 | round | mesh |
 | `terminal-slate` | dark | #0D1117 | #161B22 | #58A6FF | #3FB950 | #E6EDF3 | 16.02 | 6.15 | square | grid |
+| `terracotta` | light | #FBF3E8 | #F3E1CC | #A14646 | #9A4A0E | #2E1A12 | 15.0 | 6.86 | round | rules |
 | `ultraviolet-core` | dark | #120B2E | #1E1546 | #8B5CF6 | #00E5FF | #F5F3FF | 17.2 | 8.61 | round | grid |
 | `venture-dark` | dark | #0B0B14 | #15152A | #7C5CFF | #35E0B1 | #F5F5FA | 18.02 | 8.49 | round | grid |
 

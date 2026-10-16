@@ -1,0 +1,19 @@
+name: plum
+mode: dark
+scopes: [creative, product, consumer, education]
+description: "Aubergine with orange, violet and peach, dot motif. For design, media and consumer-brand talks."
+colors:
+  bg: "#1A0F24"
+  surface: "#2A1840"
+  primary: "#F25912"
+  secondary: "#8B5DFF"
+  accent: "#FFB38A"
+  text: "#F7EEFF"
+  muted: "#BFA9D9"
+  success: "#6EE7B7"
+  warning: "#FFD84D"
+  danger: "#FF8AA0"
+  info: "#9B8CFF"
+series: ["#F25912", "#8B5DFF", "#FFB38A", "#6EE7B7", "#BFA9D9"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.2, pattern: dots}

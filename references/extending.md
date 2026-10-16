@@ -36,6 +36,12 @@ arcade, blueprint or cyberpunk: choose `corner`, `border`, `shadow`, `pattern`, 
 optionally `metaphor: game`. New corner or pattern kinds are drawn in `scripts/deckkit/core/canvas.py`
 (`Canvas.box`, `Canvas.backdrop`) with flat shapes only, so both backends render them.
 
+To add a backdrop pattern: add its name to `Canvas.PATTERNS`, write `_pat_<name>(self)` that draws with `self.rect`, `self.line` and `self.poly` and
+returns True (return False to fall back to the default glow), keep it clear of the title zone (x from 0.7 to 8.3 in) or of the bottom meta row,
+and check `cli.py lint` for "leaves the slide" and contrast findings. The `mesh` pattern is the one exception: it embeds a generated picture and
+supplies a `tone` so the contrast lint still checks text over it (`scripts/deckkit/charts/mesh.py`). Content-slide furniture is the `deco` style key (`Canvas._deco`).
+New chart kinds go in `scripts/deckkit/charts/themed.py` (`KINDS` and a branch in `render_chart`) with a test in `tests/test_scopes.py`.
+
 ## 3. Add a layout
 
 Create a function in a module under `scripts/deckkit/layouts/` and register it:

@@ -1,0 +1,19 @@
+name: datablue
+mode: dark
+scopes: [data, hackathon, tech, science]
+description: "Navy to electric blue with a hatched side panel. For datathons, analytics readouts and dashboards."
+colors:
+  bg: "#060B2B"
+  surface: "#0F1A52"
+  primary: "#3B82FF"
+  secondary: "#00CAFF"
+  accent: "#00FFDE"
+  text: "#F1F5FF"
+  muted: "#A9B8EC"
+  success: "#2EE6A6"
+  warning: "#FFC247"
+  danger: "#FF7A8A"
+  info: "#00CAFF"
+series: ["#3B82FF", "#00CAFF", "#00FFDE", "#FFC247", "#A9B8EC"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.16, pattern: hatch}

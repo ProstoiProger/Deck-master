@@ -1,0 +1,19 @@
+name: synthwave
+mode: dark
+scopes: [hackathon, creative, tech, event]
+description: "Indigo-black with hot pink, violet and cyan, mesh cover. For demo days, creative-tech and community events."
+colors:
+  bg: "#0F0524"
+  surface: "#1C0B3F"
+  primary: "#C21CA8"
+  secondary: "#4361EE"
+  accent: "#4CC9F0"
+  text: "#FFF0FB"
+  muted: "#C8AADD"
+  success: "#5CF64A"
+  warning: "#FFBD00"
+  danger: "#FF6B9A"
+  info: "#4CC9F0"
+series: ["#C21CA8", "#4361EE", "#4CC9F0", "#FFBD00", "#C8AADD"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.18, pattern: mesh, mesh: ["#F72585", "#7209B7", "#3A0CA3", "#4CC9F0"], mesh_veil: 0.58}

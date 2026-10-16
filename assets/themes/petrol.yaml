@@ -1,0 +1,19 @@
+name: petrol
+mode: dark
+scopes: [science, engineering, energy, report]
+description: "Deep petrol teal with amber and sand. For energy, climate and engineering reports."
+colors:
+  bg: "#001A22"
+  surface: "#06303B"
+  primary: "#0A9396"
+  secondary: "#EE9B00"
+  accent: "#E9D8A6"
+  text: "#F1F7F2"
+  muted: "#9CC0C0"
+  success: "#94D2BD"
+  warning: "#EE9B00"
+  danger: "#FF8A66"
+  info: "#6FB8D9"
+series: ["#0A9396", "#EE9B00", "#E9D8A6", "#94D2BD", "#9CC0C0"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.14, pattern: grid}

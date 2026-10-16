@@ -1,4 +1,5 @@
 """Canvas: the drawing helper layouts use. Style-aware (round, square or pixel corners; soft, hard or no shadow)."""
+import math
 from pathlib import Path
 
 from . import color, entities, pixelart, textfit
@@ -308,10 +309,19 @@ class Canvas:
         tw = W - 2 * MARGIN - (1.05 if self.badge_mob else 0)
         size, _, _ = textfit.fit(self.t, text, "heading", tw, h, max_size * scale, 14 * scale, True, lh)
         self.text(MARGIN, y, tw, h, text, size, col, "heading", True, "left", "top", lh)
+        self._deco()
         if self.badge_mob:  # a framed mob head at the right end of the title line
             self.box(W - MARGIN - 0.85, 0.42, 0.85, 0.85, fill="surface", shadow=False)
             self._mob_image(self.badge_mob, W - MARGIN - 0.85 + 0.07, 0.42 + 0.07, 0.71, "face")
         return size
+
+    def _deco(self):
+        """Small furniture on content slides, set by the theme's `deco` key: tri (a corner triangle) or tab (a left edge tab)."""
+        deco = self.style.get("deco", "none")
+        if deco == "tri":
+            self.poly([(W - 0.7, 0), (W, 0), (W, 0.7)], self.t.c("accent"))
+        elif deco == "tab":
+            self.rect(0, 0.62, 0.16, 0.95, "accent")
 
     def accent_rule(self, x=MARGIN, y=1.76, w=0.9):
         mode = self.style["title_rule"] if abs(y - 1.76) < 0.01 else "bar"  # title and closing slides always use the short bar
@@ -372,6 +382,10 @@ class Canvas:
             return
         if pat == "none":
             return
+        if pat in self.PATTERNS:
+            if getattr(self, "_pat_" + pat)():
+                return
+            pat = "grid"  # the pattern could not be drawn (e.g. numpy missing): fall back to the default glow
         if pat == "clean":
             self.rect(0, 0, 0.28, H, "primary")
             self.rect(0.28, 0, 0.06, H, "accent")
@@ -406,6 +420,97 @@ class Canvas:
         acc = t.c("accent")
         for r, a in ((1.9, 0.05), (1.2, 0.08)):
             self.rect(W - 1.2 - r, H - 1.3 - r, 2 * r, 2 * r, acc, kind="ellipse", alpha=a)
+
+    PATTERNS = ("mesh", "hatch", "corner", "dots", "blueprint", "rings", "bars")
+
+    def _hatch(self, x0, y0, w, h, step=0.3, col=None, width=0.75, alpha_col=None):
+        """Diagonal lines (45 degrees, rising to the right) clipped to a rectangle."""
+        col = col or color.mix(self.t.c("bg"), self.t.c("text"), 0.18)
+        k = -h
+        while k < w:
+            xa, ya = x0 + max(k, 0), y0 + h - max(-k, 0)       # lower-left end of this line inside the box
+            run = min(w - max(k, 0), h - max(-k, 0))
+            if run > 0.02:
+                self.line(xa, ya, xa + run, ya - run, col, width)
+            k += step
+
+    def _pat_mesh(self):
+        try:
+            from ..charts.mesh import render_mesh
+            path, tone = render_mesh(self.t, self.deck, key="cover")
+        except Exception as e:  # numpy or Pillow missing, or an unreadable cache folder
+            self.scene.problems.append(f"[Low] mesh backdrop not drawn ({type(e).__name__}); install scripts/requirements/charts.txt")
+            return False
+        self.items.append(Image(0, 0, W, H, path, tone))
+        return True
+
+    def _pat_hatch(self):
+        t = self.t
+        self.rect(W - 3.1, 0, 3.1, H, "primary")
+        on = t.on("primary")
+        self._hatch(W - 3.1, 0, 3.1, H, 0.34, color.mix(t.c("primary"), on, 0.22), 1.0)
+        self.rect(W - 3.1, 0, 0.1, H, "accent")
+        self._hatch(MARGIN, 6.85, 6.0, 0.4, 0.18, color.mix(t.c("bg"), t.c("text"), 0.28), 1.5)
+        return True
+
+    def _pat_corner(self):
+        t = self.t
+        self.poly([(W - 5.2, 0), (W, 0), (W, 5.2)], t.c("primary"))
+        self.poly([(W - 2.9, 0), (W, 0), (W, 2.9)], t.c("accent"))
+        self.poly([(0, H), (1.2, H), (0, H - 1.2)], t.c("secondary"), alpha=0.9)
+        return True
+
+    def _pat_dots(self):
+        t = self.t
+        col = color.mix(t.c("bg"), t.c("text"), 0.16)
+        for i in range(14):
+            for j in range(9):
+                x, y = W * 0.5 + i * 0.5, 0.35 + j * 0.78
+                big = (i + j) % 7 == 0
+                self.rect(x, y, 0.16 if big else 0.07, 0.16 if big else 0.07, t.c("accent") if big else col, kind="ellipse")
+        self.rect(0, 0, 0.18, H, "primary")
+        return True
+
+    def _pat_blueprint(self):
+        t = self.t
+        faint = color.mix(t.c("bg"), t.c("text"), 0.07)
+        for k in range(1, int(W / 0.5)):
+            self.line(k * 0.5, 0, k * 0.5, H, faint, 0.5)
+        for k in range(1, int(H / 0.5)):
+            self.line(0, k * 0.5, W, k * 0.5, faint, 0.5)
+        edge = color.mix(t.c("bg"), t.c("text"), 0.45)
+        self.rect(0.3, 0.3, W - 0.6, H - 0.6, None, edge, 1.25)
+        self.rect(W - 4.6, H - 1.15, 4.3, 0.85, t.c("bg"), edge, 1.0)
+        self.line(W - 3.0, H - 1.15, W - 3.0, H - 0.3, edge, 1.0)
+        self.line(W - 4.6, H - 0.72, W - 0.3, H - 0.72, edge, 1.0)
+        self.rect(W - 4.45, H - 1.0, 0.45, 0.2, "accent")
+        name = str(self.deck.meta.get("title", ""))
+        name = (name[:30] + "...") if len(name) > 33 else name
+        self.text(W - 2.9, H - 1.15, 2.5, 0.43, name.upper(), 11, "muted", "mono", True, valign="middle", chrome=True)
+        self.text(W - 4.45, H - 0.72, 1.4, 0.42, "SHEET", 11, "muted", "mono", True, valign="middle", chrome=True)
+        self.text(W - 2.9, H - 0.72, 2.5, 0.42, f"{self.slide.index:02d} / {self.total:02d}", 11, "muted", "mono", True, valign="middle", chrome=True)
+        return True
+
+    def _pat_rings(self):
+        t = self.t
+        ring = color.mix(t.c("bg"), t.c("text"), 0.14)
+        cx, cy = W - 3.4, H / 2
+        for r in (0.6, 1.2, 1.8, 2.4, 3.0):
+            self.rect(cx - r, cy - r, 2 * r, 2 * r, None, ring, 1.0, "ellipse")
+        for ang, r, col in ((0.6, 1.8, "accent"), (2.3, 1.2, "primary"), (4.0, 3.0, "secondary"), (5.2, 0.6, "accent")):
+            self.rect(cx + r * math.cos(ang) - 0.11, cy + r * math.sin(ang) - 0.11, 0.22, 0.22, col, kind="ellipse")
+        self.rect(MARGIN, 0.72, 0.9, 0.07, "accent")
+        return True
+
+    def _pat_bars(self):
+        t = self.t
+        n, bw, gap = 10, 0.3, 0.12
+        x0 = W - MARGIN - n * (bw + gap)
+        for i in range(n):
+            hh = 0.8 + 3.2 * ((i * 37 % 11) / 10) * (0.35 + 0.65 * i / (n - 1))
+            self.rect(x0 + i * (bw + gap), H - 0.9 - hh, bw, hh, "accent" if i == n - 1 else "primary", alpha=1.0 if i == n - 1 else 0.85)
+        self.rect(x0 - 0.2, H - 0.9, n * (bw + gap) + 0.26, 0.03, color.mix(t.c("bg"), t.c("text"), 0.4))
+        return True
 
     def _obsidian(self, portal):
         """Obsidian floor with purple veins and (optionally) a portal frame with a glowing purple interior."""

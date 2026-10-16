@@ -1,0 +1,19 @@
+name: signal-yellow
+mode: dark
+scopes: [business, pitch, product, startup]
+description: "Black with one loud yellow and a corner triangle. For investor and sales decks that must be remembered."
+colors:
+  bg: "#0E0E0E"
+  surface: "#1C1C1C"
+  primary: "#FFC933"
+  secondary: "#FF8A3D"
+  accent: "#FFE45C"
+  text: "#FFFFFF"
+  muted: "#BDBDBD"
+  success: "#3DDC97"
+  warning: "#FFC933"
+  danger: "#FF6B6B"
+  info: "#7CC4FF"
+series: ["#FFC933", "#FF8A3D", "#7CC4FF", "#3DDC97", "#BDBDBD"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: none, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.12, pattern: corner, deco: tri}

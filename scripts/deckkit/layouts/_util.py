@@ -22,7 +22,8 @@ def layer_items(items):
 
 
 def initials(name):
-    parts = [p for p in name.replace("**", "").split() if p]
+    """Up to two initials; words that do not start with a letter (an age such as `21`) are skipped."""
+    parts = [p for p in name.replace("**", "").replace(",", " ").split() if p[:1].isalpha()]
     return "".join(p[0] for p in parts[:2]).upper() or "?"
 
 
@@ -42,7 +43,8 @@ def flow(c, items, x, y, w, h, max_size=22, min_size=13, gap=0.2, marker="square
             wrapped.append((text, hh))
             total += hh
         total += gap * max(0, len(items) - 1)
-        if total <= h or size <= min_size:
+        widest = max((textfit.widest_word(t, it if isinstance(it, str) else it.text, "body", size) for it in items), default=0)
+        if (total <= h and widest <= w - indent) or size <= min_size:   # a long word cannot wrap: shrink until it fits the width too
             break
         size -= 1
     cy = y

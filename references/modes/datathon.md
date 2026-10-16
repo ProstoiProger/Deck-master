@@ -43,3 +43,11 @@ Slides, rehearsal twice and a backup PDF take the last 3 to 4 hours of a 24-hour
 - Correlation presented as cause.
 - A recommendation with no size and no assumption.
 - A dense appendix table on the main path.
+
+## Newer options (2026-10)
+
+- **Event `data-story`** with `playbooks/data-story.md`: a `statement` for the decision, `schema` for the data dictionary,
+  `insight_cards` for findings with evidence and action, `model_card` for the method and its limits, `links` for the notebook.
+- **Chart kinds** for findings: `lollipop` (ranking), `heatmap` (two dimensions, diverging when values are negative), `slope`
+  (before and after), `radar` (four to six comparable axes), besides `bar`, `hbar`, `line`, `area`, `stacked`, `waterfall`, `donut`.
+- **Look**: `datablue` (hatched cover panel), `ultraviolet-core`, `deep-ocean`, `matrix-green`.

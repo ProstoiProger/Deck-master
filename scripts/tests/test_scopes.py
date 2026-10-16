@@ -44,14 +44,14 @@ def test_a_layout_from_each_family_renders_in_every_formal_theme(lint_text, them
 
 
 def test_layout_count_and_families():
-    assert len(layout_registry.LAYOUTS) == 56
+    assert len(layout_registry.LAYOUTS) == 74
     families = {s.family for s in layout_registry.LAYOUTS.values()}
-    assert {"business", "science", "portfolio", "frame", "game"} <= families
+    assert {"business", "science", "portfolio", "frame", "game", "product", "data"} <= families
 
 
 def test_events_have_templates_scopes_and_formal_defaults():
     events = timing.load_events()
-    assert len(events) == 18
+    assert len(events) == 31
     from deckkit.core import paths
     for name, e in events.items():
         assert (paths.templates_dir() / f"deck-{name}.md").exists(), name
@@ -175,7 +175,8 @@ def test_every_example_deck_is_clean_and_game_decks_are_flagged(path, tmp_path):
     assert ("game" in th.scopes) == bool(deck.meta.get("game")), path
 
 
-@pytest.mark.parametrize("name", ["investor-pitch-venture", "quarterly-review-boardroom", "portfolio-case-mono"])
+@pytest.mark.parametrize("name", ["investor-pitch-venture", "quarterly-review-boardroom", "portfolio-case-mono", "demo-day-aurora",
+                                  "data-story-datablue", "product-roadmap-signal", "ux-research-lavender"])
 def test_formal_examples_ship_with_built_files(name):
     folder = EXAMPLES / name
     assert list(folder.glob("*.pptx")) and list(folder.glob("*.pdf")) and (folder / "preview.png").exists()

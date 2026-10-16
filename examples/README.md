@@ -16,6 +16,10 @@ gamified look; without such a request the skill never picks a game theme.
 | `investor-pitch-venture` | "10-minute seed pitch, investors score problem, market, traction, team, ask" | `venture-dark` | 11 | market circles, funnel, pricing cards, feature matrix, team, executive summary |
 | `quarterly-review-boardroom` | "20-minute Q3 review for the executive committee, lead with the decision" | `boardroom` | 8 | executive summary, KPI scorecard, chart with so-what, risk register, Gantt |
 | `portfolio-case-mono` | "10-minute design portfolio with one case study, monochrome and editorial" | `portfolio-mono` | 9 | profile, skill bars, timeline, case header, gallery, before and after, quote |
+| `demo-day-aurora` | "3-minute demo-day pitch with a live demo, jury scores wow, clarity, depth, completeness" | `aurora-mesh` | 6 | poster cover on a mesh gradient, how-might-we, solution, demo frame, KPI cards, links |
+| `data-story-datablue` | "7-minute datathon final: findings, method, limits, reproducible" | `datablue` | 9 | split cover, statement, schema, insight cards, bar and lollipop charts, model card, claims and limits, links |
+| `product-roadmap-signal` | "15-minute roadmap and OKR review for product leadership, one decision wanted" | `signal-yellow` | 9 | executive summary, OKR bars, roadmap, Gantt, kanban, risk register, KPI table with arrows |
+| `ux-research-lavender` | "12-minute usability readout for the product team, eight participants" | `lavender` | 10 | how-might-we, persona, journey curve, insight cards, quote, KPI cards, checklist, roadmap |
 
 ## Game decks (only when the prompt asks)
 
@@ -49,6 +53,6 @@ python scripts/cli.py preview examples/research-talk-academic/calibration.md --o
   They belong to Mojang/Microsoft: personal, non-commercial use only. Do not publish those PPTX, PDF or preview files
   (`references/design/entities.md`); they are gitignored. Without the downloaded characters a deck still builds, without
   the mob decoration. The formal examples contain no third-party artwork and can be committed.
-- The images in `portfolio-case-mono` and `hackathon-pitch-midnight` are illustrative mock-ups drawn for the examples.
+- The images in `portfolio-case-mono`, `hackathon-pitch-midnight` and `demo-day-aurora` are illustrative mock-ups drawn for the examples.
 - **Fonts**: the PDFs embed the bundled fonts; the PPTX files need them installed (`assets/fonts`).
 - Components are listed in `references/design/layouts.md`; game components are described in `references/design/game-components.md`.

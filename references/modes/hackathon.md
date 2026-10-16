@@ -37,3 +37,11 @@ Final hours go to rehearsal and a backup recording, not to features.
 - Claiming real users when only the team tried it: say "pilot with N students" only if true.
 
 Bank or corporate events with ML, AI and DS tracks: `modes/hackathon-tracks/README.md`.
+
+## Newer options (2026-10)
+
+- **Three-minute finals**: use the `demo-day` event and `playbooks/demo-day.md`: poster cover, the challenge as a how-might-we
+  question (`hmw`), solution, demo, three numbers, `links`.
+- **Looks**: `aurora-mesh` (mint and cyan mesh cover), `synthwave`, `cobalt-pop`, `matrix-green` for security or dev-tool projects.
+  They are formal-by-default themes; the game themes still need an explicit request.
+- **Delivery slides**: `kanban` for a 24-hour plan and `checklist` for deliverables (demo, code, slides, video, licence).

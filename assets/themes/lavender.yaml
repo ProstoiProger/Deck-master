@@ -1,0 +1,19 @@
+name: lavender
+mode: light
+scopes: [education, design, ux, creative]
+description: "Pastel lilac, pink and sky mesh with purple type. For design critiques, UX research and friendly lectures."
+colors:
+  bg: "#FBF8FF"
+  surface: "#EFE6FA"
+  primary: "#6B43B5"
+  secondary: "#C23A82"
+  accent: "#8C2F7E"
+  text: "#2A2140"
+  muted: "#5A5075"
+  success: "#1E7B4F"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#2F6E9F"
+series: ["#6B43B5", "#C23A82", "#3E8FD0", "#E0A32E", "#5A5075"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: none, shadow: none, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.22, pattern: mesh, mesh: ["#CDB4DB", "#FFC8DD", "#BDE0FE", "#A2D2FF"], mesh_veil: 0.22}

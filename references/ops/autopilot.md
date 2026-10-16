@@ -31,8 +31,8 @@ Ask the user only for what blocks the work; everything else becomes an assumptio
 
 | Decision | Options | Source of truth |
 |---|---|---|
-| Event mode | any of `cli.py new --list` (18 events in 7 scopes) | brief and rules |
-| Playbook | hackathon-pitch, datathon-findings, assignment-report, project-defense, tech-talk, novel | what the user has |
+| Event mode | any of `cli.py new --list` (31 events in 8 scopes) | brief and rules |
+| Playbook | hackathon-pitch, demo-day, datathon-findings, data-story, assignment-report, project-defense, tech-talk, keynote, investor-pitch, business-review, product-launch, product-planning, ux-research, engineering-review, portfolio-case, novel | what the user has |
 | Theme | formal theme of the scope (`design/scopes.md`) or a custom one; game themes only if asked | user request, brand, event, room |
 | Domain card | data-science, ai-llm, web-mobile, cybersecurity, fintech, healthtech, edtech, iot, none | topic |
 | Language | deck language | brief, audience |

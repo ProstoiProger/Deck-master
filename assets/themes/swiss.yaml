@@ -1,0 +1,19 @@
+name: swiss
+mode: light
+scopes: [portfolio, science, tech, report]
+description: "White, black and one red. Grid discipline, outline cards, no decoration. For design-led and research-led decks."
+colors:
+  bg: "#FFFFFF"
+  surface: "#F1F1F1"
+  primary: "#111111"
+  secondary: "#555555"
+  accent: "#D10A00"
+  text: "#111111"
+  muted: "#555555"
+  success: "#1E7B4F"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#1F5FA8"
+series: ["#111111", "#D10A00", "#1F5FA8", "#8A8A8A", "#E0A32E"]
+fonts: {heading: Montserrat, body: Inter, mono: IBMPlexMono}
+style: {corner: square, border: thin, shadow: none, card: outline, title_rule: line, footer: rule, chips: text, show_source: False, radius: 0.02, pattern: rules}

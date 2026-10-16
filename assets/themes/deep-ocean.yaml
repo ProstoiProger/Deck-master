@@ -1,0 +1,19 @@
+name: deep-ocean
+mode: dark
+scopes: [science, data, health, report]
+description: "Midnight blue with cyan and ice accents and concentric rings. For oceanography, climate and analytics."
+colors:
+  bg: "#031126"
+  surface: "#0A2342"
+  primary: "#00B4D8"
+  secondary: "#48CAE4"
+  accent: "#90E0EF"
+  text: "#EAF8FF"
+  muted: "#9DBBCF"
+  success: "#52B69A"
+  warning: "#FFC247"
+  danger: "#FF7A7A"
+  info: "#48CAE4"
+series: ["#00B4D8", "#90E0EF", "#52B69A", "#FFC247", "#9DBBCF"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.18, pattern: rings}

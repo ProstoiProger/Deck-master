@@ -39,7 +39,7 @@ def kpi(c, s):
 
 
 @layout("chart_insight", "data", "One chart on the left and the so-what on the right.", 50,
-        accepts="chart: bar | hbar | line | scatter | confusion; table rows `| label | value |` as data, or image: ready chart; takeaway: prop or bullets",
+        accepts="chart: bar | hbar | line | area | stacked | waterfall | donut | scatter | confusion | heatmap | radar | lollipop | slope; table rows `| label | value |` as data, or image: ready chart; takeaway: prop or bullets",
         example="# Recall rises with every added feature family\nlayout: chart_insight\nchart: bar\nsource: runs/ablation.csv\ntakeaway: Time-window features add 6 points of recall.\n| Family | Recall |\n|---|---|\n| Base | 0.71 |\n| + windows | 0.77 |")
 def chart_insight(c, s):
     c.title()

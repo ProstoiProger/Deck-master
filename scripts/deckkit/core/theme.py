@@ -13,7 +13,11 @@ STYLE_DEFAULTS = {"corner": "round", "border": "thin", "shadow": "soft", "patter
                   "footer": "plain",      # plain | rule: a hairline above the footer
                   "chips": "pill",        # pill | text: how labels such as eyebrows and "so what" are drawn
                   "show_source": False,   # print each slide's `source:` as a footnote
-                  "radius": 0.14}         # corner radius in inches for round cards
+                  "radius": 0.14,         # corner radius in inches for round cards
+                  "deco": "none"}         # none | tri | tab: small furniture on content slides (see Canvas._deco)
+# `pattern` is the title and closing backdrop: grid, band, clean, rules, blocks, obsidian, classic, none, or one of
+# mesh, hatch, corner, dots, blueprint, rings, bars (see Canvas.PATTERNS). `mesh` takes optional `mesh: [4 colors]`
+# and `mesh_veil: 0..1` (how much of the slide background shows through).
 
 
 class ThemeError(ValueError):

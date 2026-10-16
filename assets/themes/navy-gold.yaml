@@ -1,0 +1,19 @@
+name: navy-gold
+mode: dark
+scopes: [finance, business, awards, pitch]
+description: "Ink navy with gold and steel blue, hairline rules. For executive, finance and awards presentations."
+colors:
+  bg: "#000814"
+  surface: "#0A1D3A"
+  primary: "#FFC300"
+  secondary: "#669BBC"
+  accent: "#FFD60A"
+  text: "#F5F7FA"
+  muted: "#A9B7CB"
+  success: "#52C79A"
+  warning: "#FFC300"
+  danger: "#FF7A7A"
+  info: "#669BBC"
+series: ["#FFC300", "#669BBC", "#52C79A", "#FF7A7A", "#A9B7CB"]
+fonts: {heading: PlayfairDisplay, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: none, card: fill, title_rule: line, footer: rule, chips: text, show_source: False, radius: 0.08, pattern: rules}

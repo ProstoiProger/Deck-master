@@ -21,6 +21,24 @@ datathon:
   theme: ultraviolet-core
   skeleton: [title, problem, pipeline, kpi, chart_insight, chart_insight, comparison, impact, roadmap, closing]
   judged_on: [insight quality, method soundness, business value, clarity, reproducibility]
+demo-day:
+  scope: competition
+  max_slides: 6
+  min_slides: 5
+  minutes: 3
+  wpm: 150
+  theme: aurora-mesh
+  skeleton: [cover_poster, hmw, solution, demo, kpi, links]
+  judged_on: [wow of the demo, clarity of the problem, technical depth, completeness, next steps]
+data-story:
+  scope: competition
+  max_slides: 10
+  min_slides: 8
+  minutes: 7
+  wpm: 150
+  theme: datablue
+  skeleton: [cover_split, statement, schema, insight_cards, chart_insight, chart_insight, model_card, impact, links]
+  judged_on: [insight quality, method soundness, business value, clarity, reproducibility]
 # --- study and science ---
 assignment:
   scope: education
@@ -131,6 +149,60 @@ grant-proposal:
   theme: forest
   skeleton: [title, problem, big_number, solution, process, gantt, scorecard, risk, pricing, closing]
   judged_on: [need, impact, feasibility, budget, team]
+product-launch:
+  scope: business
+  max_slides: 12
+  min_slides: 8
+  minutes: 10
+  wpm: 140
+  theme: sunset-mesh
+  skeleton: [cover_poster, statement, problem, solution, feature_grid, persona, demo, pricing, proof_wall, roadmap, closing]
+  judged_on: [clarity of the promise, fit with the user, proof, launch plan]
+product-roadmap:
+  scope: business
+  max_slides: 12
+  min_slides: 8
+  minutes: 15
+  wpm: 140
+  theme: signal-yellow
+  skeleton: [title, exec_summary, okr, roadmap, gantt, kanban, risk, kpi_table, closing]
+  judged_on: [alignment with goals, clarity of priorities, feasibility, risks and dependencies]
+okr-review:
+  scope: business
+  max_slides: 10
+  min_slides: 6
+  minutes: 10
+  wpm: 140
+  theme: harbor
+  skeleton: [title, exec_summary, okr, kpi_table, chart_insight, risk, checklist, closing]
+  judged_on: [honest progress, causes, decisions needed, next quarter focus]
+market-analysis:
+  scope: business
+  max_slides: 12
+  min_slides: 8
+  minutes: 12
+  wpm: 140
+  theme: coral-market
+  skeleton: [title, exec_summary, market, chart_insight, feature_matrix, matrix, risk, closing]
+  judged_on: [market size and growth, competitor view, positioning, recommendation]
+go-to-market:
+  scope: business
+  max_slides: 12
+  min_slides: 8
+  minutes: 12
+  wpm: 140
+  theme: plum
+  skeleton: [title, exec_summary, market, persona, pricing, funnel, gantt, scorecard, closing]
+  judged_on: [target customer, channels and pricing, targets, plan and owners]
+ux-research:
+  scope: design
+  max_slides: 12
+  min_slides: 8
+  minutes: 12
+  wpm: 140
+  theme: lavender
+  skeleton: [title, hmw, persona, journey, insight_cards, quote, kpi, checklist, roadmap, closing]
+  judged_on: [method, insights, evidence, recommendations]
 # --- tech and portfolio ---
 tech-talk:
   scope: tech
@@ -159,6 +231,51 @@ case-study:
   theme: portfolio-warm
   skeleton: [title, case_header, problem, process, gallery, before_after, kpi, quote, closing]
   judged_on: [problem framing, process, outcome, role clarity]
+keynote:
+  scope: tech
+  max_slides: 20
+  min_slides: 6
+  minutes: 20
+  wpm: 130
+  theme: ember
+  skeleton: [cover_poster, statement, problem, big_number, solution, demo, quote, closing]
+  judged_on: [story, memorable idea, delivery, call to action]
+model-review:
+  scope: tech
+  max_slides: 10
+  min_slides: 7
+  minutes: 10
+  wpm: 140
+  theme: matrix-green
+  skeleton: [title, hmw, schema, model_card, comparison, chart_insight, risk, checklist, roadmap, closing]
+  judged_on: [problem fit, evaluation rigor, known limits, decision]
+architecture-review:
+  scope: tech
+  max_slides: 14
+  min_slides: 8
+  minutes: 15
+  wpm: 140
+  theme: blueprint
+  skeleton: [title, problem, architecture, schema, tech_stack, comparison, risk, checklist, roadmap, closing]
+  judged_on: [requirements fit, trade-offs, risks, operability, decision]
+postmortem:
+  scope: tech
+  max_slides: 10
+  min_slides: 6
+  minutes: 10
+  wpm: 140
+  theme: petrol
+  skeleton: [title, exec_summary, timeline, chart_insight, matrix, kanban, checklist, closing]
+  judged_on: [facts and timeline, root causes, what went well, actions with owners]
+sprint-review:
+  scope: tech
+  max_slides: 10
+  min_slides: 6
+  minutes: 10
+  wpm: 140
+  theme: deep-ocean
+  skeleton: [title, kpi_table, demo, kanban, chart_insight, risk, roadmap, closing]
+  judged_on: [demo of done work, metrics, blockers, next sprint]
 # --- on request only ---
 gamified:
   scope: game

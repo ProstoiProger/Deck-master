@@ -1,0 +1,19 @@
+name: ember
+mode: dark
+scopes: [tech, creative, keynote, product]
+description: "Black with ember red and orange, wide display headings and a bar-chart silhouette. For keynotes and product reveals."
+colors:
+  bg: "#0B0707"
+  surface: "#1D1212"
+  primary: "#E5332A"
+  secondary: "#FF8A3D"
+  accent: "#FFB4A2"
+  text: "#FFF1EC"
+  muted: "#CBABA3"
+  success: "#4ADE80"
+  warning: "#FFC247"
+  danger: "#FF8080"
+  info: "#7CC4FF"
+series: ["#E5332A", "#FF8A3D", "#FFB4A2", "#7CC4FF", "#CBABA3"]
+fonts: {heading: Unbounded, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: none, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.1, pattern: bars, heading_scale: 0.86}

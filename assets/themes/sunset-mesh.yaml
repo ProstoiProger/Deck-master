@@ -1,0 +1,19 @@
+name: sunset-mesh
+mode: dark
+scopes: [pitch, product, creative, marketing]
+description: "Warm plum-black with a red-orange-peach mesh gradient. For consumer product launches and brand talks."
+colors:
+  bg: "#14090F"
+  surface: "#26121E"
+  primary: "#FF4D4D"
+  secondary: "#FF7024"
+  accent: "#FFDB9E"
+  text: "#FFF4E8"
+  muted: "#D4B6A8"
+  success: "#6EE7B7"
+  warning: "#FFD84D"
+  danger: "#FF8A9B"
+  info: "#FF7024"
+series: ["#FF4D4D", "#FF7024", "#FFDB9E", "#6EE7B7", "#C9A7FF"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.18, pattern: mesh, mesh: ["#FF004C", "#FF7024", "#FFDB9E", "#7A1B52"], mesh_veil: 0.6}

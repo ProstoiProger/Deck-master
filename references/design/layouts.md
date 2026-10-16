@@ -70,17 +70,36 @@ shrink to fit their boxes, down to a floor; if the floor is reached the slide ha
 | options side by side | `columns` | two or three `##` groups |
 | a divider | `section` | `number:`, one line |
 | a full-slide picture | `image_full` | `image:`, `credit:` |
+| the whole business on one page | `canvas9` | nine `##` groups named like the canvas blocks |
+| objectives with progress bars | `okr` | `##` objective, bullets `Key result | current | target` |
+| metrics with change and status | `kpi_table` | `Metric | value | delta | status | note` items |
+| a customer success story | `customer_case` | `customer:`, `quote:`, `stat:`, `Problem | Solution | Result` items |
+| how much we raise and for what | `ask` | `amount:`, `milestones:`, `Use | share | note` items |
+| awards, press, partners, milestones | `proof_wall` | `Headline | caption` items |
+| a surprising figure inside one sentence | `statement` | one item `lead-in | key | continuation` |
+| a poster-style opener | `cover_poster` | title, `eyebrow:`, `subtitle:` |
+| an opener with a color panel | `cover_split` | title, `subtitle:`, optional `image:` |
+| who the user is | `persona` | `name:`, `role:`, `facts:`, `quote:`, groups Goals, Frustrations, Needs |
+| where the user journey breaks | `journey` | `Stage | does | feeling 1-5 | idea` items |
+| the challenge as a question | `hmw` | `question:`, `Who | Constraint | Success` items |
+| work in progress by column | `kanban` | `##` columns with `Task | owner` bullets |
+| status of deliverables or safeguards | `checklist` | `Item | done, doing, todo or blocked | note` items |
+| where to find the demo and code | `links` | `cta:`, `Label | address | note` items |
+| the tables behind the analysis | `schema` | `##` tables with `column | type | note` bullets, `relations:` |
+| what the model is, scores and where it fails | `model_card` | groups Facts, Metrics, Limits |
+| findings with evidence and the action | `insight_cards` | `Finding | number | caption | action` items |
 | anything else | `bullets` | bullets, optional image |
 
 ## 3. Families
 
-Fifty-six layouts in nine families (the generated list with every input is `design/catalog.md`).
+Seventy-four layouts in eleven families (the generated list with every input is `design/catalog.md`).
 
-- **frame**: `title`, `agenda`, `closing`, `section`, `quote`, `big_number`, `image_full`, `columns`. Decorated backdrop on title and closing only.
+- **frame**: `title`, `cover_poster`, `cover_split`, `agenda`, `closing`, `section`, `quote`, `statement`, `big_number`, `image_full`, `columns`. Decorated backdrop on title, cover and closing only.
 - **story**: `problem`, `solution`, `feature_grid`, `impact`.
 - **tech**: `architecture`, `pipeline`, `demo`, `tech_stack`, `roadmap`.
-- **data**: `kpi`, `chart_insight`, `comparison`. Chart kinds: bar, hbar, line, area, stacked, waterfall, donut, scatter, confusion.
-- **business**: `exec_summary`, `matrix`, `funnel`, `market`, `pricing`, `gantt`, `org`, `scorecard`, `risk`, `feature_matrix`, `process`.
+- **data**: `kpi`, `chart_insight`, `comparison`, `schema`, `model_card`, `insight_cards`. Chart kinds: bar, hbar, line, area, stacked, waterfall, donut, scatter, confusion, heatmap, radar, lollipop, slope.
+- **business**: `exec_summary`, `matrix`, `funnel`, `market`, `pricing`, `gantt`, `org`, `scorecard`, `risk`, `feature_matrix`, `process`, `canvas9`, `okr`, `kpi_table`, `customer_case`, `ask`, `proof_wall`.
+- **product**: `persona`, `journey`, `hmw`, `kanban`, `checklist`, `links` (UX research, hackathon delivery, product work).
 - **science**: `abstract`, `hypotheses`, `equation`, `figure`, `figures2`, `references`, `factsheet`.
 - **portfolio**: `case_header`, `gallery`, `before_after`, `profile`, `skills`, `timeline`.
 - **people**: `team`.
@@ -94,6 +113,8 @@ in `boardroom`, `startup-bright` and `portfolio-mono`.
 ## 4. Rules of thumb
 
 - Do not use one layout more than three times in a row; vary the rhythm.
+- Open with `title` for formal decks, `cover_poster` or `cover_split` for hackathons, product launches, keynotes and events; pick `statement` to turn the problem into one memorable sentence.
+- `scorecard` is for a few KPIs against targets; `kpi_table` adds the change column and arrows; `okr` shows progress to a target as bars.
 - Prefer `kpi` over a bullet that contains a number; prefer `chart_insight` over a table of 4 numbers.
 - `architecture` rows are layers from the user down to data; highlight one component with `**bold**`.
 - Characters (`design/entities.md`): `mascot:` on `title`, `closing` and `problem`, a 4th cell on `team`, and

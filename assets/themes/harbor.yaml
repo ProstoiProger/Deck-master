@@ -1,0 +1,19 @@
+name: harbor
+mode: light
+scopes: [business, government, finance, education]
+description: "Pale mint-white with navy, steel blue and a red accent, corner triangles. For institutional and public-sector decks."
+colors:
+  bg: "#F1FAEE"
+  surface: "#DDEBE2"
+  primary: "#1D3557"
+  secondary: "#457B9D"
+  accent: "#B3141F"
+  text: "#122338"
+  muted: "#4A5F78"
+  success: "#1E7B4F"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#2F6E9F"
+series: ["#1D3557", "#457B9D", "#B3141F", "#E0A32E", "#4A5F78"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: none, shadow: none, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.1, pattern: corner, deco: tri}

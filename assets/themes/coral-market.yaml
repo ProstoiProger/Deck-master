@@ -1,0 +1,19 @@
+name: coral-market
+mode: light
+scopes: [business, product, marketing, pitch]
+description: "Warm white with coral and violet, dot motif. For B2B product, marketing and customer-facing decks."
+colors:
+  bg: "#FFF8F4"
+  surface: "#FFE8DF"
+  primary: "#D93A52"
+  secondary: "#6D3DE0"
+  accent: "#B3263E"
+  text: "#2B1620"
+  muted: "#684853"
+  success: "#1C7C54"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#6D3DE0"
+series: ["#D93A52", "#6D3DE0", "#F2A541", "#1C7C54", "#684853"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: none, shadow: soft, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: False, radius: 0.22, pattern: dots}

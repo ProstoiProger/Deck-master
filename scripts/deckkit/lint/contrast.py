@@ -5,13 +5,13 @@ from .common import finding
 
 def background_under(sc, index, text):
     """Fill color behind a text box: the last opaque shape that contains its center, else the slide background, with
-    translucent shapes above that base blended in. Returns None when the text sits on an image."""
+    translucent shapes above that base blended in. Returns None when the text sits on a photo; a decorative backdrop supplies its `tone`."""
     cx, cy = text.x + text.w / 2, text.y + text.h / 2
     overlays = []
     base = sc.bg
     for it in reversed(sc.items[:index]):
         if isinstance(it, Image) and it.x <= cx <= it.x + it.w and it.y <= cy <= it.y + it.h:
-            return None
+            return it.tone  # a backdrop declares the worst color under text; a photo declares none and is skipped
         if isinstance(it, Shape) and it.fill and it.x <= cx <= it.x + it.w and it.y <= cy <= it.y + it.h:
             if it.alpha >= 0.85:
                 base = it.fill

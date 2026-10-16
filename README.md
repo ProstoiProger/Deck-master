@@ -4,7 +4,7 @@ A presentation skill for AI coding agents (Claude Code, Codex, Cursor, Copilot, 
 that reads `AGENTS.md`). It turns a brief, a project or analysis results into a finished **PPTX and PDF** deck with
 speaker notes, a time plan and requirement traceability. It covers every common kind of presentation: **scientific
 talks and defenses, hackathons and datathons, investor pitches, business reviews and strategy, lectures and workshops,
-tech talks, portfolios and case studies, assignments**. 18 events, 21 themes (19 formal, grouped by scope) and 56 layouts.
+tech talks, portfolios and case studies, assignments**. 31 events, 41 themes (39 formal, grouped by scope) and 74 layouts.
 Decks are **formal by default**; the Minecraft and gamified styles (dark obsidian, light classic, characters such as Steve
 and Creeper) are used only when the prompt asks for them.
 
@@ -15,7 +15,7 @@ and Creeper) are used only when the prompt asks for them.
 python -m pip install -r scripts/requirements/pptx.txt -r scripts/requirements/pdf.txt -r scripts/requirements/charts.txt -r scripts/requirements/preview.txt
 python scripts/install_check.py core pptx pdf charts preview
 
-python scripts/cli.py new --list                                      # 18 events: scope, slide cap, minutes, default theme
+python scripts/cli.py new --list                                      # 31 events: scope, slide cap, minutes, default theme
 python scripts/cli.py new --event hackathon --out decks/pitch.md      # scaffold, fill the <placeholders>
 python scripts/cli.py themes --scope business                         # themes for a scope
 python scripts/cli.py lint decks/pitch.md                             # readability, numbers, notes, time, rubric
@@ -48,8 +48,8 @@ python scripts/install.py --agent claude --scope user        # or codex, cursor,
 |---|---|
 | `SKILL.md` | the operating protocol, prime directives, routing, modes (single source of truth) |
 | `references/` | protocol, ops, event modes, communication, design, playbooks, domain cards, `extending.md` |
-| `scripts/cli.py`, `scripts/deckkit/` | CLI and package: parser, 56 layouts in 9 families, PPTX and PDF backends, themed charts, lint |
-| `assets/themes/` | IT: `midnight-navy`, `ultraviolet-core`, `graphite-cyan`, `deep-space`, `terminal-slate`, `cloud-light`; science: `academic`, `conference-dark`, `clinical`; business: `boardroom`, `consulting`, `ledger`, `startup-bright`, `venture-dark`; education: `chalkboard`, `forest`; portfolio: `editorial`, `portfolio-mono`, `portfolio-warm`; game (on request): `obsidian-craft`, `classic-craft` |
+| `scripts/cli.py`, `scripts/deckkit/` | CLI and package: parser, 74 layouts in 11 families, PPTX and PDF backends, themed charts, lint |
+| `assets/themes/` | IT and data: `midnight-navy`, `ultraviolet-core`, `graphite-cyan`, `deep-space`, `terminal-slate`, `cloud-light`, `aurora-mesh`, `datablue`, `matrix-green`, `synthwave`, `cobalt-pop`, `blueprint`; science: `academic`, `conference-dark`, `clinical`, `quantum-teal`, `deep-ocean`, `petrol`; business: `boardroom`, `consulting`, `ledger`, `startup-bright`, `venture-dark`, `signal-yellow`, `coral-market`, `harbor`, `navy-gold`, `sunset-mesh`; education: `chalkboard`, `forest`, `terracotta`, `sage`, `lavender`; portfolio and creative: `editorial`, `portfolio-mono`, `portfolio-warm`, `swiss`, `plum`, `ember`; game (on request): `obsidian-craft`, `classic-craft` |
 | `assets/templates/` | event deck skeletons, profile, brief intake, Q&A prep, traceability, speaker notes, rubric map |
 | `assets/presets/` | event presets (slide caps, minutes), font families |
 | `assets/fonts/` | Inter, JetBrains Mono, Source Serif 4, Playfair Display, Montserrat, Press Start 2P (SIL OFL); Latin and Cyrillic covered, Kazakh checked per font |
