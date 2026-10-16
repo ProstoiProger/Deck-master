@@ -51,6 +51,9 @@ def skill_dir_target(agent, scope, project):
 
 def install_skill_dir(dest, mode, check, dry):
     marker = dest / MARKER
+    if Path(dest).resolve().is_relative_to(Path(ROOT).resolve()):
+        return (f"SKIP {dest}: the target is inside the skill folder itself ({ROOT}); copying would recurse into its own copy. "
+                f"Pass --project <other repo> or use --scope user"), False
     if dest.exists() and not marker.exists() and not (dest.is_symlink()):
         return f"SKIP {dest}: exists and is not a deck-master install (refusing to overwrite)", False
     if check:
