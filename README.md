@@ -1,7 +1,7 @@
 # deck-master
 
 A presentation skill for AI coding agents (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf and any tool
-that reads `AGENTS.md`). It turns a brief, a project or analysis results into a finished **PPTX and PDF** deck with
+that reads `AGENTS.md`). It turns a brief, a project or analysis results into a finished **PPTX, PDF and web (HTML)** deck with
 speaker notes, a time plan and requirement traceability. It covers every common kind of presentation: **scientific
 talks and defenses, hackathons and datathons, investor pitches, business reviews and strategy, lectures and workshops,
 tech talks, portfolios and case studies, assignments**. 33 events, 44 themes (42 formal, grouped by scope) and 87 layouts, including 3D, glass and HUD looks.
@@ -19,12 +19,13 @@ python scripts/cli.py new --list                                      # 33 event
 python scripts/cli.py new --event hackathon --out decks/pitch.md      # scaffold, fill the <placeholders>
 python scripts/cli.py themes --scope business                         # themes for a scope
 python scripts/cli.py lint decks/pitch.md                             # readability, numbers, notes, time, rubric
-python scripts/cli.py build decks/pitch.md --out build                # .pptx and .pdf
+python scripts/cli.py build decks/pitch.md --out build                # .pptx, .pdf and .html (--pptx, --pdf, --html pick)
+python scripts/cli.py serve build/pitch.html                          # open the web version (N notes, O overview, P presenter window)
 python scripts/cli.py preview decks/pitch.md --out build/preview --sheet   # PNGs to look at
 python scripts/cli.py trace decks/pitch.md                            # every rubric item on a slide?
 ```
 
-Try a finished example: `python scripts/cli.py build examples/investor-pitch-venture/routely.md --pptx --pdf --out build`. Each example
+Try a finished example: `python scripts/cli.py build examples/investor-pitch-venture/routely.md --out build` (then `cli.py serve build/routely.html`; the page adapts: slides on large screens, a reading view on phones). Each example
 folder has a `preview.png` contact sheet (`examples/README.md`).
 
 ## Using it through an agent
@@ -48,7 +49,7 @@ python scripts/install.py --agent claude --scope user        # or codex, cursor,
 |---|---|
 | `SKILL.md` | the operating protocol, prime directives, routing, modes (single source of truth) |
 | `references/` | protocol, ops, event modes, communication, design, playbooks, domain cards, `extending.md` |
-| `scripts/cli.py`, `scripts/deckkit/` | CLI and package: parser, 87 layouts in 12 families, PPTX and PDF backends, themed charts, lint |
+| `scripts/cli.py`, `scripts/deckkit/` | CLI and package: parser, 87 layouts in 12 families, PPTX, PDF and web (HTML) backends, themed charts, lint |
 | `assets/themes/` | IT and data: `midnight-navy`, `ultraviolet-core`, `graphite-cyan`, `deep-space`, `terminal-slate`, `cloud-light`, `aurora-mesh`, `datablue`, `matrix-green`, `synthwave`, `cobalt-pop`, `blueprint`, `cyber-hud`, `glass-dusk`, `liquid-light`; science: `academic`, `conference-dark`, `clinical`, `quantum-teal`, `deep-ocean`, `petrol`; business: `boardroom`, `consulting`, `ledger`, `startup-bright`, `venture-dark`, `signal-yellow`, `coral-market`, `harbor`, `navy-gold`, `sunset-mesh`; education: `chalkboard`, `forest`, `terracotta`, `sage`, `lavender`; portfolio and creative: `editorial`, `portfolio-mono`, `portfolio-warm`, `swiss`, `plum`, `ember`; game (on request): `obsidian-craft`, `classic-craft` |
 | `assets/templates/` | event deck skeletons, profile, brief intake, Q&A prep, traceability, speaker notes, rubric map |
 | `assets/presets/` | event presets (slide caps, minutes), font families |

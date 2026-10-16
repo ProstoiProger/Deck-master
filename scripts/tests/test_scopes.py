@@ -179,5 +179,5 @@ def test_every_example_deck_is_clean_and_game_decks_are_flagged(path, tmp_path):
                                   "data-story-datablue", "product-roadmap-signal", "ux-research-lavender", "tech-showcase-cyber", "data-viz-glass"])
 def test_formal_examples_ship_with_built_files(name):
     folder = EXAMPLES / name
-    assert list(folder.glob("*.pptx")) and list(folder.glob("*.pdf")) and (folder / "preview.png").exists()
+    assert list(folder.glob("*.pptx")) and list(folder.glob("*.pdf")) and list(folder.glob("*.html")) and (folder / "preview.png").exists()
     assert (folder / "prompt.md").exists() and (folder / "report.md").exists()

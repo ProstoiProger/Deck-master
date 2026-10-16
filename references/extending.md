@@ -89,8 +89,11 @@ and point a theme at it; add a sample deck and a glyph test.
 ## 7. Add a backend
 
 A backend consumes the list of `SceneSlide` objects (`scripts/deckkit/core/scene.py`) and draws `Shape`, `Text`,
-`Image` and `Line`. Copy `scripts/deckkit/backends/pdf_backend.py` as a starting point (for HTML, SVG or Marp
+`Image` and `Line`. Copy `scripts/deckkit/backends/pdf_backend.py` as a starting point (for SVG or Marp
 output), wire a flag into `cmd_build` in `scripts/cli.py`, and add a test next to `scripts/tests/test_backends.py`.
+`scripts/deckkit/backends/html_backend.py` is the worked example of a third backend: SVG for vector items in z-order, text blocks with the shared line breaks,
+embedded font subsets and pictures, and a runtime in `assets/web/` (`deck.css`, `deck.js`). Change the look or keys of the web version there; a test
+(`test_every_dom_id_the_runtime_looks_up_exists`) keeps the runtime and the generated page in step.
 
 ## 8. Install for other agents
 

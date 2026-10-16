@@ -10,7 +10,7 @@
 | Slide cap | | | |
 | Speakers | | | |
 | Rubric (criteria and weights) | | | |
-| Format and delivery | PPTX, PDF, projector, screen share | | |
+| Format and delivery | PPTX, PDF, web (HTML), projector, screen share | | |
 | Language | | | |
 | Brand or template constraints | | | |
 | Theme | | | |

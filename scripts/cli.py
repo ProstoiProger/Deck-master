@@ -1,6 +1,6 @@
 """deck-master command line: scaffold, lint, build, preview and inspect presentations.
 
-    python scripts/cli.py <command> [options]        commands: env themes layouts new lint build preview
+    python scripts/cli.py <command> [options]        commands: env themes layouts new lint build preview serve
                                                        inspire entities notes timing trace catalog
 Exit codes: 0 ok, 1 blocking findings or unmet requirements, 2 bad input or usage.
 """
@@ -171,7 +171,8 @@ def cmd_build(args):
     if blocking and not args.force:
         print(f"INVALID: {len(blocking)} blocking finding(s); fix them or pass --force to build anyway")
         raise SystemExit(1)
-    want_pptx, want_pdf = args.pptx or not args.pdf, args.pdf or not args.pptx
+    none = not (args.pptx or args.pdf or args.html)          # no format named: build all three
+    want_pptx, want_pdf, want_html = args.pptx or none, args.pdf or none, args.html or none
     stem = Path(args.deck).stem + (f"-{args.theme}" if args.theme else "")
     made = []
     if want_pptx:
@@ -186,11 +187,43 @@ def cmd_build(args):
             made.append(str(build_pdf(scenes, theme, deck, out / f"{stem}.pdf")))
         except ImportError as e:
             die(f"cannot write pdf: {e}; install scripts/requirements/pdf.txt")
+    if want_html:
+        try:
+            from deckkit.backends.html_backend import build_html
+            made.append(str(build_html(scenes, theme, deck, out / f"{stem}.html")))
+        except ImportError as e:
+            die(f"cannot write html: {e}; install scripts/requirements/core.txt")
     log_run(out / "log.jsonl", deck=str(args.deck), theme=theme.name, slides=len(deck.slides), findings=len(findings),
             blocking=len(blocking), forced=bool(blocking and args.force), outputs=made)
     for m in made:
         print(f"wrote {m}")
     print(f"{len(deck.slides)} slides, theme {theme.name}, {len(findings)} finding(s)")
+
+
+def cmd_serve(args):
+    """Serve a built web presentation on localhost (the presenter window then syncs reliably) and open it in the browser."""
+    import functools
+    import http.server
+    import threading
+    import webbrowser
+    target = Path(args.path).resolve()
+    if not target.exists():
+        die(f"{target} not found; build first: python scripts/cli.py build <deck.md> --html")
+    root, name = (target.parent, target.name) if target.is_file() else (target, "")
+    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(root))
+    handler.log_message = lambda *a, **k: None
+    try:
+        srv = http.server.ThreadingHTTPServer(("127.0.0.1", args.port), handler)
+    except OSError as e:
+        die(f"cannot listen on 127.0.0.1:{args.port}: {e}; pass --port <other>")
+    url = f"http://127.0.0.1:{srv.server_address[1]}/{name}"
+    print(f"serving {root} at {url} (Ctrl+C to stop; P opens the presenter window)")
+    if not args.no_open:
+        threading.Timer(0.4, lambda: webbrowser.open(url)).start()
+    try:
+        srv.serve_forever()
+    except KeyboardInterrupt:
+        print("stopped")
 
 
 def cmd_preview(args):
@@ -345,16 +378,23 @@ def main(argv=None):
     p.add_argument("--json", action="store_true")
     p.add_argument("--strict", action="store_true", help="fail on any finding; by default only Critical and High fail")
 
-    p = deck_cmd("build", cmd_build, "lint, then write .pptx and/or .pdf")
+    p = deck_cmd("build", cmd_build, "lint, then write .pptx, .pdf and/or .html (all three when no format is named)")
     p.add_argument("--out", default="build")
     p.add_argument("--pptx", action="store_true")
     p.add_argument("--pdf", action="store_true")
+    p.add_argument("--html", action="store_true", help="a self-contained web presentation (one .html file)")
     p.add_argument("--force", action="store_true", help="build even with blocking findings")
 
     p = deck_cmd("preview", cmd_preview, "render PNG thumbnails (and a contact sheet) from the PDF backend")
     p.add_argument("--out", default="build/preview")
     p.add_argument("--dpi", type=int, default=80)
     p.add_argument("--sheet", action="store_true")
+
+    p = sub.add_parser("serve", help="serve a built .html presentation (or a folder) on localhost and open it")
+    p.add_argument("path", help="the .html file or its folder")
+    p.add_argument("--port", type=int, default=8000)
+    p.add_argument("--no-open", action="store_true", help="do not open the browser")
+    p.set_defaults(fn=cmd_serve)
 
     p = sub.add_parser("inspire", help="measure a palette from a reference screenshot")
     p.add_argument("--from-image", required=True)

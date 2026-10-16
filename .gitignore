@@ -43,7 +43,9 @@ assets/entities/*
 examples/studybuddy-obsidian/*.pptx
 examples/studybuddy-obsidian/*.pdf
 examples/studybuddy-obsidian/preview.png
+examples/studybuddy-obsidian/*.html
 examples/network-lesson-classic/*.pptx
 examples/network-lesson-classic/*.pdf
 examples/network-lesson-classic/preview.png
+examples/network-lesson-classic/*.html
 examples/ 

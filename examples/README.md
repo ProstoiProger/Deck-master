@@ -37,7 +37,7 @@ gamified look; without such a request the skill never picks a game theme.
 | `prompt.md` | the prompt, what it exercises, what a good run does |
 | `inputs/` | the files the user attached |
 | `<name>.md` | the deck source (edit this, not the PPTX) |
-| `<name>.pptx`, `<name>.pdf` | the finished presentation |
+| `<name>.pptx`, `<name>.pdf`, `<name>.html` | the finished presentation; the `.html` is the web version (open it in a browser, `N` notes, `O` overview, `P` presenter window) |
 | `preview.png` | contact sheet of the slides |
 | `report.md` | the final report: profile, deliverables, verification, assumptions |
 
@@ -52,7 +52,7 @@ python scripts/cli.py preview examples/research-talk-academic/calibration.md --o
 ## Notes
 
 - **The game decks embed Minecraft characters** from `assets/entities` (downloaded with `python scripts/cli.py entities fetch`).
-  They belong to Mojang/Microsoft: personal, non-commercial use only. Do not publish those PPTX, PDF or preview files
+  They belong to Mojang/Microsoft: personal, non-commercial use only. Do not publish those PPTX, PDF, HTML or preview files
   (`references/design/entities.md`); they are gitignored. Without the downloaded characters a deck still builds, without
   the mob decoration. The formal examples contain no third-party artwork and can be committed.
 - The images in `portfolio-case-mono`, `hackathon-pitch-midnight` and `demo-day-aurora` are illustrative mock-ups drawn for the examples.

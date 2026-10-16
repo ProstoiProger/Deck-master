@@ -1,0 +1,135 @@
+/* deck-master web presentation: stage scaling, slide switching, controls, overview, notes, presenter view, print. */
+:root { --k: 1; --ui-bg: rgba(12, 14, 24, .82); --ui-fg: #fff; --ui-accent: #7c9cff; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--page); font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+body { -webkit-text-size-adjust: 100%; }
+#deck { position: fixed; inset: 0; }
+.slide { position: absolute; inset: 0; visibility: hidden; opacity: 0; transition: opacity .35s ease, visibility 0s linear .35s; }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .35s ease; }
+.stage { position: absolute; left: 50%; top: 50%; width: 1333.333px; height: 750px; overflow: hidden;
+  transform: translate(-50%, -50%) scale(var(--k)); transform-origin: 50% 50%; box-shadow: 0 10px 50px rgba(0, 0, 0, .35); }
+.stage > svg.v { position: absolute; left: 0; top: 0; width: 1333.333px; height: 750px; pointer-events: none; overflow: visible; }
+.stage > img { position: absolute; display: block; user-select: none; -webkit-user-drag: none; }
+.t { position: absolute; display: flex; flex-direction: column; white-space: nowrap; font-synthesis: none; font-kerning: normal; text-rendering: geometricPrecision; }
+.t.va-top { justify-content: flex-start; } .t.va-middle { justify-content: center; } .t.va-bottom { justify-content: flex-end; }
+.t.ta-left { text-align: left; } .t.ta-center { text-align: center; } .t.ta-right { text-align: right; }
+.t a { color: inherit; text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .18em; }
+.t a:hover, .t a:focus-visible { text-decoration-thickness: .12em; outline: none; }
+.notes { display: none; }
+
+/* entrance: text and pictures rise in one after the other when a slide appears */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.slide.active .rv { animation: rise .55s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i, 0) * 45ms + 120ms); }
+
+/* controls */
+#bar { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; align-items: center; gap: 4px; padding: 6px 8px;
+  background: var(--ui-bg); color: var(--ui-fg); border-radius: 999px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: opacity .3s, transform .3s; z-index: 20; font-size: 13px; }
+#bar button { all: unset; cursor: pointer; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; font-size: 16px; line-height: 1; }
+#bar button:hover, #bar button:focus-visible { background: rgba(255, 255, 255, .16); }
+#bar button:focus-visible { outline: 2px solid var(--ui-accent); }
+#count { min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; opacity: .9; }
+body.idle #bar { opacity: 0; pointer-events: none; transform: translate(-50%, 12px); }
+body.idle { cursor: none; }
+#progress { position: fixed; left: 0; top: 0; height: 3px; width: 0; background: var(--ui-accent); z-index: 21; transition: width .3s; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* overlays: help, notes */
+#help { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0, 0, 0, .6); z-index: 30; }
+#help.open { display: grid; }
+#help div { background: #14172a; color: #eef; padding: 22px 28px; border-radius: 14px; max-width: min(92vw, 520px); font-size: 15px; line-height: 1.7; }
+#help kbd { background: #2a2f4a; border-radius: 5px; padding: 1px 7px; font-family: ui-monospace, Consolas, monospace; font-size: 13px; }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; height: 34vh; overflow: auto; background: var(--ui-bg); color: var(--ui-fg); padding: 16px 24px 70px;
+  display: none; z-index: 15; font-size: 18px; line-height: 1.55; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+body.notes-open #notes { display: block; }
+body.notes-open:not(.ov) .stage { top: 33vh; }
+#notes small { display: block; opacity: .65; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+
+/* overview grid */
+body.ov #deck { overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; padding: 24px; align-content: start; position: fixed; }
+body.ov .slide { position: relative; inset: auto; visibility: visible; opacity: 1; aspect-ratio: 16 / 9; cursor: pointer; border-radius: 6px; overflow: hidden; outline: 2px solid transparent; }
+body.ov .slide.active { outline-color: var(--ui-accent); }
+body.ov .slide:hover { outline-color: rgba(255, 255, 255, .5); }
+body.ov .stage { left: 0; top: 0; transform: scale(var(--ko, .2)); transform-origin: 0 0; box-shadow: none; }
+body.ov .rv { animation: none !important; }
+body.ov #bar { display: none; }
+
+/* presenter window */
+body.presenter #deck { display: none; }
+#pv { display: none; }
+body.presenter #pv { position: fixed; inset: 0; display: grid; grid-template-columns: 1.7fr 1fr; grid-template-rows: auto 1fr; gap: 16px; padding: 16px; background: #0d0f1a; color: #e8ebff; }
+#pv .box { position: relative; background: #000; border-radius: 8px; overflow: hidden; aspect-ratio: 16 / 9; }
+#pv .box .stage { transform: translate(0, 0) scale(var(--pk, .5)); left: 0; top: 0; transform-origin: 0 0; box-shadow: none; }
+#pv h2 { margin: 0 0 6px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; opacity: .6; font-weight: 600; }
+#pv .left { grid-row: 1 / 3; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+#pv .right { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+#pv .pn { flex: 1; overflow: auto; font-size: clamp(16px, 1.6vw, 26px); line-height: 1.5; background: #14172a; border-radius: 8px; padding: 14px 18px; white-space: pre-wrap; }
+#pv .meta { display: flex; justify-content: space-between; align-items: baseline; font-variant-numeric: tabular-nums; }
+#pv .timer { font-size: clamp(26px, 3vw, 44px); font-weight: 700; }
+#pv .timer.over { color: #ff7a7a; }
+#pv button { all: unset; cursor: pointer; background: #23284a; padding: 8px 16px; border-radius: 8px; font-size: 14px; margin-right: 8px; }
+#pv button:hover { background: #2f3562; }
+body.presenter #bar, body.presenter #notes, body.presenter #progress { display: none; }
+
+/* ---- adaptive: touch, safe areas, small screens ---- */
+@media (pointer: coarse) { #bar button { width: 44px; height: 44px; font-size: 18px; } #bar { gap: 2px; } }
+@supports (padding: env(safe-area-inset-bottom)) {
+  #bar { bottom: calc(14px + env(safe-area-inset-bottom)); }
+  .rhead { padding-top: calc(10px + env(safe-area-inset-top)); padding-left: calc(14px + env(safe-area-inset-left)); padding-right: calc(14px + env(safe-area-inset-right)); }
+  #reader { padding-bottom: env(safe-area-inset-bottom); }
+}
+@media (max-width: 520px) { #b-ov, #b-notes { display: none; } #count { min-width: 52px; } }
+@media (forced-colors: active) { #bar, #notes, #help div { border: 1px solid CanvasText; } .stage { forced-color-adjust: none; } }
+html, body { touch-action: manipulation; }
+
+/* ---- the reading view: the slides' text and pictures as a reflowing page ---- */
+#reader { display: none; }
+html.reader { overflow: auto; height: auto; }
+html.reader body { overflow: visible; height: auto; }   /* only the page scrolls, so the sticky header works */
+body.reader #deck, body.reader #bar, body.reader #progress, body.reader #notes { display: none !important; }
+body.reader #reader { display: block; max-width: 44rem; margin: 0 auto; padding: 0 12px 60px; -webkit-text-size-adjust: 100%; }
+.rhead { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 10px; padding: 10px 14px; margin: 0 -12px 8px;
+  background: var(--ui-bg); color: var(--ui-fg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 14px; }
+.rhead .rtitle { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.rhead #rcount { font-variant-numeric: tabular-nums; opacity: .8; }
+.rhead button { all: unset; cursor: pointer; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; font-size: 18px; }
+.rhead button:hover, .rhead button:focus-visible { background: rgba(255, 255, 255, .16); outline: none; }
+.card { position: relative; margin: 14px 0; padding: 1.5rem 1.25rem 1rem; border-radius: 18px; scroll-margin-top: 64px; overflow: hidden;
+  background-size: cover; background-position: center; box-shadow: 0 4px 24px rgba(0, 0, 0, .18); }
+.card > * { position: relative; }
+.card p, .card h2 { margin: 0 0 .7em; }
+.card .r-h { font-size: clamp(1.45rem, 6.2vw, 2.2rem); line-height: 1.18; font-weight: 700; }
+.card .r-big { font-size: clamp(2.4rem, 13vw, 4.2rem); line-height: 1.05; font-weight: 700; margin-bottom: .25em; }
+.card .r-p { font-size: clamp(1.02rem, 4.2vw, 1.22rem); line-height: 1.5; }
+.card .r-lbl { font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .35em; opacity: .85; }
+.card .chip { display: block; width: fit-content; max-width: 100%; padding: .22em .6em; border-radius: 8px; }
+.card .grp { margin: .2rem 0 1rem; }
+.card .grp.fill { padding: .85rem 1rem; border-radius: 12px; }
+.card .grp.line { padding: .1rem 0 .1rem .85rem; border-left: 3px solid rgba(128, 128, 128, .4); }
+.card .grp > :last-child { margin-bottom: 0; }
+.card a { color: inherit; text-underline-offset: .18em; word-break: break-word; }
+.card figure { margin: .4rem 0 1rem; }
+.card figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 10px; }
+.card footer { margin-top: 1rem; padding-top: .6rem; border-top: 1px solid rgba(128, 128, 128, .3); font-size: .8rem; color: inherit; opacity: .85; }
+.card footer details { margin-top: .4rem; }
+.card footer summary { cursor: pointer; padding: .3rem 0; }
+.card footer p { font-size: .95rem; line-height: 1.5; margin: .3rem 0 0; opacity: 1; }
+@media (min-width: 700px) { body.reader #reader { max-width: 48rem; } }
+
+@media (prefers-reduced-motion: reduce) { .slide, .slide.active { transition: none; } .slide.active .rv { animation: none; } }
+
+/* print: one slide per page; the page is the stage size (16:9), so nothing is scaled */
+@page { size: 1333.333px 750px; margin: 0; }
+@media print {
+  html, body { overflow: visible; height: auto; background: none; margin: 0; }
+  #deck { position: static !important; display: block !important; padding: 0 !important; overflow: visible !important; }
+  .slide { position: relative !important; inset: auto !important; visibility: visible !important; opacity: 1 !important; width: 1333.333px; height: 750px;
+    overflow: hidden; break-after: page; page-break-after: always; aspect-ratio: auto; transition: none; }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  .stage, body.notes-open:not(.ov) .stage { left: 0; top: 0; transform: none; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rv { animation: none !important; }
+  body.reader #deck { display: block !important; }        /* print the slides even when the page is showing the reading view */
+  body.reader #reader, html.reader #reader { display: none !important; }
+  html.reader { overflow: visible; }
+  body > :not(#deck) { display: none !important; }      /* controls, live region and overlays never reach the paper */
+}

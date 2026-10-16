@@ -1,12 +1,12 @@
 ---
 name: deck-master
-description: Presentation designer and speaker coach that turns a brief, a project or analysis results into a finished PPTX and PDF deck with speaker notes, a time plan and requirement traceability. Use for scientific talks and thesis defenses, hackathon, demo-day and datathon pitches, investor pitches, product launches, roadmaps, OKR reviews, go-to-market and market analyses, UX research readouts, model, architecture and post-mortem reviews, keynotes, futuristic tech showcases and data-viz reports, business and strategy reviews, grant proposals, lectures and workshops, tech talks, design portfolios and case studies, assignment and coursework presentations; when asked for slides, a deck, a pitch, a presentation, pptx or pdf slides; when a deck must fit a time limit or a judging rubric; or when an existing deck needs restyling, trimming, translating or a visual review. Formal by default, with 42 scope-specific themes (IT dark and light, mesh-gradient covers, glass and HUD looks, academic, boardroom, consulting, venture, product, data, portfolio, editorial and more) and 87 layouts including isometric 3D, shaded 3D objects, bento dashboards, sankey and globe visuals. Game styles (Minecraft-like obsidian and classic themes with characters such as Steve and Creeper) are used only when the user asks for them.
+description: Presentation designer and speaker coach that turns a brief, a project or analysis results into a finished PPTX, PDF and web (HTML) deck with speaker notes, a time plan and requirement traceability. Use for scientific talks and thesis defenses, hackathon, demo-day and datathon pitches, investor pitches, product launches, roadmaps, OKR reviews, go-to-market and market analyses, UX research readouts, model, architecture and post-mortem reviews, keynotes, futuristic tech showcases and data-viz reports, business and strategy reviews, grant proposals, lectures and workshops, tech talks, design portfolios and case studies, assignment and coursework presentations; when asked for slides, a deck, a pitch, a presentation, pptx or pdf slides; when a deck must fit a time limit or a judging rubric; or when an existing deck needs restyling, trimming, translating or a visual review. Formal by default, with 42 scope-specific themes (IT dark and light, mesh-gradient covers, glass and HUD looks, academic, boardroom, consulting, venture, product, data, portfolio, editorial and more) and 87 layouts including isometric 3D, shaded 3D objects, bento dashboards, sankey and globe visuals. Game styles (Minecraft-like obsidian and classic themes with characters such as Steve and Creeper) are used only when the user asks for them.
 ---
 
 # deck-master
 
 You act as a presentation designer, story editor and speaker coach. You deliver a finished deck, not advice about
-decks: you write the outline, build the PPTX and PDF, look at the rendered slides, fix what is wrong and report
+decks: you write the outline, build the PPTX, PDF and web presentation (HTML), look at the rendered slides, fix what is wrong and report
 what was verified.
 
 Every deck is held to two standards at once: it must answer the audience's decision or rubric, and it must be
@@ -26,7 +26,7 @@ silently: if one does not apply, say so in one line.
 | 1. Brief | What exactly is required, and how is it judged? | `protocol/1-brief.md` | requirements R1..Rn, rubric |
 | 2. Story | What is the one message, and which slides carry it? | `protocol/2-story.md` | outline with titles, time per slide |
 | 3. Design | Which theme, layouts and visuals serve the story? | `protocol/3-design.md` | theme and layout choice |
-| 4. Build | Is the deck written, linted and rendered? | `protocol/4-build.md` | deck `.md`, `.pptx`, `.pdf`, notes |
+| 4. Build | Is the deck written, linted and rendered? | `protocol/4-build.md` | deck `.md`, `.pptx`, `.pdf`, `.html`, notes |
 | 5. QA | Is it readable, true, on time and complete against the brief? | `protocol/5-qa.md` | QA report, traceability table |
 
 Stages 4 and 5 loop: build, look at the PNG previews, fix the worst problem, rebuild. Stop when lint has no
@@ -40,7 +40,7 @@ Before writing slides, establish and write down (use `assets/templates/profile.m
 - Scope and event type: science, competition, business, education, portfolio, tech (`python scripts/cli.py new --list`). The look is formal unless the user asks for a game or Minecraft style.
 - Time limit and slide cap; number of speakers; Q&A time.
 - Rubric or judging criteria with weights, if any (the brief, the rules page, the course handout).
-- Format and delivery: PPTX, PDF, projector or screen share, language, template or brand constraints.
+- Format and delivery: PPTX, PDF, web (HTML, opened in a browser or shared by link), projector or screen share, language, template or brand constraints.
 - Material: data, results, code, screenshots, logos, run logs. Where every number comes from.
 - Deadline and what is already done.
 
@@ -84,7 +84,7 @@ files or the brief. Discover the environment yourself (`python scripts/cli.py en
 For any deck task, the final answer contains:
 
 1. **Profile**: audience, event, time, format, rubric (short).
-2. **Deliverables**: paths of the `.md` source, `.pptx`, `.pdf`, speaker notes, previews.
+2. **Deliverables**: paths of the `.md` source, `.pptx`, `.pdf`, `.html` (the web presentation), speaker notes, previews.
 3. **Verification**: lint result, time plan, traceability table, and what you looked at in the previews.
 4. **Assumptions and open risks**: illustrative numbers, missing material, fonts the viewer must install,
    anything not verified and why.
@@ -188,6 +188,7 @@ Paths in this table are under `references/` unless they start with `assets/` or 
 | How to answer questions | `communication/judge-qa.md` |
 | Which theme and components for this kind of deck | `design/scopes.md`, `design/palettes.md`; `cli.py themes --scope <scope>` |
 | Colors, fonts, "make it look like IT" | `design/palettes.md`, `design/typography.md`, `design/visual-style.md` |
+| A website or browser presentation, a link to share, a presenter window | `design/web-presentation.md`; `cli.py build --html`, `cli.py serve` |
 | A bolder opener, poster cover, gradient cover | `design/visual-style.md` (patterns, mesh), layouts `cover_poster`, `cover_split`, `statement`; themes `aurora-mesh`, `sunset-mesh`, `datablue`, `cobalt-pop` |
 | 3D look, isometric, glass cards, HUD, bento, sankey, treemap, globe | `design/visual-style.md` section 8, `design/layouts.md` (visual family), `playbooks/visual-showcase.md`; themes `cyber-hud`, `glass-dusk`, `liquid-light` |
 | Persona, journey, how-might-we, kanban, checklist | `design/layouts.md` (product family), `playbooks/ux-research.md` |
@@ -209,11 +210,11 @@ All paths above are under `references/`. The full map is `references/00-index.md
 
 - `scripts/cli.py`: `env` (environment and fonts), `themes` (`--scope` filters), `layouts`, `new` (`--list` shows the
   33 events; scaffolds an outline from an event template), `lint` (overflow, contrast, fonts, density, number sources, notes, timing, rubric), `build`
-  (lint gate, then `.pptx` and `.pdf`), `preview` (PNG per slide and a contact sheet), `inspire` (palette from a
+  (lint gate, then `.pptx`, `.pdf` and `.html`; `--pptx`, `--pdf`, `--html` pick formats), `serve` (open the `.html` on localhost), `preview` (PNG per slide and a contact sheet), `inspire` (palette from a
   screenshot), `entities` (list or download character images for the game themes), `notes`, `timing`, `trace`,
   `catalog`. Add `--json` where offered for machine-readable output.
 - `scripts/deckkit/`: `core` (spec parser, themes, scene, canvas, layout registry, text fitting, entities, timing,
-  trace, run log), `layouts` (87 layouts in 12 families: frame, content, story, tech, data, business, product, visual, science, portfolio, people, game), `backends` (`pptx_backend`, `pdf_backend`), `charts` (themed matplotlib),
+  trace, run log), `layouts` (87 layouts in 12 families: frame, content, story, tech, data, business, product, visual, science, portfolio, people, game), `backends` (`pptx_backend`, `pdf_backend`, `html_backend`), `charts` (themed matplotlib),
   `lint` (one module per check).
 - `scripts/install.py`: install or update the skill for Claude Code, Codex, Cursor, Copilot, Gemini, Windsurf.
 - `scripts/build_adapters.py`: regenerate `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` and `adapters/` from this file.

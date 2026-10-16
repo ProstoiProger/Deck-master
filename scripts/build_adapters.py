@@ -31,9 +31,9 @@ def pointer(root="."):
     def p(rel):
         return rel if root in (".", "") else f"{root.rstrip('/')}/{rel}"
     meta = frontmatter()
-    return f"""## {meta['name']}: presentation skill (PPTX and PDF)
+    return f"""## {meta['name']}: presentation skill (PPTX, PDF and web)
 
-Use when the user asks for slides, a deck, a pitch, a presentation, PPTX or PDF slides, or for a review, restyle,
+Use when the user asks for slides, a deck, a pitch, a presentation, PPTX, PDF or web (HTML) slides, or for a review, restyle,
 trim or translation of one: assignments, hackathons, datathons, project defenses, research and tech talks.
 
 1. Read `{p('SKILL.md')}` first, then only the reference files it routes to (`{p('references/00-index.md')}` lists all).

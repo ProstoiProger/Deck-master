@@ -9,7 +9,7 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 | `protocol/1-brief.md` | turning a brief, rules page or handout into requirements and a rubric |
 | `protocol/2-story.md` | choosing the one message, the slide list and the time per slide |
 | `protocol/3-design.md` | choosing theme, layouts, charts and visuals |
-| `protocol/4-build.md` | writing the deck source, linting, building PPTX and PDF |
+| `protocol/4-build.md` | writing the deck source, linting, building PPTX, PDF and web |
 | `protocol/5-qa.md` | looking at previews, fixing findings, tracing requirements, timing the talk |
 
 ## Operations
@@ -63,6 +63,7 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 | `design/game-components.md` | ten Minecraft-style components, pixel icons, automatic mob decoration |
 | `design/entities.md` | about 60 character images (Steve, Creeper...): fetch, syntax, suggested roles, rules of use |
 | `design/catalog.md` | generated list of layouts, inputs and themes |
+| `design/web-presentation.md` | the web (HTML) output: build, keys, presenter window, hosting, limits |
 | `design/research-2026-10.md` | where the 2026-10 palettes, layouts and events come from (Pitch, Behance, Coolors, Color Hunt, Meshy) |
 | `design/inspiration/README.md` | how to add your own Canva, Dribbble or screenshot references |
 | `design/inspiration/links.md` | the reference table you fill in |

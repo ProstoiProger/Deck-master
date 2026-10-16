@@ -1,6 +1,6 @@
 # Stage 4: Build
 
-Goal: a finished deck source, a clean lint, a PPTX and a PDF.
+Goal: a finished deck source, a clean lint, a PPTX, a PDF and a web presentation (HTML).
 
 ## Contents
 
@@ -53,7 +53,8 @@ python scripts/cli.py preview decks/pitch.md --out build/preview --sheet
 ```
 
 `build` lints first and refuses on blocking findings unless `--force` (say so in the report when used). It writes
-`<name>.pptx` and `<name>.pdf` plus `log.jsonl`. `--theme <name>` restyles without touching the source.
+`<name>.pptx`, `<name>.pdf` and `<name>.html` plus `log.jsonl` (name a format, `--pptx`, `--pdf` or `--html`, to build only that one).
+The `.html` is one self-contained file for a browser (`cli.py serve <name>.html` opens it; `design/web-presentation.md`). `--theme <name>` restyles without touching the source.
 
 ## 5. Rules while writing
 

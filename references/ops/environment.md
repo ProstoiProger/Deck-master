@@ -27,6 +27,7 @@ otherwise PowerPoint substitutes another font and line breaks move. Install by o
 
 ## Viewers
 
+- Any current browser opens the `.html` (one file, fonts and pictures embedded, no network needed); `cli.py serve` hosts it on localhost.
 - PowerPoint, Keynote and Google Slides open the PPTX; Google Slides replaces missing fonts silently.
 - Check the deck once in the viewer that will be used on stage.
 - Projector or screen share: 16:9 (13.333 by 7.5 inches) is used for every deck.

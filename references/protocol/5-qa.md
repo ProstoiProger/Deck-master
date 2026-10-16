@@ -62,4 +62,5 @@ copy and, for a demo, a recorded backup (`communication/demo.md`).
 
 - [ ] Lint clean, previews viewed, trace exit 0, timing within budget.
 - [ ] PPTX opened once in a real viewer, fonts installed or fallback accepted.
+- [ ] Web version opened once in a browser: arrow keys through every slide, notes (`N`) and overview (`O`) work, links on the last slide open.
 - [ ] Final report lists assumptions, illustrative numbers and anything unverified.
