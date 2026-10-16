@@ -7,7 +7,13 @@ from .paths import fonts_dir, presets_dir, themes_dir
 
 REQUIRED_COLORS = ["bg", "surface", "primary", "secondary", "accent", "text", "muted", "success", "warning", "danger"]
 STYLE_DEFAULTS = {"corner": "round", "border": "thin", "shadow": "soft", "pattern": "grid", "metaphor": "none",
-                  "heading_scale": 1.0, "heading_line_h": 1.18, "min_font": 12}
+                  "heading_scale": 1.0, "heading_line_h": 1.18, "min_font": 12,
+                  "card": "fill",         # fill | outline | flat: how `surface` cards are drawn
+                  "title_rule": "bar",    # bar | line | none: the rule under slide titles
+                  "footer": "plain",      # plain | rule: a hairline above the footer
+                  "chips": "pill",        # pill | text: how labels such as eyebrows and "so what" are drawn
+                  "show_source": False,   # print each slide's `source:` as a footnote
+                  "radius": 0.14}         # corner radius in inches for round cards
 
 
 class ThemeError(ValueError):
@@ -27,6 +33,8 @@ class Theme:
     style: dict
     description: str = ""
     fontbook: dict = field(default_factory=dict)
+    scopes: list = field(default_factory=list)
+    series: list = field(default_factory=list)
 
     def c(self, token):
         """Resolve a color token (bg, primary, ...) or pass a hex value through."""
@@ -77,8 +85,9 @@ def load_theme(name):
         if fam not in fontbook:
             raise ThemeError(f"theme {name}: font family {fam!r} for {role} is not in assets/presets/fonts.yaml")
     style = {**STYLE_DEFAULTS, **raw.get("style", {})}
+    series = [str(x).upper() for x in raw.get("series", [])] or [colors[k] for k in ("primary", "accent", "secondary", "warning", "success")]
     return Theme(name=raw.get("name", name), mode=raw.get("mode", "dark"), colors=colors, fonts=fonts, style=style,
-                 description=raw.get("description", ""), fontbook=fontbook)
+                 description=raw.get("description", ""), fontbook=fontbook, scopes=list(raw.get("scopes", [])), series=series)
 
 
 def contrast_table(theme):

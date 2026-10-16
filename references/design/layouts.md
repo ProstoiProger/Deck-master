@@ -41,17 +41,55 @@ shrink to fit their boxes, down to a floor; if the floor is reached the slide ha
 | parts crafted into one product (game theme) | `crafting` | ingredients, `result:` |
 | stats as hearts and XP (game theme) | `hud` | `value | label | heart | context` |
 | a path with done and locked steps (game theme) | `advancements` | `Title | detail | icon | state` |
+| the decision and why | `exec_summary` | `Situation | Complication | Resolution` items, recommendation |
+| a four-way split or SWOT | `matrix` | four `##` groups, `x:` and `y:` captions |
+| conversion from leads to paying | `funnel` | `Stage | value | note` items |
+| market size | `market` | `TAM | value | description` items |
+| plans and prices | `pricing` | `Plan | price | features; ...`, `highlight:` |
+| a plan on a timeline | `gantt` | `periods:`, `Task | first | last | owner` items |
+| who reports to whom | `org` | `Name | role | boss` items |
+| KPIs against targets | `scorecard` | `Metric | actual | target | status | note` items |
+| risks and mitigations | `risk` | `Risk | likelihood | impact | mitigation` items |
+| we against alternatives by feature | `feature_matrix` | table with `yes`, `no`, `partial` cells |
+| steps in order | `process` | `Step | description | owner` items |
+| the study in four lines | `abstract` | `Background | Methods | Results | Conclusion` items |
+| research question and hypotheses | `hypotheses` | question, `H1 | text | supported` items |
+| a formula | `equation` | `math:` LaTeX, `symbol | meaning` items |
+| a figure with observations | `figure` | `chart:` and table, or `image:`, `caption:` |
+| two panels | `figures2` | `image:`, `image2:`, captions, `takeaway:` |
+| facts about a dataset or design | `factsheet` | `Key | value` items |
+| sources | `references` | one reference per item |
+| a project opener | `case_header` | `image:`, `role:`, `year:`, `client:`, `tools:` |
+| screens or works | `gallery` | `image | caption` items |
+| a redesign | `before_after` | two `image | label` items, caption |
+| who I am | `profile` | `image:`, bio, `Label | value` items |
+| what I can do | `skills` | `Skill | level` items or grouped chips |
+| a career or project history | `timeline` | `When | What | detail` items |
+| one big number | `big_number` | `stat:`, supporting bullets |
+| a quotation | `quote` | `> text`, `author:`, `role:` |
+| options side by side | `columns` | two or three `##` groups |
+| a divider | `section` | `number:`, one line |
+| a full-slide picture | `image_full` | `image:`, `credit:` |
 | anything else | `bullets` | bullets, optional image |
 
 ## 3. Families
 
-- **frame**: `title`, `agenda`, `closing`. Decorated backdrop on title and closing only.
+Fifty-six layouts in nine families (the generated list with every input is `design/catalog.md`).
+
+- **frame**: `title`, `agenda`, `closing`, `section`, `quote`, `big_number`, `image_full`, `columns`. Decorated backdrop on title and closing only.
 - **story**: `problem`, `solution`, `feature_grid`, `impact`.
 - **tech**: `architecture`, `pipeline`, `demo`, `tech_stack`, `roadmap`.
-- **data**: `kpi`, `chart_insight`, `comparison`.
+- **data**: `kpi`, `chart_insight`, `comparison`. Chart kinds: bar, hbar, line, area, stacked, waterfall, donut, scatter, confusion.
+- **business**: `exec_summary`, `matrix`, `funnel`, `market`, `pricing`, `gantt`, `org`, `scorecard`, `risk`, `feature_matrix`, `process`.
+- **science**: `abstract`, `hypotheses`, `equation`, `figure`, `figures2`, `references`, `factsheet`.
+- **portfolio**: `case_header`, `gallery`, `before_after`, `profile`, `skills`, `timeline`.
 - **people**: `team`.
-- **game**: `inventory`, `crafting`, `hud`, `advancements`, `trade`, `chat`, `strata`, `boss`, `leaderboard`, `book` (`design/game-components.md`).
+- **game** (only on request): `inventory`, `crafting`, `hud`, `advancements`, `trade`, `chat`, `strata`, `boss`, `leaderboard`, `book` (`design/game-components.md`).
 - **content**: `bullets`.
+
+Components follow the theme's style block: outlined, flat or filled cards, a short bar or a full hairline under the title,
+square or round badges, plain or pill chips (`design/palettes.md`, section 2). The same layout therefore looks different
+in `boardroom`, `startup-bright` and `portfolio-mono`.
 
 ## 4. Rules of thumb
 

@@ -2,7 +2,7 @@
 from pathlib import Path
 
 from . import color, entities, pixelart, textfit
-from .scene import H, W, Image, Line, SceneSlide, Shape, Text
+from .scene import H, W, Image, Line, Poly, SceneSlide, Shape, Text
 
 MARGIN = 0.7
 CONTENT_TOP = 2.0
@@ -73,10 +73,22 @@ class Canvas:
         self.rect(x + s, y, w - 2 * s, h, fill)
         self.rect(x, y + s, w, h - 2 * s, fill)
 
-    def box(self, x, y, w, h, fill="surface", line="border", shadow=None, radius=0.14):
-        """A card. Round, square or pixel-bevel depending on the theme style."""
+    def box(self, x, y, w, h, fill="surface", line="border", shadow=None, radius=None):
+        """A card. Round, square or pixel-bevel depending on the theme style; surface cards follow the theme's `card` style
+        (fill, outline or flat)."""
+        radius = self.style["radius"] if radius is None else radius
         f = self.t.c(fill)
         shadow = (self.style["shadow"] != "none") if shadow is None else shadow
+        card = self.style["card"]
+        force_line = False
+        if fill == "surface" and not self.pixel and card in ("outline", "flat"):
+            shadow = False
+            if card == "outline":
+                f = self.t.c("bg")
+                line = color.mix(self.t.c("bg"), self.t.c("text"), 0.32)
+                force_line = True
+            else:
+                line = None
         if self.pixel and min(w, h) > 0.35:
             s = 0.07
             if self.style["shadow"] == "hard":
@@ -93,19 +105,28 @@ class Canvas:
         kind = "rect" if self.style["corner"] == "square" else "round"
         if shadow and self.style["shadow"] == "soft":
             self.rect(x + 0.03, y + 0.05, w, h, color.darken(self.t.c("bg"), 0.45), None, kind=kind, radius=radius, alpha=0.55)
-        self.rect(x, y, w, h, f, line if self.style["border"] != "none" else None, 1.0, kind, min(radius, h / 2))
+        draw_line = line if (self.style["border"] != "none" or force_line) else None
+        self.rect(x, y, w, h, f, draw_line, 1.25 if force_line else 1.0, kind, min(radius, h / 2, w / 2))
 
     def badge(self, cx, cy, r, label, fill="primary", size=None):
         """Round number badge, a square block in pixel themes."""
         if self.pixel:
             self.box(cx - r, cy - r, 2 * r, 2 * r, fill=fill, shadow=False)
+        elif self.style["corner"] == "square":
+            self.rect(cx - r, cy - r, 2 * r, 2 * r, fill)
         else:
             self.rect(cx - r, cy - r, 2 * r, 2 * r, fill, kind="ellipse")
         self.text(cx - r, cy - r, 2 * r, 2 * r, label, size or max(12, r * 36), self.t.on(fill), "heading" if not self.pixel else "mono",
                   True, "center", "middle")
 
     def pill(self, x, y, label, fill="surface", col="muted", size=12, h=0.36, role="mono", bold=True, pad=0.2):
-        w = textfit.width_in(self.t, label, role, size, bold) + 2 * pad
+        tw = textfit.width_in(self.t, label, role, size, bold)
+        if self.style["chips"] == "text" and not self.pixel:
+            # formal themes: a plain label with a hairline under it instead of a chip
+            self.text(x, y, tw + 0.1, h, label, size, col, role, bold, "left", "middle")
+            self.rect(x, y + h - 0.03, tw, 0.015, color.mix(self.t.c("bg"), self.t.c("text"), 0.3))
+            return tw + 0.3
+        w = tw + 2 * pad
         if self.pixel:
             self.box(x, y, w, h, fill=fill, shadow=False)
         else:
@@ -251,6 +272,34 @@ class Canvas:
                 self.icon(full, xi, y, size, clip=part)
         return n * (size + gap) - gap
 
+    # ---- polygons and symbols ------------------------------------------------------
+    def poly(self, points, fill=None, line=None, line_w=1.0, alpha=1.0):
+        p = Poly([(float(x), float(y)) for x, y in points], self.t.c(fill) if fill else None, self.t.c(line) if line else None, line_w, alpha)
+        self.items.append(p)
+        return p
+
+    def chevron(self, x, y, w, h, fill, notch=0.3, first=False, line=None):
+        left = x if first else x + notch
+        return self.poly([(x, y), (x + w - notch, y), (x + w, y + h / 2), (x + w - notch, y + h), (x, y + h), (left, y + h / 2)] if not first else
+                         [(x, y), (x + w - notch, y), (x + w, y + h / 2), (x + w - notch, y + h), (x, y + h)], fill, line)
+
+    def arrow(self, x, y, w, h, fill, head=0.35):
+        b = h * 0.28
+        return self.poly([(x, y + b), (x + w - head, y + b), (x + w - head, y), (x + w, y + h / 2), (x + w - head, y + h), (x + w - head, y + h - b),
+                          (x, y + h - b)], fill)
+
+    def triangle(self, cx, cy, r, fill, up=True):
+        d = -1 if up else 1
+        return self.poly([(cx, cy + d * r), (cx + r, cy - d * r), (cx - r, cy - d * r)], fill)
+
+    def tick(self, x, y, size, col="success", width=3.0):
+        self.line(x, y + size * 0.55, x + size * 0.35, y + size, col, width)
+        self.line(x + size * 0.35, y + size, x + size, y, col, width)
+
+    def cross(self, x, y, size, col="danger", width=3.0):
+        self.line(x, y, x + size, y + size, col, width)
+        self.line(x + size, y, x, y + size, col, width)
+
     # ---- scene furniture --------------------------------------------------
     def title(self, text=None, y=0.5, h=1.12, max_size=32, col="text"):
         text = text or self.slide.title
@@ -265,9 +314,15 @@ class Canvas:
         return size
 
     def accent_rule(self, x=MARGIN, y=1.76, w=0.9):
+        mode = self.style["title_rule"] if abs(y - 1.76) < 0.01 else "bar"  # title and closing slides always use the short bar
+        if mode == "none":
+            return
         if self.pixel:
             self.rect(x, y, w, 0.1, "primary")
             self.rect(x + w + 0.08, y, 0.3, 0.1, "accent")
+        elif mode == "line":
+            self.rect(x, y + 0.02, W - x - MARGIN, 0.015, color.mix(self.t.c("bg"), self.t.c("text"), 0.3))
+            self.rect(x, y, w, 0.05, "accent")
         else:
             self.rect(x, y, w, 0.06, "accent", kind="round", radius=0.03)
 
@@ -282,6 +337,10 @@ class Canvas:
         foot = str(self.deck.meta.get("footer") or self.deck.meta.get("title", ""))
         if len(foot) > 70:
             foot = foot[:67] + "..."
+        if self.style["show_source"] and self.slide.source:
+            self.text(MARGIN, 6.6, W - 2 * MARGIN, 0.3, f"Source: {self.slide.source}", 11, "muted", "body", chrome=True, valign="middle")
+        if self.style["footer"] == "rule":
+            self.rect(MARGIN, 6.98, W - 2 * MARGIN, 0.015, color.mix(self.t.c("bg"), self.t.c("text"), 0.3))
         self.text(MARGIN, 7.04, 9.0, 0.28, foot, 11, "muted", "mono", chrome=True, valign="middle")
         self.text(W - MARGIN - 1.6, 7.04, 1.6, 0.28, f"{self.slide.index:02d} / {self.total:02d}", 11, "muted", "mono",
                   align="right", chrome=True, valign="middle")
@@ -310,6 +369,28 @@ class Canvas:
                     continue
                 self.rect(i * sz, H - 0.5, bw, 0.5, cols[2 + (i + top) % 2])
                 self.rect(i * sz, H - 0.5 - 0.14, bw, 0.14, cols[(i + top) % 2])
+            return
+        if pat == "none":
+            return
+        if pat == "clean":
+            self.rect(0, 0, 0.28, H, "primary")
+            self.rect(0.28, 0, 0.06, H, "accent")
+            return
+        if pat == "rules":
+            rc = color.mix(t.c("bg"), t.c("text"), 0.35)
+            self.rect(MARGIN, 0.72, 0.9, 0.07, "accent")
+            self.rect(MARGIN, 0.82, W - 2 * MARGIN, 0.02, rc)
+            self.rect(MARGIN, 6.62, W - 2 * MARGIN, 0.02, rc)
+            return
+        if pat == "band":
+            bw = 4.7
+            self.rect(W - bw, 0, bw, H, "primary")
+            on = t.on("primary")
+            for r, a in ((3.6, 0.06), (2.7, 0.07), (1.8, 0.09)):
+                self.rect(W - bw / 2 - r + 0.3, 3.2 - r, 2 * r, 2 * r, on, kind="ellipse", alpha=a)
+            for k in range(6):
+                self.rect(W - bw + 0.5 + k * 0.62, 0, 0.05, H, on, alpha=0.08)
+            self.rect(W - bw, 0, 0.12, H, "accent")
             return
         if pat == "grid":
             line_col = color.mix(t.c("bg"), t.c("text"), 0.06 * strength)

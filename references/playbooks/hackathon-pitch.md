@@ -8,7 +8,7 @@ minutes.
 1. **Profile and rubric**: time, slide cap, criteria with weights (`protocol/1-brief.md`).
 2. **Message**: "Who gets what change, shown by what" in one sentence (`protocol/2-story.md`).
 3. **Scaffold**: `python scripts/cli.py new --event hackathon --out decks/pitch.md`, theme `midnight-navy` or
-   `deep-space` (`obsidian-craft` for playful briefs).
+   `deep-space`. A game look (`obsidian-craft`) only if the user asks for it.
 4. **Fill in this order**: demo slide and screenshot first, then problem, evidence, architecture, roadmap, title, closing.
 5. **Evidence**: one metric against a baseline with a `source:`; if there is no measurement, show a user quote or
    a timed task and say what it is.

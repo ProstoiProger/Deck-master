@@ -1,0 +1,19 @@
+name: editorial
+mode: light
+scopes: [portfolio, creative, report]
+description: "Cream paper, black ink and vermilion. Playfair headings, no card chrome, thick rules; for magazine-style decks and portfolios."
+colors:
+  bg: "#F6F1E7"
+  surface: "#EBE3D0"
+  primary: "#161616"
+  secondary: "#6B6256"
+  accent: "#B03A0E"
+  text: "#141414"
+  muted: "#554F44"
+  success: "#2F6B3F"
+  warning: "#8A5A00"
+  danger: "#B03A0E"
+  info: "#1F3C88"
+series: ["#161616", "#B03A0E", "#2F6B3F", "#C58B00", "#8B8272"]
+fonts: {heading: PlayfairDisplay, body: Inter, mono: Inter}
+style: {corner: square, border: none, shadow: none, pattern: rules, card: flat, title_rule: line, footer: rule, chips: text, show_source: false, radius: 0.0}

@@ -1,0 +1,19 @@
+name: chalkboard
+mode: dark
+scopes: [education, lecture]
+description: "Deep green board with chalk yellow, mint and pink. For lectures and workshops with an informal, teaching feel."
+colors:
+  bg: "#1F3A2E"
+  surface: "#29483A"
+  primary: "#F2E6B1"
+  secondary: "#8FD1B0"
+  accent: "#FFB4A2"
+  text: "#F4F1E6"
+  muted: "#C2D9CB"
+  success: "#9BE3B5"
+  warning: "#F2E6B1"
+  danger: "#FFB4A2"
+  info: "#8FD1B0"
+series: ["#F2E6B1", "#8FD1B0", "#FFB4A2", "#9CC8F0", "#C2D9CB"]
+fonts: {heading: Inter, body: Inter, mono: Inter}
+style: {corner: square, border: thin, shadow: none, pattern: rules, card: outline, title_rule: line, footer: rule, chips: text, show_source: false, radius: 0.02}

@@ -1,0 +1,19 @@
+name: ledger
+mode: light
+scopes: [finance, business, report]
+description: "Light gray, ink blue and green for gains. Flat panels, numeric focus; for financial results and investor updates."
+colors:
+  bg: "#F6F7F9"
+  surface: "#FFFFFF"
+  primary: "#12355B"
+  secondary: "#3E7CB1"
+  accent: "#1D6B52"
+  text: "#0F1B2D"
+  muted: "#475569"
+  success: "#1D6B52"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#12355B"
+series: ["#12355B", "#3E7CB1", "#1D6B52", "#B8860B", "#94A3B8"]
+fonts: {heading: Inter, body: Inter, mono: Inter}
+style: {corner: square, border: thin, shadow: none, pattern: band, card: flat, title_rule: bar, footer: rule, chips: text, show_source: true, radius: 0.04}

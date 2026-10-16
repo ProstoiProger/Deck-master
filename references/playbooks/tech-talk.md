@@ -13,7 +13,7 @@
    indentation kept; lines are never wrapped, the font shrinks instead) or a screenshot of the highlighted lines.
 5. **Diagrams**: `architecture` and `pipeline` layouts; one idea each.
 6. **Live parts**: a recording as backup; run in a clean environment beforehand.
-7. **Scaffold**: `new --event research-talk` for the shape; set `minutes` to the slot length; theme `terminal-slate`
+7. **Scaffold**: `new --event tech-talk` for the shape; set `minutes` to the slot length; theme `terminal-slate`
    or `graphite-cyan`.
 8. **QA**: lint, previews, timed read-through, check the code font size from the back of the room.
 

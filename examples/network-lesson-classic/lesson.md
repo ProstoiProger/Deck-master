@@ -2,6 +2,7 @@
 title: How a network sends a message
 subtitle: Computer networks, opening lesson
 event: assignment
+game: true
 theme: classic-craft
 lang: en
 minutes: 8

@@ -12,6 +12,12 @@ Measured with fontTools on 2026-10:
 | Inter | yes | yes | yes | heading and body in every IT theme |
 | JetBrains Mono | yes | yes | mostly no | footers, pills, code |
 | Press Start 2P | yes | yes | yes | headings in `obsidian-craft` and `classic-craft` |
+| Source Serif 4 | yes | yes | check before use | headings in `academic`, `conference-dark`, `boardroom`, `forest` |
+| Playfair Display | yes | yes | check before use | headings in `editorial` |
+| Montserrat | yes | yes | check before use | headings in `startup-bright`, `venture-dark`, `portfolio-*` |
+
+The serif and display fonts are bundled as static instances (OFL, `assets/fonts/LICENSES.md`). Run `cli.py lint` on a Kazakh
+sample before promising full coverage; uncovered letters fall back to Inter.
 
 Candidates rejected on coverage: Space Grotesk (no Cyrillic), Manrope (Cyrillic yes, Kazakh letters partly missing),
 Pixelify Sans (poor Cyrillic and Kazakh), Silkscreen and VT323 (no Cyrillic).

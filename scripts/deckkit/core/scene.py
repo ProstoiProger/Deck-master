@@ -39,6 +39,21 @@ class Text:
 
 
 @dataclass
+class Poly:
+    """Closed polygon (chevrons, trapezoids, arrows, triangles). Points are (x, y) in inches."""
+    points: list
+    fill: str = None
+    line: str = None
+    line_w: float = 1.0
+    alpha: float = 1.0
+
+    @property
+    def bbox(self):
+        xs, ys = [p[0] for p in self.points], [p[1] for p in self.points]
+        return min(xs), min(ys), max(xs) - min(xs), max(ys) - min(ys)
+
+
+@dataclass
 class Image:
     x: float
     y: float

@@ -1,0 +1,19 @@
+name: venture-dark
+mode: dark
+scopes: [business, pitch, product]
+description: "Near-black with violet, orange and mint. Glow cards; for launch events and dark-room pitches."
+colors:
+  bg: "#0B0B14"
+  surface: "#15152A"
+  primary: "#7C5CFF"
+  secondary: "#FF7A59"
+  accent: "#35E0B1"
+  text: "#F5F5FA"
+  muted: "#A8A8C8"
+  success: "#35E0B1"
+  warning: "#FFC247"
+  danger: "#FF7A7A"
+  info: "#7C5CFF"
+series: ["#7C5CFF", "#FF7A59", "#35E0B1", "#FFC247", "#A8A8C8"]
+fonts: {heading: Montserrat, body: Inter, mono: Inter}
+style: {corner: round, border: thin, shadow: soft, pattern: grid, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: false, radius: 0.2}

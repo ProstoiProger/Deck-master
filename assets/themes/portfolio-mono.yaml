@@ -1,0 +1,19 @@
+name: portfolio-mono
+mode: dark
+scopes: [portfolio, creative]
+description: "Black and white with one lime accent. Montserrat headings, outlined frames; for designer and developer portfolios."
+colors:
+  bg: "#0A0A0A"
+  surface: "#161616"
+  primary: "#F5F5F5"
+  secondary: "#8A8A8A"
+  accent: "#C8FF3D"
+  text: "#F5F5F5"
+  muted: "#A3A3A3"
+  success: "#C8FF3D"
+  warning: "#FFD23D"
+  danger: "#FF6B6B"
+  info: "#7DD3FC"
+series: ["#F5F5F5", "#C8FF3D", "#8A8A8A", "#7DD3FC", "#FFD23D"]
+fonts: {heading: Montserrat, body: Inter, mono: Inter}
+style: {corner: square, border: thin, shadow: none, pattern: clean, card: outline, title_rule: none, footer: plain, chips: text, show_source: false, radius: 0.0}

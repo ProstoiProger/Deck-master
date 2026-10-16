@@ -35,7 +35,7 @@ def build_pptx(scenes, theme, deck, path):
     from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
     from pptx.util import Emu, Inches, Pt
 
-    from ..core.scene import H, W, Image, Line, Shape, Text
+    from ..core.scene import H, W, Image, Line, Poly, Shape, Text
 
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(W), Inches(H)
@@ -85,6 +85,24 @@ def build_pptx(scenes, theme, deck, path):
                         f.size = Pt(it.size)
                         f.bold = bool(it.bold or b)
                         f.color.rgb = _rgb(it.color)
+            elif isinstance(it, Poly):
+                u = 1000.0  # local units per inch, so the coordinates stay integers
+                fb = slide.shapes.build_freeform(round(it.points[0][0] * u), round(it.points[0][1] * u), scale=914400 / u)
+                fb.add_line_segments([(round(px * u), round(py * u)) for px, py in it.points[1:]], close=True)
+                sh = fb.convert_to_shape()
+                if it.fill:
+                    sh.fill.solid()
+                    sh.fill.fore_color.rgb = _rgb(it.fill)
+                    if it.alpha < 1:
+                        _set_alpha(sh.fill, it.alpha)
+                else:
+                    sh.fill.background()
+                if it.line:
+                    sh.line.color.rgb = _rgb(it.line)
+                    sh.line.width = Pt(it.line_w)
+                else:
+                    sh.line.fill.background()
+                sh.shadow.inherit = False
             elif isinstance(it, Image):
                 slide.shapes.add_picture(it.path, Inches(it.x), Inches(it.y), Inches(it.w), Inches(it.h))
             elif isinstance(it, Line):

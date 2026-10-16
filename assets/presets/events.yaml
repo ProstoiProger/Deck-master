@@ -1,7 +1,10 @@
-# Event presets: slide cap, talk length and the default skeleton. Numbers follow the ds-master communication notes
-# (datathon about 10 slides in 5 to 7 minutes, hackathon 6 to 8 slides in 3 to 5 minutes) and are defaults, not rules:
-# a brief that states other limits overrides them (record that in the profile).
+# Event presets: slide cap, talk length, default theme and skeleton. Numbers are defaults, not rules: a brief that states
+# other limits overrides them (record that in the profile). `scope` groups events for `cli.py new --list` and theme choice.
+# Every default theme is formal. Game themes (obsidian-craft, classic-craft) are used only when the user names them or asks
+# for a Minecraft or gamified deck; the `gamified` event exists for that request.
+# --- competitions ---
 hackathon:
+  scope: competition
   max_slides: 8
   min_slides: 6
   minutes: 5
@@ -10,6 +13,7 @@ hackathon:
   skeleton: [title, problem, solution, architecture, demo, kpi, roadmap, closing]
   judged_on: [impact, innovation, feasibility, user experience, demo]
 datathon:
+  scope: competition
   max_slides: 10
   min_slides: 8
   minutes: 7
@@ -17,7 +21,9 @@ datathon:
   theme: ultraviolet-core
   skeleton: [title, problem, pipeline, kpi, chart_insight, chart_insight, comparison, impact, roadmap, closing]
   judged_on: [insight quality, method soundness, business value, clarity, reproducibility]
+# --- study and science ---
 assignment:
+  scope: education
   max_slides: 15
   min_slides: 8
   minutes: 10
@@ -26,10 +32,141 @@ assignment:
   skeleton: [title, agenda, problem, bullets, pipeline, chart_insight, comparison, kpi, impact, roadmap, closing]
   judged_on: [coverage of the task, correctness, structure, references, clarity]
 research-talk:
+  scope: science
   max_slides: 14
   min_slides: 8
   minutes: 12
   wpm: 140
-  theme: graphite-cyan
+  theme: academic
   skeleton: [title, problem, bullets, pipeline, comparison, chart_insight, kpi, impact, closing]
   judged_on: [novelty, rigor, evidence, clarity]
+thesis-defense:
+  scope: science
+  max_slides: 20
+  min_slides: 12
+  minutes: 15
+  wpm: 130
+  theme: academic
+  skeleton: [title, agenda, problem, hypotheses, pipeline, factsheet, figure, comparison, kpi, impact, references, closing]
+  judged_on: [relevance, method, results, contribution, answers to questions]
+conference-paper:
+  scope: science
+  max_slides: 16
+  min_slides: 10
+  minutes: 15
+  wpm: 140
+  theme: conference-dark
+  skeleton: [title, abstract, problem, pipeline, equation, figure, figures2, comparison, impact, references, closing]
+  judged_on: [novelty, soundness, significance, clarity]
+lecture:
+  scope: education
+  max_slides: 30
+  min_slides: 10
+  minutes: 45
+  wpm: 130
+  theme: chalkboard
+  skeleton: [title, agenda, section, bullets, equation, figure, columns, quote, kpi, references, closing]
+  judged_on: [learning goals, structure, examples, pacing]
+workshop:
+  scope: education
+  max_slides: 24
+  min_slides: 10
+  minutes: 60
+  wpm: 120
+  theme: forest
+  skeleton: [title, agenda, section, process, columns, bullets, demo, section, matrix, roadmap, closing]
+  judged_on: [outcomes, hands-on tasks, pacing, take-aways]
+# --- business ---
+investor-pitch:
+  scope: business
+  max_slides: 12
+  min_slides: 9
+  minutes: 10
+  wpm: 140
+  theme: venture-dark
+  skeleton: [title, problem, solution, market, pricing, funnel, feature_matrix, roadmap, team, exec_summary, closing]
+  judged_on: [problem size, market, traction, team, the ask]
+business-review:
+  scope: business
+  max_slides: 14
+  min_slides: 8
+  minutes: 20
+  wpm: 140
+  theme: boardroom
+  skeleton: [title, exec_summary, scorecard, chart_insight, kpi, risk, gantt, matrix, closing]
+  judged_on: [clarity of the decision, evidence, risks, next steps]
+strategy-proposal:
+  scope: business
+  max_slides: 18
+  min_slides: 10
+  minutes: 25
+  wpm: 140
+  theme: consulting
+  skeleton: [title, exec_summary, matrix, market, feature_matrix, process, gantt, risk, scorecard, closing]
+  judged_on: [recommendation, logic, evidence, feasibility, risks]
+sales-pitch:
+  scope: business
+  max_slides: 12
+  min_slides: 7
+  minutes: 15
+  wpm: 140
+  theme: startup-bright
+  skeleton: [title, problem, solution, feature_grid, pricing, quote, roadmap, closing]
+  judged_on: [fit to the client, value, proof, price, next step]
+project-status:
+  scope: business
+  max_slides: 10
+  min_slides: 5
+  minutes: 10
+  wpm: 150
+  theme: ledger
+  skeleton: [title, exec_summary, scorecard, gantt, risk, closing]
+  judged_on: [progress, risks, decisions needed]
+grant-proposal:
+  scope: business
+  max_slides: 16
+  min_slides: 10
+  minutes: 15
+  wpm: 140
+  theme: forest
+  skeleton: [title, problem, big_number, solution, process, gantt, scorecard, risk, pricing, closing]
+  judged_on: [need, impact, feasibility, budget, team]
+# --- tech and portfolio ---
+tech-talk:
+  scope: tech
+  max_slides: 18
+  min_slides: 8
+  minutes: 20
+  wpm: 140
+  theme: terminal-slate
+  skeleton: [title, agenda, problem, architecture, tech_stack, demo, chart_insight, comparison, roadmap, closing]
+  judged_on: [clarity, technical depth, demo, take-aways]
+portfolio:
+  scope: portfolio
+  max_slides: 14
+  min_slides: 8
+  minutes: 10
+  wpm: 140
+  theme: portfolio-mono
+  skeleton: [title, profile, skills, timeline, case_header, gallery, before_after, quote, closing]
+  judged_on: [craft, range, clarity of the process, results]
+case-study:
+  scope: portfolio
+  max_slides: 12
+  min_slides: 7
+  minutes: 8
+  wpm: 140
+  theme: portfolio-warm
+  skeleton: [title, case_header, problem, process, gallery, before_after, kpi, quote, closing]
+  judged_on: [problem framing, process, outcome, role clarity]
+# --- on request only ---
+gamified:
+  scope: game
+  game: true
+  max_slides: 12
+  min_slides: 6
+  minutes: 8
+  wpm: 140
+  theme: obsidian-craft
+  skeleton: [title, boss, crafting, strata, hud, inventory, advancements, leaderboard, closing]
+  judged_on: [clarity, story, engagement]

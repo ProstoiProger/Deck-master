@@ -15,12 +15,28 @@ run the script after adding a layout or theme. `python scripts/build_catalog.py 
 
 | Layout | Family | Max words | Purpose |
 |---|---|---|---|
+| `exec_summary` | business | 80 | Executive summary: situation, complication, resolution and the ask as labelled rows. |
+| `feature_matrix` | business | 70 | Feature or competitor matrix: rows of capabilities, columns of options, with ticks and crosses. |
+| `funnel` | business | 60 | Conversion funnel: stages narrowing from top to bottom, each with a value and a note. |
+| `gantt` | business | 70 | Plan on a timeline: tasks as bars across periods, with owners and milestones. |
+| `market` | business | 55 | Market size as nested circles: total, serviceable and obtainable market with a value each. |
+| `matrix` | business | 80 | Two by two matrix: SWOT or any four-way split, each cell with its own bullets. |
+| `org` | business | 60 | Organisation or team chart: a lead and the people who report to them, up to three levels. |
+| `pricing` | business | 70 | Plan cards with a price and a short feature list; one plan can be highlighted. |
+| `process` | business | 60 | Chevron process: two to six steps in order, each with a short description. |
+| `risk` | business | 90 | Risk register: each risk with likelihood and impact chips and its mitigation. |
+| `scorecard` | business | 90 | KPI scorecard: metric, actual, target and a status dot for each row. |
 | `bullets` | content | 70 | Plain titled bullet list with an optional image; the safe fallback layout. |
 | `chart_insight` | data | 50 | One chart on the left and the so-what on the right. |
 | `comparison` | data | 60 | Table or side-by-side cards comparing our approach with baselines; the winner is highlighted. |
 | `kpi` | data | 50 | Two to four headline numbers, each with a label and its context or baseline. |
 | `agenda` | frame | 45 | Three to seven numbered steps: what the talk covers or how the work was structured. |
+| `big_number` | frame | 40 | One hero number with its meaning and a few supporting points. |
 | `closing` | frame | 25 | Closing slide: thanks or questions, where to find the code and the team. |
+| `columns` | frame | 70 | Two or three titled columns of bullets; for options, phases or parallel arguments. |
+| `image_full` | frame | 25 | A full-slide image with the title as a caption bar; for a photo, a product shot or a figure. |
+| `quote` | frame | 45 | One large quotation with its author; use it for a testimonial, a principle or a user voice. |
+| `section` | frame | 25 | Section divider: a very large number and the section title. |
 | `title` | frame | 40 | Opening slide: project name, one-line value proposition, event and team. |
 | `advancements` | game | 60 | Advancement tree: milestones as framed icons joined by a path, done, current or locked. |
 | `book` | game | 70 | Open book: two parchment pages for what was done and what remains, or any two lists. |
@@ -33,6 +49,19 @@ run the script after adding a layout or theme. `python scripts/build_catalog.py 
 | `strata` | game | 60 | Architecture as world layers: sky, grass, dirt, stone, deepslate; components are ores. |
 | `trade` | game | 60 | Villager trade list: before on the left, after on the right, with a trader. |
 | `team` | people | 50 | Up to six team members with role and one memorable fact. |
+| `before_after` | portfolio | 30 | Two images side by side with BEFORE and AFTER labels; for redesigns and improvements. |
+| `case_header` | portfolio | 60 | Case study opener: project name, role, year, client and tools beside a large image. |
+| `gallery` | portfolio | 40 | Image grid with a caption under each picture: two to six works or screens. |
+| `profile` | portfolio | 70 | About me: portrait, a short bio, facts and contact lines. |
+| `skills` | portfolio | 60 | Skills as bars (with a level) or as chips under group headings. |
+| `timeline` | portfolio | 80 | Vertical timeline for a career, a project history or a study path: when, what, detail. |
+| `abstract` | science | 110 | Structured abstract: background, methods, results and conclusion as labelled rows. |
+| `equation` | science | 60 | A formula shown large and typeset, with a legend of its symbols. |
+| `factsheet` | science | 80 | Fact sheet: key and value rows for a dataset, a study design or a specification. |
+| `figure` | science | 70 | A large figure with a numbered caption and the key observations beside it. |
+| `figures2` | science | 70 | Two panels side by side, (a) and (b), each with a caption and one takeaway line. |
+| `hypotheses` | science | 90 | Research question and numbered hypotheses, each with a status chip. |
+| `references` | science | 160 | Numbered reference list in two columns, small but readable. |
 | `feature_grid` | story | 70 | Grid of two to six capabilities, each with a short name and one line. |
 | `impact` | story | 60 | Two columns: what was achieved and what comes next; use for impact and next steps. |
 | `problem` | story | 55 | State the problem in one sentence with one supporting number. |
@@ -44,6 +73,154 @@ run the script after adding a layout or theme. `python scripts/build_catalog.py 
 | `tech_stack` | tech | 45 | Technology tiles grouped by layer: language, framework, data, cloud. |
 
 ## 2. Layout inputs
+
+### exec_summary
+
+Accepts: items: `Label | text` (up to 4, defaults Situation, Complication, Resolution, Ask); first paragraph: the recommendation bar
+
+```markdown
+# We should expand in the second city
+layout: exec_summary
+source: ops/q3.csv
+- Situation | Demand in city one doubled in a year
+- Complication | Capacity is full until spring
+- Resolution | Open city two with the same playbook
+Approve 1.2 M for the launch by 30 June.
+```
+
+### feature_matrix
+
+Accepts: markdown table; cells yes, no or partial draw a tick, a cross or a dash; highlight: column number to frame
+
+```markdown
+# We cover every must-have feature
+layout: feature_matrix
+highlight: 4
+| Feature | A | B | Us |
+|---|---|---|---|
+| Offline mode | no | yes | yes |
+| API | partial | yes | yes |
+```
+
+### funnel
+
+Accepts: items: `Stage | value | note | conversion` (up to 6); widths follow the values
+
+```markdown
+# Most prospects drop at the trial step
+layout: funnel
+source: crm/export.csv
+- Visitors | 48,000 | website
+- Sign-ups | 5,200 | free plan
+- Active | 1,900 | used twice
+- Paying | 410 | after the trial
+```
+
+### gantt
+
+Accepts: items: `Task | start | end | owner` (up to 9); props: periods (comma list, default numbers); a task whose start equals its end is a milestone
+
+```markdown
+# The launch fits in two quarters
+layout: gantt
+periods: Q1, Q2, Q3, Q4
+- Design | 1 | 1 | Design
+- Build | 1 | 2 | Engineering
+- Pilot | 2 | 3 | Sales
+- Launch | 4 | 4 | All
+```
+
+### market
+
+Accepts: items: `Name | value | description` from the largest to the smallest (up to 3), e.g. TAM, SAM, SOM
+
+```markdown
+# We can win 12 M in year three
+layout: market
+source: research/market.md
+- TAM | 4.2 B | all schools worldwide
+- SAM | 310 M | schools in our regions
+- SOM | 12 M | reachable in three years
+```
+
+### matrix
+
+Accepts: groups: four `## heading` sections; or items `Quadrant | text`; props: quadrants (comma list), tone swot or neutral, x and y axis captions
+
+```markdown
+# Strengths outweigh the threats
+layout: matrix
+## Strengths
+- Fast delivery
+## Weaknesses
+- Small team
+## Opportunities
+- New market
+## Threats
+- Big incumbents
+```
+
+### org
+
+Accepts: items: `Name | Role | reports to` (the first item is the root; others name their manager)
+
+```markdown
+# One lead, three squads
+layout: org
+- Dana K. | Head of product
+- Timur B. | Engineering | Dana K.
+- Mira L. | Design | Dana K.
+- Aigerim S. | Data | Dana K.
+```
+
+### pricing
+
+Accepts: items: `Plan | price | feature; feature; feature` (2 to 4); highlight: plan number
+
+```markdown
+# Three plans cover every team size
+layout: pricing
+highlight: 2
+- Starter | 0 | 1 project; Community support
+- Team | 19 | 10 projects; Priority support; Reports
+- Business | 99 | Unlimited projects; SSO; Audit log
+```
+
+### process
+
+Accepts: items: `Step | description | owner` (up to 6)
+
+```markdown
+# Four steps from request to payout
+layout: process
+- Request | the customer files a claim
+- Review | an adjuster checks it
+- Approve | a manager signs off
+- Pay | funds arrive in 3 days
+```
+
+### risk
+
+Accepts: items: `Risk | likelihood | impact | mitigation` with low, medium or high (up to 6)
+
+```markdown
+# Three risks need an owner this month
+layout: risk
+- Key supplier delay | medium | high | Second source approved
+- Regulation change | low | high | Legal review each quarter
+```
+
+### scorecard
+
+Accepts: items: `Metric | actual | target | green, amber or red | note` (up to 7)
+
+```markdown
+# Four of five KPIs are on track
+layout: scorecard
+source: bi/q3.xlsx
+- Revenue | 4.1 M | 4.0 M | green | ahead of plan
+- Churn | 3.2% | 3.0% | amber | one segment worse
+```
 
 ### bullets
 
@@ -111,6 +288,19 @@ layout: agenda
 - Demo
 ```
 
+### big_number
+
+Accepts: props: stat `62% | what it measures`; items: up to 3 supporting bullets
+
+```markdown
+# Churn fell by more than half
+layout: big_number
+source: ops/q3.csv
+stat: 62% | lower churn in the pilot cohort
+- Measured over 12 weeks
+- Same price, same product
+```
+
 ### closing
 
 Accepts: items or paragraphs: contact lines, repo link; props mascot (character name) and achievement (toast text), game themes
@@ -120,6 +310,55 @@ Accepts: items or paragraphs: contact lines, repo link; props mascot (character 
 layout: closing
 - github.com/team/project
 - team@example.org
+```
+
+### columns
+
+Accepts: groups: two or three `## heading` sections with bullets; or items split evenly in two columns
+
+```markdown
+# Three ways to scale
+layout: columns
+## Vertical
+- Bigger machine
+## Horizontal
+- More machines
+## Smarter
+- Cache and batch
+```
+
+### image_full
+
+Accepts: image: picture; the title is the caption; credit: photo credit
+
+```markdown
+# The prototype in the lab
+layout: image_full
+image: figures/lab.jpg
+credit: Photo: the team
+```
+
+### quote
+
+Accepts: first paragraph or `> quote` line: the quote; props: author, role; the title is the small kicker above
+
+```markdown
+# What users say
+layout: quote
+author: A. Student
+role: Year 2, Computer Science
+> The rest token saved my streak.
+```
+
+### section
+
+Accepts: props: number (default counts section slides); first paragraph: one-line subtitle
+
+```markdown
+# Results
+layout: section
+number: 02
+What the experiments show.
 ```
 
 ### title
@@ -270,6 +509,181 @@ layout: team
 - Dana K. | Backend | built the stream layer
 ```
 
+### before_after
+
+Accepts: items: `image path | label` (two); first paragraph: caption
+
+```markdown
+# The redesign cut clicks in half
+layout: before_after
+- work/old.png | Before
+- work/new.png | After
+The same task, six clicks down to three.
+```
+
+### case_header
+
+Accepts: image: hero picture; props: role, year, client, tools (comma list); first paragraph: one-sentence summary; the title is the project name
+
+```markdown
+# Atlas: a fraud console for analysts
+layout: case_header
+image: work/atlas.png
+role: Lead designer
+year: 2026
+client: Northbank
+tools: Figma, React, Python
+A queue that ranks alerts by expected loss.
+```
+
+### gallery
+
+Accepts: items: `image path | caption` (2 to 6); the grid is 2 columns for 2 or 4 images, otherwise 3
+
+```markdown
+# Four screens, one flow
+layout: gallery
+- work/s1.png | Onboarding
+- work/s2.png | Queue
+- work/s3.png | Case view
+- work/s4.png | Report
+```
+
+### profile
+
+Accepts: image: portrait; first paragraph: bio; items: `Label | value` facts (up to 5); props: email, web
+
+```markdown
+# Hi, I design data products
+layout: profile
+image: me.jpg
+email: aigerim@example.org
+web: aigerim.example.org
+I turn messy data into tools people use daily.
+- Role | Product designer
+- Based in | Astana
+- Experience | 6 years
+```
+
+### skills
+
+Accepts: items: `Skill | level 1-5 or 0-100 | group` shown as bars (the level is never printed); or groups `## heading` with plain skill names as chips
+
+```markdown
+# What I work with
+layout: skills
+## Design
+- Figma
+- Prototyping
+## Code
+- Python
+- React
+```
+
+### timeline
+
+Accepts: items: `When | What | detail` (up to 6)
+
+```markdown
+# Six years from analyst to lead
+layout: timeline
+- 2020 | Data analyst | Retail analytics
+- 2022 | Product designer | Fintech app
+- 2025 | Design lead | Team of five
+```
+
+### abstract
+
+Accepts: items: `Label | text` (up to 4; defaults Background, Methods, Results, Conclusion); keywords: comma list
+
+```markdown
+# Calibration fixes rare-event probabilities
+layout: abstract
+keywords: calibration, boosting, rare events
+- Background | Boosted trees misstate rare-event risk
+- Methods | Isotonic map on a later holdout
+- Results | Calibration error fell 80%
+- Conclusion | Calibrate before using probabilities
+```
+
+### equation
+
+Accepts: props: math (LaTeX subset, e.g. `\hat{y}=\sigma(Wx+b)`); items: `symbol | meaning` (up to 6); first paragraph: caption
+
+```markdown
+# Predictions are a sigmoid of a linear score
+layout: equation
+math: \hat{y}=\sigma(w^{T}x+b)
+- y-hat | predicted probability
+- w | weights
+- b | bias
+```
+
+### factsheet
+
+Accepts: items: `Key | value` (up to 9); first paragraph: caption
+
+```markdown
+# The dataset in one table
+layout: factsheet
+source: data/card.md
+- Rows | 365 daily records
+- Period | one year
+- Target | rides per day
+- Split | time-ordered, last 4 weeks held out
+```
+
+### figure
+
+Accepts: image: figure file, or `chart:` plus a table; caption: caption text; items: key observations (up to 4)
+
+```markdown
+# Error falls as data grows
+layout: figure
+image: figures/learning-curve.png
+caption: Test error against training size, mean of five seeds.
+- Error halves by 10 k rows
+- The gap to the baseline persists
+```
+
+### figures2
+
+Accepts: image and image2: the two figures; caption and caption2: their captions; takeaway: the line under both
+
+```markdown
+# The effect holds on both datasets
+layout: figures2
+image: figures/a.png
+image2: figures/b.png
+caption: Dataset A
+caption2: Dataset B
+takeaway: Same ordering of methods on both.
+```
+
+### hypotheses
+
+Accepts: first paragraph: the research question; items: `H1 | statement | supported, rejected, open or partial` (up to 4)
+
+```markdown
+# Two of three hypotheses hold
+layout: hypotheses
+Does calibration improve decisions at a 1% base rate?
+- H1 | Calibration lowers expected error | supported
+- H2 | Ranking quality is unchanged | supported
+- H3 | Gains hold under drift | open
+```
+
+### references
+
+Accepts: items: one reference each (up to 14), numbered automatically
+
+```markdown
+# References
+layout: references
+- Friedman J. (2001). Greedy function approximation. Annals of Statistics.
+- Niculescu-Mizil A. (2005). Predicting good probabilities with supervised learning. ICML.
+```
+
 ### feature_grid
 
 Accepts: items: `Name | one-line description`
@@ -389,13 +803,26 @@ layout: tech_stack
 
 | Theme | Mode | bg | surface | primary | accent | text | Text/bg | Muted/bg | Corner | Pattern |
 |---|---|---|---|---|---|---|---|---|---|---|
+| `academic` | light | #FBFAF6 | #EFEDE4 | #1F3C88 | #9B1C2E | #1A1A1A | 16.66 | 8.49 | square | rules |
+| `boardroom` | light | #FFFFFF | #F1F4F8 | #1B365D | #8A5A00 | #14213D | 15.97 | 7.56 | square | band |
+| `chalkboard` | dark | #1F3A2E | #29483A | #F2E6B1 | #FFB4A2 | #F4F1E6 | 10.91 | 8.27 | square | rules |
 | `classic-craft` | light | #D6EBFF | #C6C6C6 | #2E6A14 | #6B4A00 | #1B1B1B | 14.1 | 7.25 | pixel | classic |
+| `clinical` | light | #FFFFFF | #EAF4F5 | #0B6E79 | #B54708 | #10272B | 15.59 | 7.38 | round | clean |
 | `cloud-light` | light | #F8FAFC | #FFFFFF | #1D4ED8 | #0E7490 | #0F172A | 17.06 | 7.24 | round | none |
+| `conference-dark` | dark | #0E1621 | #172433 | #6FA8DC | #F2C14E | #EEF2F6 | 16.16 | 8.99 | square | rules |
+| `consulting` | light | #FFFFFF | #F3F4F6 | #0B5D3B | #8A5A00 | #111827 | 17.74 | 7.56 | square | clean |
 | `deep-space` | dark | #0A0F2C | #141B45 | #6C5CE7 | #FF4F9A | #FFFFFF | 18.79 | 9.17 | round | grid |
+| `editorial` | light | #F6F1E7 | #EBE3D0 | #161616 | #B03A0E | #141414 | 16.36 | 7.21 | square | rules |
+| `forest` | light | #F7FAF5 | #E4EFDD | #1F5D3A | #8A4B00 | #14231A | 15.52 | 7.23 | round | clean |
 | `graphite-cyan` | dark | #14161B | #1F232B | #00B8D9 | #7DF9FF | #E8EAED | 15.02 | 7.11 | round | grid |
+| `ledger` | light | #F6F7F9 | #FFFFFF | #12355B | #1D6B52 | #0F1B2D | 16.12 | 7.07 | square | band |
 | `midnight-navy` | dark | #0B1220 | #131C31 | #3B82F6 | #22D3EE | #F1F5F9 | 17.09 | 7.3 | round | grid |
 | `obsidian-craft` | dark | #0E0818 | #1C1030 | #8B5CF6 | #E879F9 | #F3E8FF | 16.69 | 8.8 | pixel | obsidian |
+| `portfolio-mono` | dark | #0A0A0A | #161616 | #F5F5F5 | #C8FF3D | #F5F5F5 | 18.16 | 7.85 | square | clean |
+| `portfolio-warm` | light | #FFF8F1 | #FBE9DA | #A63D1F | #2B6A58 | #2B1B12 | 15.73 | 7.78 | round | band |
+| `startup-bright` | light | #FFFFFF | #F3EFFF | #5B2EFF | #B4195B | #12112B | 18.41 | 7.92 | round | band |
 | `terminal-slate` | dark | #0D1117 | #161B22 | #58A6FF | #3FB950 | #E6EDF3 | 16.02 | 6.15 | square | grid |
 | `ultraviolet-core` | dark | #120B2E | #1E1546 | #8B5CF6 | #00E5FF | #F5F3FF | 17.2 | 8.61 | round | grid |
+| `venture-dark` | dark | #0B0B14 | #15152A | #7C5CFF | #35E0B1 | #F5F5FA | 18.02 | 8.49 | round | grid |
 
 Ratios are WCAG 2.x contrast. Body text needs 4.5 or more, large text 3 or more.

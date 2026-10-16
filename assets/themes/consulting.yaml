@@ -1,0 +1,19 @@
+name: consulting
+mode: light
+scopes: [business, strategy, report]
+description: "White, deep green and gray, minimal. Action titles over a full-width rule and a source line; for consulting-style reports and status updates."
+colors:
+  bg: "#FFFFFF"
+  surface: "#F3F4F6"
+  primary: "#0B5D3B"
+  secondary: "#6B7280"
+  accent: "#8A5A00"
+  text: "#111827"
+  muted: "#4B5563"
+  success: "#0B5D3B"
+  warning: "#8A5A00"
+  danger: "#A61E2A"
+  info: "#1D5FA8"
+series: ["#0B5D3B", "#6B7280", "#A16207", "#1D5FA8", "#9CA3AF"]
+fonts: {heading: Inter, body: Inter, mono: Inter}
+style: {corner: square, border: thin, shadow: none, pattern: clean, card: outline, title_rule: line, footer: rule, chips: text, show_source: true, radius: 0.0}

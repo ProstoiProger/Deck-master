@@ -1,0 +1,19 @@
+name: startup-bright
+mode: light
+scopes: [business, pitch, product]
+description: "White with electric violet and coral. Big rounded cards and a bold color band; for investor pitches and product decks."
+colors:
+  bg: "#FFFFFF"
+  surface: "#F3EFFF"
+  primary: "#5B2EFF"
+  secondary: "#FF5C8A"
+  accent: "#B4195B"
+  text: "#12112B"
+  muted: "#4F4D75"
+  success: "#13795B"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#5B2EFF"
+series: ["#5B2EFF", "#FF5C8A", "#00B8A9", "#FFB400", "#8B8BA7"]
+fonts: {heading: Montserrat, body: Inter, mono: Inter}
+style: {corner: round, border: none, shadow: soft, pattern: band, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: false, radius: 0.22}

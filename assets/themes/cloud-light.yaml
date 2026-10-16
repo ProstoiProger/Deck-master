@@ -1,5 +1,6 @@
 name: cloud-light
 mode: light
+scopes: [education, assignment, report]
 description: Light variant for printed handouts, assignments and projectors in bright rooms.
 colors:
   bg: "#F8FAFC"

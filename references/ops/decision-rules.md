@@ -45,7 +45,7 @@ record why.
 |---|---|---|
 | Theme tokens, not raw colours | all slides | a brand colour is mandated: add it to a theme file |
 | Contrast 4.5 or more for body text | all text | large decorative type at 3 or more |
-| Pixel or game styling for content that suits it | obsidian-craft or classic-craft theme | the audience is formal or the rubric penalises gimmicks |
+| Formal theme of the scope; no game styling | all decks | the user asks for Minecraft or a gamified look (then `game: true`) |
 | Decoration only on title and closing | all themes | none |
 
 ## Cut order under time pressure

@@ -84,14 +84,18 @@ def cmd_themes(args):
     rows = []
     for n in theme_names():
         t = load_theme(n)
-        rows.append({"name": n, "mode": t.mode, "colors": t.colors, "style": t.style, "description": t.description,
-                     "contrast": dict(contrast_table(t))})
+        if args.scope and args.scope not in t.scopes:
+            continue
+        rows.append({"name": n, "mode": t.mode, "scopes": t.scopes, "colors": t.colors, "style": t.style,
+                     "description": t.description, "contrast": dict(contrast_table(t))})
+    if not rows:
+        die(f"no theme with scope {args.scope!r}")
     if args.json:
         print(json.dumps(rows, indent=2, ensure_ascii=False))
         return
     for r in rows:
         print(f"{r['name']:18} {r['mode']:5} primary {r['colors']['primary']}  accent {r['colors']['accent']}  "
-              f"text/bg {r['contrast']['text on bg']}:1  {r['description']}")
+              f"text/bg {r['contrast']['text on bg']}:1  [{', '.join(r['scopes'])}]  {r['description']}")
 
 
 def cmd_layouts(args):
@@ -110,6 +114,12 @@ def cmd_new(args):
     import time
     from deckkit.core import paths, timing
     events = timing.load_events()
+    if args.list:
+        for name, e in events.items():
+            print(f"{name:18} {e.get('scope', ''):12} <= {e['max_slides']:2} slides  {e['minutes']:3} min  theme {e['theme']}")
+        return
+    if not args.event or not args.out:
+        die("--event and --out are required (or use --list)")
     if args.event not in events:
         die(f"unknown event {args.event!r}; choose from {sorted(events)}")
     src = paths.templates_dir() / f"deck-{args.event}.md"
@@ -124,6 +134,9 @@ def cmd_new(args):
     for k, v in {"theme": args.theme or p["theme"], "title": title, "title_yaml": title.replace("\\", "\\\\").replace('"', '\\"'),
                  "minutes": p["minutes"], "date": time.strftime("%Y-%m-%d")}.items():
         text = text.replace("{{" + k + "}}", str(v))
+    from deckkit.core.theme import load_theme
+    if "game" in load_theme(args.theme or p["theme"]).scopes and "\ngame: true" not in text:
+        text = text.replace("\ntheme:", "\ngame: true\ntheme:", 1)  # records that the user asked for a game look
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(text, encoding="utf-8", newline="\n")
     print(f"wrote {out} ({args.event}, theme {args.theme or p['theme']}); edit it, then: python scripts/cli.py lint {out}")
@@ -312,6 +325,7 @@ def main(argv=None):
 
     p = sub.add_parser("themes", help="list themes")
     p.add_argument("--json", action="store_true")
+    p.add_argument("--scope", help="only themes for this scope: tech, science, business, finance, education, portfolio, pitch, report, game ...")
     p.set_defaults(fn=cmd_themes)
 
     p = sub.add_parser("layouts", help="list layouts")
@@ -319,10 +333,11 @@ def main(argv=None):
     p.set_defaults(fn=cmd_layouts)
 
     p = sub.add_parser("new", help="scaffold a deck outline from an event template")
-    p.add_argument("--event", required=True, help="hackathon | datathon | assignment | research-talk")
+    p.add_argument("--event", help="event preset; `new --list` shows all (default theme is formal; game themes only for `gamified`)")
+    p.add_argument("--list", action="store_true", help="list events with scope, slide cap, minutes and default theme")
     p.add_argument("--theme")
     p.add_argument("--title")
-    p.add_argument("--out", required=True)
+    p.add_argument("--out")
     p.add_argument("--force", action="store_true")
     p.set_defaults(fn=cmd_new)
 

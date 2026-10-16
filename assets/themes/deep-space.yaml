@@ -1,5 +1,6 @@
 name: deep-space
 mode: dark
+scopes: [tech, hackathon, pitch]
 description: Navy and violet with a hot pink accent. Loud, hackathon-stage energy.
 colors:
   bg: "#0A0F2C"

@@ -1,5 +1,6 @@
 name: obsidian-craft
 mode: dark
+scopes: [game]
 description: "Dark obsidian look with purple veins and IT cyan highlights; pixel blocks, nether-portal title art. Original shapes only."
 colors:
   bg: "#0E0818"

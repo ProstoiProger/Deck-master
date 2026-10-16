@@ -32,6 +32,9 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 | `modes/hackathon.md` | product pitches judged on impact, innovation, feasibility, demo |
 | `modes/datathon.md` | findings decks judged on insight, method, value, clarity |
 | `modes/research-talk.md` | research talks, defenses, seminars |
+| `modes/scientific.md` | thesis defenses, conference papers, hypotheses, equations, figures |
+| `modes/business.md` | investor and sales pitches, business reviews, strategy, status, grants |
+| `modes/portfolio.md` | portfolios and case studies |
 | `modes/hackathon-tracks/` | bank or corporate events with ML, AI and DS tracks: `modes/hackathon-tracks/README.md`, `modes/hackathon-tracks/ml-track.md`, `modes/hackathon-tracks/ai-track.md`, `modes/hackathon-tracks/ds-track.md` |
 
 ## Communication
@@ -50,10 +53,11 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 
 | File | Topic |
 |---|---|
-| `design/palettes.md` | the eight themes, when to use which, contrast rules |
+| `design/scopes.md` | which scope, theme and components for which deck; formal by default |
+| `design/palettes.md` | the 21 themes by scope, style per theme, contrast rules |
 | `design/typography.md` | fonts, scripts covered, sizes, installing fonts |
-| `design/layouts.md` | choosing a layout for a message |
-| `design/visual-style.md` | IT look patterns, motifs, style packs including the two block-game themes |
+| `design/layouts.md` | choosing a layout for a message; the 56 layouts in nine families |
+| `design/visual-style.md` | looks by scope, style keys, motifs, the two block-game themes (on request) |
 | `design/accessibility.md` | contrast, size, colour-blind safety, projector advice |
 | `design/imagery-icons.md` | screenshots, icons, photos, licences, trademarks |
 | `design/game-components.md` | ten Minecraft-style components, pixel icons, automatic mob decoration |
@@ -65,7 +69,8 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 ## Playbooks
 
 `playbooks/hackathon-pitch.md`, `playbooks/datathon-findings.md`, `playbooks/assignment-report.md`,
-`playbooks/project-defense.md`, `playbooks/tech-talk.md`, `playbooks/novel.md` (nothing fits).
+`playbooks/project-defense.md`, `playbooks/tech-talk.md`, `playbooks/investor-pitch.md`, `playbooks/business-review.md`,
+`playbooks/portfolio-case.md`, `playbooks/novel.md` (nothing fits).
 
 ## Domains
 
@@ -82,13 +87,13 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 
 | Path | Content |
 |---|---|
-| `../scripts/cli.py` | `env`, `themes`, `layouts`, `new`, `lint`, `build`, `preview`, `inspire`, `notes`, `timing`, `trace`, `catalog` |
+| `../scripts/cli.py` | `env`, `themes --scope`, `layouts`, `new --list`, `lint`, `build`, `preview`, `inspire`, `notes`, `timing`, `trace`, `catalog` |
 | `../scripts/deckkit/` | package: core, layouts, backends, charts, lint |
 | `../scripts/install.py` | install for Claude Code, Codex, Cursor, Copilot, Gemini, Windsurf |
 | `../scripts/build_adapters.py` | regenerate `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `adapters/` |
 | `../scripts/build_catalog.py` | regenerate `design/catalog.md` |
 | `../scripts/requirements/` | dependency groups: core, pptx, pdf, charts, preview |
 | `../assets/templates/` | event deck skeletons, profile, brief intake, Q&A prep, traceability, speaker notes, rubric map |
-| `../assets/themes/` | eight theme files |
-| `../assets/presets/` | `events.yaml` (slide caps and minutes), `fonts.yaml` (font families) |
-| `../examples/` | finished game-style presentations (PPTX and PDF) with their prompts and inputs |
+| `../assets/themes/` | 21 theme files |
+| `../assets/presets/` | `events.yaml` (18 events: scope, slide caps, minutes, default theme), `fonts.yaml` (font families) |
+| `../examples/` | seven finished presentations (PPTX and PDF): five formal by scope, two game-style on request |

@@ -16,7 +16,8 @@ A talk for peers or a committee: a claim, the evidence, the limits. Also used fo
 ## Skeleton
 
 Use `assets/templates/deck-research-talk.md` (8 to 14 slides, 10 to 15 minutes): title, gap, method, main result,
-comparison, limits, closing; theme `graphite-cyan`.
+comparison, limits, closing; theme `academic` (`conference-dark` in dark rooms, `graphite-cyan` for engineering talks). For thesis
+defenses and conference papers see `modes/scientific.md`.
 
 ## Claims checklist
 

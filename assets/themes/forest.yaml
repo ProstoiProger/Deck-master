@@ -1,0 +1,19 @@
+name: forest
+mode: light
+scopes: [nonprofit, sustainability, education, report]
+description: "Soft green and earth tones. Calm rounded cards; for sustainability, impact and community decks."
+colors:
+  bg: "#F7FAF5"
+  surface: "#E4EFDD"
+  primary: "#1F5D3A"
+  secondary: "#5C7F4B"
+  accent: "#8A4B00"
+  text: "#14231A"
+  muted: "#46584B"
+  success: "#1F5D3A"
+  warning: "#8A5A00"
+  danger: "#A12F1F"
+  info: "#1F5D8A"
+series: ["#1F5D3A", "#8A4B00", "#3E7CB1", "#C9A227", "#7A8F7A"]
+fonts: {heading: SourceSerif4, body: Inter, mono: Inter}
+style: {corner: round, border: thin, shadow: soft, pattern: clean, card: fill, title_rule: bar, footer: plain, chips: text, show_source: true, radius: 0.12}

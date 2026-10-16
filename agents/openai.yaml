@@ -1,0 +1,7 @@
+interface:
+  display_name: "Deck Master"
+  short_description: "Build PPTX and PDF slide decks from Markdown"
+  default_prompt: "Use $deck-master to build a 10-minute investor pitch deck from my notes."
+
+policy:
+  allow_implicit_invocation: true

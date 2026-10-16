@@ -15,8 +15,26 @@ def rubric_ids(deck):
     return [str(r.get("id")) if isinstance(r, dict) else str(r).split(":")[0] for r in (deck.meta.get("rubric") or [])]
 
 
-def check(deck, scenes, theme):
+def game_findings(deck, theme):
+    """Game themes and game layouts are opt-in: the user must ask for them, and the deck records that with `game: true`."""
+    from ..core import layout
+    layout.ensure_loaded()
+    asked = str(deck.meta.get("game", "")).lower() in ("true", "yes", "1")
     out = []
+    if "game" in theme.scopes and not asked:
+        out.append(finding("Medium", None, f"game theme {theme.name} without `game: true` in the front matter; "
+                                           "use game themes only when the user asked for a Minecraft or gamified deck"))
+    if "game" not in theme.scopes:
+        for s in deck.slides:
+            spec = layout.LAYOUTS.get(s.layout)
+            if spec is not None and spec.family == "game":
+                out.append(f"[Medium] slide {s.index} ({s.layout}): game layout in the formal theme {theme.name}; "
+                           "use a formal layout or switch to a game theme")
+    return out
+
+
+def check(deck, scenes, theme):
+    out = game_findings(deck, theme)
     for sc in scenes:
         for p in sc.problems:
             sev, msg = split_tag(p)

@@ -14,16 +14,27 @@ Goal: pick a theme, a layout per slide and a visual per message, with readabilit
 
 ## 1. Theme
 
+Take the scope first (`design/scopes.md`), then the room. The look is formal unless the user asks for a game style.
+
 | Situation | Theme |
 |---|---|
 | Default tech pitch, unsure | `midnight-navy` |
 | Data, AI, ML story | `ultraviolet-core` |
-| Research talk, architecture, calm | `graphite-cyan` |
+| Engineering, architecture, calm | `graphite-cyan` |
 | Loud stage energy | `deep-space` |
 | Developer tools, CLI, security | `terminal-slate` |
 | Printed handout, bright room, assignment | `cloud-light` |
-| Hackathon with a game flavour, dark | `obsidian-craft` |
-| Education, games, fun events, light | `classic-craft` |
+| Scientific talk, defense (light, serif) | `academic` |
+| Scientific talk in a dark room | `conference-dark` |
+| Medicine, life science | `clinical` |
+| Board pack, business review | `boardroom` |
+| Strategy proposal, status report | `consulting` |
+| Financial results, numbers first | `ledger` |
+| Investor or sales pitch, bright / dark | `startup-bright` / `venture-dark` |
+| Lecture, workshop | `chalkboard` |
+| Sustainability, nonprofit, grant | `forest` |
+| Portfolio, dark / light / magazine | `portfolio-mono` / `portfolio-warm` / `editorial` |
+| Only if the user asks for Minecraft or gamified: dark / light | `obsidian-craft` / `classic-craft` |
 
 Details and contrast figures: `design/palettes.md`. A brand or organiser template overrides this: ask for it, then
 add a theme file (`extending.md`).
@@ -42,6 +53,12 @@ add a theme file (`extending.md`).
 | 2 to 6 capabilities | `feature_grid` |
 | next steps | `roadmap` or `impact` |
 | the team | `team` |
+| a decision and its reasons | `exec_summary` |
+| KPIs against targets | `scorecard` |
+| risks with owners | `risk` |
+| market size, funnel, pricing, plan | `market`, `funnel`, `pricing`, `gantt` |
+| hypotheses, a formula, a figure | `hypotheses`, `equation`, `figure` |
+| a project in a portfolio | `case_header`, `gallery`, `before_after` |
 
 Full list and inputs: `design/catalog.md`. When nothing fits use `bullets` and keep it short.
 
@@ -54,7 +71,7 @@ Full list and inputs: `design/catalog.md`. When nothing fits use `bullets` and k
 
 ## 4. Style packs and references
 
-A theme can carry a style pack (corner shape, border, shadow, pattern). The block-game looks are the
+A theme can carry a style pack (corner shape, card style, title rule, footer, pattern). The block-game looks are the
 `obsidian-craft` and `classic-craft` themes, with optional characters (`design/entities.md`). The user's own Canva or Dribbble references live in `design/inspiration/`; use them for
 patterns and measured palettes only (`design/inspiration/README.md`).
 

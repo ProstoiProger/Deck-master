@@ -1,5 +1,6 @@
 name: terminal-slate
 mode: dark
+scopes: [tech, engineering, security]
 description: Developer-console palette (GitHub-dark inspired). Mono labels, green for success.
 colors:
   bg: "#0D1117"

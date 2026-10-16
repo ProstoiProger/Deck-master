@@ -84,9 +84,9 @@ def test_timing_notes_themes_layouts_run(deck_file):
     assert "Total" in run("timing", deck_file).stdout
     assert "Speaker script" in run("notes", deck_file).stdout
     themes = json.loads(run("themes", "--json").stdout)
-    assert len(themes) == 8
+    assert len(themes) == 21
     layouts = json.loads(run("layouts", "--json").stdout)
-    assert len(layouts) == 27
+    assert len(layouts) == 56
 
 
 def test_preview_writes_pngs_and_a_sheet(deck_file, tmp_path):

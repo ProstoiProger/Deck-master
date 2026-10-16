@@ -10,7 +10,7 @@
 4. **What remains**: limits and open questions, stated first.
 5. **Appendix for questions**: methods details, extra experiments, data description, ethics; each as a slide the
    speaker can jump to.
-6. **Scaffold**: `new --event research-talk` and adjust minutes; theme `graphite-cyan` or `cloud-light`.
+6. **Scaffold**: `new --event thesis-defense` (theme `academic`); `research-talk` for a shorter talk.
 7. **Q&A prep**: write the 10 hardest questions and answers with `communication/judge-qa.md`; link each to an
    appendix slide.
 8. **QA**: lint, previews, trace the committee's criteria if given, timed rehearsal.

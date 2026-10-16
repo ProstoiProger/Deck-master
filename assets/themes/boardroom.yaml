@@ -1,0 +1,19 @@
+name: boardroom
+mode: light
+scopes: [business, finance, strategy]
+description: "Corporate navy and gold on white. Serif headings, outlined cards, hairline rules; for board packs and business reviews."
+colors:
+  bg: "#FFFFFF"
+  surface: "#F1F4F8"
+  primary: "#1B365D"
+  secondary: "#4A6FA5"
+  accent: "#8A5A00"
+  text: "#14213D"
+  muted: "#4B5563"
+  success: "#17703F"
+  warning: "#8A5A00"
+  danger: "#A61E2A"
+  info: "#2B5A8C"
+series: ["#1B365D", "#4A6FA5", "#B8860B", "#2A9D8F", "#8D99AE"]
+fonts: {heading: SourceSerif4, body: Inter, mono: Inter}
+style: {corner: square, border: thin, shadow: none, pattern: band, card: outline, title_rule: line, footer: rule, chips: text, show_source: true, radius: 0.04}

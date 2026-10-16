@@ -1,5 +1,6 @@
 name: ultraviolet-core
 mode: dark
+scopes: [tech, data, hackathon]
 description: Purple-led dark theme for data and AI stories. Cyan accent for the key number.
 colors:
   bg: "#120B2E"

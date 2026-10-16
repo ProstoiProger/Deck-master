@@ -37,9 +37,13 @@ assets/inspiration/*
 assets/entities/*
 !assets/entities/.gitkeep
 
-# ---- examples: built files and previews embed the downloaded characters ------------
+# ---- game examples: built files and previews embed the downloaded characters -------
 # Rebuild them with: python scripts/cli.py build examples/<folder>/<deck>.md --out build
-# Force-add a file only if it contains no Mojang characters: git add -f <file>
-examples/**/*.pptx
-examples/**/*.pdf
-examples/**/preview.png
+# The formal examples contain no third-party artwork and are committed with their PPTX, PDF and preview.
+examples/studybuddy-obsidian/*.pptx
+examples/studybuddy-obsidian/*.pdf
+examples/studybuddy-obsidian/preview.png
+examples/network-lesson-classic/*.pptx
+examples/network-lesson-classic/*.pdf
+examples/network-lesson-classic/preview.png
+examples/ 

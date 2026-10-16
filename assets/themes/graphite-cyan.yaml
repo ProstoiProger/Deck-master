@@ -1,5 +1,6 @@
 name: graphite-cyan
 mode: dark
+scopes: [tech, science, engineering]
 description: Dark gray with a cyan accent. Calm, engineering feel; good for research talks and architecture.
 colors:
   bg: "#14161B"

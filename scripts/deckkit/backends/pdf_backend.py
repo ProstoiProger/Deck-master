@@ -21,7 +21,7 @@ def _register(theme):
 def build_pdf(scenes, theme, deck, path):
     from reportlab.pdfgen import canvas as rl
 
-    from ..core.scene import H, W, Image, Line, Shape, Text
+    from ..core.scene import H, W, Image, Line, Poly, Shape, Text
 
     fonts = _register(theme)
     PW, PH = W * 72, H * 72
@@ -54,6 +54,21 @@ def build_pdf(scenes, theme, deck, path):
                     pdf.roundRect(x, y, w, h, min(it.radius * 72, h / 2, w / 2), stroke=stroke, fill=fill)
                 else:
                     pdf.rect(x, y, w, h, stroke=stroke, fill=fill)
+                pdf.restoreState()
+            elif isinstance(it, Poly):
+                pdf.saveState()
+                if it.fill:
+                    pdf.setFillColor(hexcolor(it.fill))
+                pdf.setFillAlpha(it.alpha)
+                if it.line:
+                    pdf.setStrokeColor(hexcolor(it.line))
+                    pdf.setLineWidth(it.line_w)
+                outline = pdf.beginPath()
+                outline.moveTo(it.points[0][0] * 72, PH - it.points[0][1] * 72)
+                for px, py in it.points[1:]:
+                    outline.lineTo(px * 72, PH - py * 72)
+                outline.close()
+                pdf.drawPath(outline, stroke=int(bool(it.line)), fill=int(bool(it.fill)))
                 pdf.restoreState()
             elif isinstance(it, Line):
                 pdf.setStrokeColor(hexcolor(it.color))

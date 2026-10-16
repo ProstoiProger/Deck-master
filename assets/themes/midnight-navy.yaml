@@ -1,5 +1,6 @@
 name: midnight-navy
 mode: dark
+scopes: [tech, hackathon, pitch]
 description: Default IT look. Deep navy, electric blue, cyan accent. Safe for any tech pitch.
 colors:
   bg: "#0B1220"

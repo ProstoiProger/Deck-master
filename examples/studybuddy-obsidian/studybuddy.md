@@ -2,6 +2,7 @@
 title: StudyBuddy - a planner students keep using
 subtitle: Game-style demo day pitch in the obsidian theme
 event: hackathon
+game: true
 theme: obsidian-craft
 lang: en
 minutes: 5

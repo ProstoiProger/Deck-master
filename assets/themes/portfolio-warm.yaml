@@ -1,0 +1,19 @@
+name: portfolio-warm
+mode: light
+scopes: [portfolio, creative]
+description: "Warm off-white, terracotta and sage. Rounded cards, friendly; for case studies and creative decks."
+colors:
+  bg: "#FFF8F1"
+  surface: "#FBE9DA"
+  primary: "#A63D1F"
+  secondary: "#C9835F"
+  accent: "#2B6A58"
+  text: "#2B1B12"
+  muted: "#5F4B3E"
+  success: "#2B6A58"
+  warning: "#8A5A00"
+  danger: "#A63D1F"
+  info: "#2B6A58"
+series: ["#A63D1F", "#2B6A58", "#D99A3D", "#6B5B95", "#9C8472"]
+fonts: {heading: Montserrat, body: Inter, mono: Inter}
+style: {corner: round, border: none, shadow: soft, pattern: band, card: fill, title_rule: bar, footer: plain, chips: pill, show_source: false, radius: 0.18}

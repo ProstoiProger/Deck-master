@@ -1,5 +1,6 @@
 name: classic-craft
 mode: light
+scopes: [game]
 description: "Light classic block-game look: sky blue, inventory-gray panels, grass and dirt ground, pixel clouds and sun. Original shapes only."
 colors:
   bg: "#D6EBFF"

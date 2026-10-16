@@ -1,0 +1,19 @@
+name: academic
+mode: light
+scopes: [science, research, education]
+description: "Warm paper white, deep blue and crimson. Serif headings, flat panels, ruled title slide; for conference talks and defences."
+colors:
+  bg: "#FBFAF6"
+  surface: "#EFEDE4"
+  primary: "#1F3C88"
+  secondary: "#5B7DB1"
+  accent: "#9B1C2E"
+  text: "#1A1A1A"
+  muted: "#4A4A4A"
+  success: "#1E6B3C"
+  warning: "#8A5A00"
+  danger: "#9B1C2E"
+  info: "#1F3C88"
+series: ["#1F3C88", "#9B1C2E", "#2A7F7F", "#C58B00", "#6B7280"]
+fonts: {heading: SourceSerif4, body: Inter, mono: Inter}
+style: {corner: square, border: thin, shadow: none, pattern: rules, card: flat, title_rule: line, footer: rule, chips: text, show_source: true, radius: 0.03}

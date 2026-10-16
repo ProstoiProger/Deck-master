@@ -9,15 +9,13 @@ from ..core import color, entities, pixelart, textfit
 from ..core.canvas import CONTENT_BOTTOM, CONTENT_TOP, MARGIN
 from ..core.layout import layout
 from ..core.scene import H, W
-from ._util import cells, layer_items
+from ._util import cells, layer_items, number
 
 GUI_W = W - 2 * MARGIN
 ICONS = set(pixelart.names())
 
 
-def _num(text):
-    m = re.search(r"-?\d+(?:[.,]\d+)?", str(text).replace(" ", ""))
-    return float(m.group(0).replace(",", ".")) if m else None
+_num = number
 
 
 def _ratio(text):

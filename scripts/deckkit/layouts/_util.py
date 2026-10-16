@@ -1,5 +1,6 @@
 """Helpers shared by layouts."""
 from ..core import textfit
+from ..core.numbers import number  # noqa: F401  (re-exported for layouts)
 
 
 def cells(item, n=0):

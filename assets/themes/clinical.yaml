@@ -1,0 +1,19 @@
+name: clinical
+mode: light
+scopes: [science, health, education]
+description: "Clean white with teal and orange. Friendly rounded cards; for medical, life-science and teaching decks."
+colors:
+  bg: "#FFFFFF"
+  surface: "#EAF4F5"
+  primary: "#0B6E79"
+  secondary: "#4C9AA5"
+  accent: "#B54708"
+  text: "#10272B"
+  muted: "#46595D"
+  success: "#17703F"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#0B6E79"
+series: ["#0B6E79", "#E07A1F", "#4C6EF5", "#7B8A8B", "#8E44AD"]
+fonts: {heading: Inter, body: Inter, mono: Inter}
+style: {corner: round, border: thin, shadow: soft, pattern: clean, card: fill, title_rule: bar, footer: plain, chips: text, show_source: true, radius: 0.12}

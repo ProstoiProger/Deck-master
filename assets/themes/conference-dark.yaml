@@ -1,0 +1,19 @@
+name: conference-dark
+mode: dark
+scopes: [science, research]
+description: "Ink blue-black with soft blue and amber. Serif headings; for dark conference rooms and recorded talks."
+colors:
+  bg: "#0E1621"
+  surface: "#172433"
+  primary: "#6FA8DC"
+  secondary: "#9FB8D6"
+  accent: "#F2C14E"
+  text: "#EEF2F6"
+  muted: "#A9B8C9"
+  success: "#5FCB8E"
+  warning: "#F2C14E"
+  danger: "#F08A8A"
+  info: "#6FA8DC"
+series: ["#6FA8DC", "#F2C14E", "#7BD3B0", "#E58FB0", "#A9B8C9"]
+fonts: {heading: SourceSerif4, body: Inter, mono: Inter}
+style: {corner: square, border: thin, shadow: none, pattern: rules, card: outline, title_rule: line, footer: rule, chips: text, show_source: true, radius: 0.03}

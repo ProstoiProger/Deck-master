@@ -20,10 +20,11 @@ How to grow the skill without breaking it. After any change run `python -m pytes
 ## 1. Add a theme
 
 1. Copy `assets/themes/midnight-navy.yaml` to `assets/themes/<name>.yaml`.
-2. Set `colors` (all of bg, surface, primary, secondary, accent, text, muted, success, warning, danger), `fonts` and `style`.
+2. Set `scopes` (for `cli.py themes --scope`), `colors` (all of bg, surface, primary, secondary, accent, text, muted, success, warning, danger, info), `series` (chart colours), `fonts` and `style` (card, title_rule, footer, chips, pattern; see `design/visual-style.md`).
 3. Run `python scripts/cli.py themes`; every pair must pass (text on bg 7 or more, muted 4.5 or more).
 4. Build an example with it: `python scripts/cli.py preview examples/studybuddy-obsidian/studybuddy.md --theme <name> --sheet`, then view the PNGs.
-5. Run `python scripts/build_catalog.py` so `design/catalog.md` lists it; the tests check the catalog is current.
+5. Run `python scripts/build_catalog.py` so `design/catalog.md` lists it; the tests check the catalog is current. Add the theme to
+   `design/palettes.md` and to the scope table in `design/scopes.md`.
 
 From a reference screenshot: `cli.py inspire --from-image assets/inspiration/x.png` gives measured colours
 (`design/inspiration/README.md`).
@@ -56,10 +57,10 @@ Registration fails without a purpose and a word budget. Use theme tokens (`"text
 
 ## 4. Add an event mode
 
-1. Add an entry to `assets/presets/events.yaml` (slide cap, minutes, wpm, default theme, skeleton, judged_on).
+1. Add an entry to `assets/presets/events.yaml` (scope, slide cap, minutes, wpm, default theme, skeleton, judged_on). The default theme must be formal; only `game: true` events may use a game theme.
 2. Add `assets/templates/deck-<event>.md` (a valid skeleton with `{{title_yaml}}`, `{{theme}}`, `{{minutes}}`, `{{date}}`).
-3. Add `references/modes/<event>.md` and a row in the routing tables of `SKILL.md` and `references/00-index.md`.
-4. Test: `python scripts/cli.py new --event <event> --out build/x.md` then `lint` (it must report only placeholders).
+3. Add the event to a mode file in `references/modes/` (or a new one), a row in the routing tables of `SKILL.md` and `references/00-index.md`, and a line in `design/scopes.md`.
+4. Test: `python scripts/cli.py new --event <event> --out build/x.md` then `lint` (it must report only placeholders and unresolved images; every rubric item must sit on a slide).
 
 ## 5. Add a domain card
 
