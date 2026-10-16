@@ -3,6 +3,18 @@ from ..core.scene import Image, Poly, Shape, Text
 from .common import finding
 
 
+def _inside(points, x, y):
+    """Point in polygon (ray casting): a ring or an arc has a hole, so its bounding box is not enough."""
+    inside = False
+    j = len(points) - 1
+    for i, (xi, yi) in enumerate(points):
+        xj, yj = points[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-12) + xi:
+            inside = not inside
+        j = i
+    return inside
+
+
 def background_under(sc, index, text):
     """Fill color behind a text box: the last opaque shape that contains its center, else the slide background, with
     translucent shapes above that base blended in. Returns None when the text sits on a photo; a decorative backdrop supplies its `tone`."""
@@ -20,7 +32,7 @@ def background_under(sc, index, text):
                 overlays.append((it.fill, it.alpha))
         elif isinstance(it, Poly) and it.fill and it.alpha >= 0.85:
             bx, by, bw, bh = it.bbox
-            if bx <= cx <= bx + bw and by <= cy <= by + bh:
+            if bx <= cx <= bx + bw and by <= cy <= by + bh and _inside(it.points, cx, cy):
                 base = it.fill
                 break
     for fill, alpha in reversed(overlays):

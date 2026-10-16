@@ -20,6 +20,8 @@ gamified look; without such a request the skill never picks a game theme.
 | `data-story-datablue` | "7-minute datathon final: findings, method, limits, reproducible" | `datablue` | 9 | split cover, statement, schema, insight cards, bar and lollipop charts, model card, claims and limits, links |
 | `product-roadmap-signal` | "15-minute roadmap and OKR review for product leadership, one decision wanted" | `signal-yellow` | 9 | executive summary, OKR bars, roadmap, Gantt, kanban, risk register, KPI table with arrows |
 | `ux-research-lavender` | "12-minute usability readout for the product team, eight participants" | `lavender` | 10 | how-might-we, persona, journey curve, insight cards, quote, KPI cards, checklist, roadmap |
+| `tech-showcase-cyber` | "10-minute futuristic tech showcase, visuals that explain the system" | `cyber-hud` | 10 | HUD cover, statement, 3D object, isometric stack, bento, globe with arcs, gauges, network, terminal |
+| `data-viz-glass` | "8-minute visual data report: flows, composition, rhythm, goals" | `glass-dusk` | 9 | split cover, bento, treemap, sankey, activity grid, gauges, insight cards |
 
 ## Game decks (only when the prompt asks)
 

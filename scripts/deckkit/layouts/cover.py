@@ -7,6 +7,8 @@ from ._util import cells
 
 # backdrops that leave the middle of the slide free, so an oversized title can run across the full width
 WIDE_OK = ("mesh", "blueprint", "dots", "grid", "rules", "clean", "none")
+# backdrops with a picture or globe on the right: keep the poster title to the left two thirds
+NARROW_OK = ("hud", "orbs3d")
 
 
 def _meta_line(c, s):
@@ -19,7 +21,9 @@ def _meta_line(c, s):
         example="# Build it in a weekend, ship it on Monday\nlayout: cover_poster\neyebrow: Hack the Campus 2026\nsubtitle: Team Atlas, track: AI for education\nteam: Team Atlas\ndate: 2026-10-24")
 def cover_poster(c, s):
     meta = c.deck.meta
-    if c.style["pattern"] in WIDE_OK:
+    pat = c.style["pattern"]
+    tw = 7.9 if pat in NARROW_OK else W - 2 * MARGIN
+    if pat in WIDE_OK or pat in NARROW_OK:
         c.backdrop()
     else:  # side decorations would run into a title this wide: keep the theme's rule and color only
         c.has_backdrop = True
@@ -28,11 +32,11 @@ def cover_poster(c, s):
     if eyebrow:
         c.pill(MARGIN, 0.95, eyebrow.upper(), fill="surface", col="accent", size=12)
     scale, lh = c.style["heading_scale"], c.style["heading_line_h"]
-    size, _, _ = textfit.fit(c.t, s.title, "heading", W - 2 * MARGIN, 3.7, 92 * scale, 30 * scale, True, lh)
-    c.text(MARGIN, 1.65, W - 2 * MARGIN, 3.7, s.title, size, "text", "heading", True, "left", "top", lh)
+    size, _, _ = textfit.fit(c.t, s.title, "heading", tw, 3.7, 92 * scale, 30 * scale, True, lh)
+    c.text(MARGIN, 1.65, tw, 3.7, s.title, size, "text", "heading", True, "left", "top", lh)
     sub = s.prop("subtitle") or (s.paragraphs[0] if s.paragraphs else "") or meta.get("subtitle", "")
     if sub:
-        c.fit_text(MARGIN, 5.35, 9.2, 0.7, sub, 22, 14, "muted")
+        c.fit_text(MARGIN, 5.35, min(9.2, tw), 0.7, sub, 22, 14, "muted")
     x = MARGIN
     for label in _meta_line(c, s):
         x += c.pill(x, 6.1, label, fill="surface", col="text", size=13) + 0.2

@@ -54,9 +54,9 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 | File | Topic |
 |---|---|
 | `design/scopes.md` | which scope, theme and components for which deck; formal by default |
-| `design/palettes.md` | the 41 themes by scope, style per theme, contrast rules |
+| `design/palettes.md` | the 44 themes by scope, style per theme, contrast rules |
 | `design/typography.md` | fonts, scripts covered, sizes, installing fonts |
-| `design/layouts.md` | choosing a layout for a message; the 74 layouts in eleven families |
+| `design/layouts.md` | choosing a layout for a message; the 87 layouts in twelve families |
 | `design/visual-style.md` | looks by scope, style keys, motifs, the two block-game themes (on request) |
 | `design/accessibility.md` | contrast, size, colour-blind safety, projector advice |
 | `design/imagery-icons.md` | screenshots, icons, photos, licences, trademarks |
@@ -72,7 +72,7 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 `playbooks/hackathon-pitch.md`, `playbooks/demo-day.md`, `playbooks/datathon-findings.md`, `playbooks/data-story.md`,
 `playbooks/assignment-report.md`, `playbooks/project-defense.md`, `playbooks/tech-talk.md`, `playbooks/keynote.md`,
 `playbooks/investor-pitch.md`, `playbooks/business-review.md`, `playbooks/product-launch.md`, `playbooks/product-planning.md`,
-`playbooks/ux-research.md`, `playbooks/engineering-review.md`, `playbooks/portfolio-case.md`, `playbooks/novel.md` (nothing fits).
+`playbooks/ux-research.md`, `playbooks/engineering-review.md`, `playbooks/visual-showcase.md`, `playbooks/portfolio-case.md`, `playbooks/novel.md` (nothing fits).
 
 ## Domains
 
@@ -97,5 +97,5 @@ Read only the files the current stage or task needs. Paths are relative to `refe
 | `../scripts/requirements/` | dependency groups: core, pptx, pdf, charts, preview |
 | `../assets/templates/` | event deck skeletons, profile, brief intake, Q&A prep, traceability, speaker notes, rubric map |
 | `../assets/themes/` | 21 theme files |
-| `../assets/presets/` | `events.yaml` (31 events: scope, slide caps, minutes, default theme), `fonts.yaml` (font families) |
+| `../assets/presets/` | `events.yaml` (33 events: scope, slide caps, minutes, default theme), `fonts.yaml` (font families) |
 | `../examples/` | seven finished presentations (PPTX and PDF): five formal by scope, two game-style on request |

@@ -89,6 +89,19 @@ run the script after adding a layout or theme. `python scripts/build_catalog.py 
 | `pipeline` | tech | 55 | Left-to-right pipeline of two to six numbered stages, each with a short caption. |
 | `roadmap` | tech | 55 | Horizontal timeline of two to six phases: now, next, later. |
 | `tech_stack` | tech | 45 | Technology tiles grouped by layer: language, framework, data, cloud. |
+| `activity_grid` | visual | 40 | Activity grid: one small square per day in weeks, shaded by value, with a few headline numbers beside it. |
+| `bento` | visual | 60 | Bento dashboard: three to six tiles of different sizes mixing big numbers, sparklines, mini bars, rings and a text note. |
+| `gauges` | visual | 50 | Radial gauges: up to four rings that fill to a value out of a maximum, with the number in the middle. |
+| `globe` | visual | 60 | Wireframe globe with pins and callouts for places, optionally joined by arcs; for reach, regions and routes. |
+| `hero_3d` | visual | 45 | A shaded 3D object (orbs, ring, cube or slab stack) in the theme colors beside a short message and up to four points. |
+| `iso_bars` | visual | 50 | Isometric column chart: up to six 3D columns with values on top, the largest in the accent, and a so-what panel. |
+| `iso_stack` | visual | 50 | Isometric layer stack: up to five floating slabs, one per layer, each with a short description; for architectures and stacks. |
+| `network` | visual | 50 | Network graph: nodes joined by links, the best-connected node in the middle; for dependencies, teams and data flows. |
+| `orbit` | visual | 60 | Orbit diagram: one concept in the middle and up to eight related parts on tilted rings, listed beside it. |
+| `podium` | visual | 40 | Podium: two or three ranked options or winners on stepped 3D blocks, the first in the middle. |
+| `sankey` | visual | 60 | Sankey flow: bands of different width carry a quantity from sources through steps to outcomes. |
+| `terminal` | visual | 70 | Terminal window: a command line session with colored prompts, results and errors; for demos, builds and tool talks. |
+| `treemap` | visual | 60 | Treemap: up to twelve areas sized by value, labelled with a name and the number; for composition and shares. |
 
 ## 2. Layout inputs
 
@@ -1124,6 +1137,201 @@ layout: tech_stack
 - Data: DuckDB, Parquet
 ```
 
+### activity_grid
+
+Accepts: props: values (a comma list, seven per week, up to 26 weeks), caption; items: `value | label` (up to three side cards); set `source:`
+
+```markdown
+# Commits kept climbing through the last weekend
+layout: activity_grid
+source: git/log.csv
+values: 0,2,1,3,2,0,0,1,4,3,5,2,1,0,2,3,6,5,7,4,2,1,3,8,9,12,10,6,2,1,0,4,7,9,11,3,5,6,8,10,12,14,4,2,3,9,13,15,16,5,1,0,6,11,14,17,19,8,2,1,7,12,15,18,21,9,3,2,9,14,18,20,24,12,4,1,5,13,17,22,26,15
+caption: Commits per day, twelve weeks
+- 62 | commits in the last 4 days
+- 4 | people committing daily
+```
+
+### bento
+
+Accepts: items start with the tile kind: `stat | value | label | note`, `spark | label | 3,5,4,8 | value`, `bars | label | 4,7,3,9 | note`, `ring | 72 | label | note`, `text | headline | body`; the first tile is the biggest
+
+```markdown
+# Adoption grew in every channel this quarter
+layout: bento
+source: bi/q3.xlsx
+- stat | 62% | weekly active users | up from 48%
+- spark | Sign-ups | 3,5,4,8,9,12 | 12 k
+- ring | 72 | trial to paid | target 70
+- bars | Tickets by week | 9,7,8,4,3 | falling
+- text | What changed | The guided start cut early drop-off.
+```
+
+### gauges
+
+Accepts: items: `Label | value | maximum | note` (up to four); the ring fills to value over maximum; set `source:`
+
+```markdown
+# Three of four service goals are nearly met
+layout: gauges
+source: ops/sla.csv
+- Uptime | 99.6 | 100 | goal 99.9
+- Alert delay | 80 | 100 | share under 2 s
+- Coverage | 62 | 100 | merchants scored
+- Satisfaction | 4.4 | 5 | analyst survey
+```
+
+### globe
+
+Accepts: items: `Place | note | latitude | longitude` (up to five); props: lat0 and lon0 (the view centre, default 25 and 60), arcs: yes joins the pins in order
+
+```markdown
+# Three regions already run the pilot
+layout: globe
+lat0: 30
+lon0: 60
+arcs: yes
+- Almaty | pilot since March | 43.2 | 76.9
+- Frankfurt | data centre | 50.1 | 8.7
+- Singapore | second pilot | 1.35 | 103.8
+```
+
+### hero_3d
+
+Accepts: props: object (orbs, ring, cube or stack), eyebrow; first paragraph: the lede; items: up to four points; needs the charts requirements group
+
+```markdown
+# Layers you can see, not just describe
+layout: hero_3d
+object: stack
+A stack of independent layers, each replaceable.
+- Interface
+- Service
+- Model
+- Data
+```
+
+### iso_bars
+
+Accepts: items: `Label | value` (up to six); props: takeaway (text of the side panel); set `source:`
+
+```markdown
+# Gradient boosting leads on every holdout month
+layout: iso_bars
+source: runs/log.jsonl
+takeaway: The gap to the baseline is largest on the newest months.
+- Baseline | 0.41
+- Linear | 0.48
+- Forest | 0.55
+- Boosting | 0.61
+```
+
+### iso_stack
+
+Accepts: items: `Layer | description` from the top layer down (up to five); highlight: the number of one layer to color in the accent
+
+```markdown
+# Four layers separate what users see from what we store
+layout: iso_stack
+highlight: 2
+- Interface | web and mobile clients
+- Service | ranking and rules
+- Model | the scoring model
+- Data | events and features
+```
+
+### network
+
+Accepts: items: `A -> B` or `A -> B | label` (up to fourteen links); props: takeaway (side panel text)
+
+```markdown
+# Everything depends on the feature store
+layout: network
+takeaway: One shared store feeds every model; protect it first.
+- Events -> Feature store
+- Features API -> Feature store
+- Feature store -> Fraud model
+- Feature store -> Churn model
+- Fraud model -> Alerts
+- Churn model -> Campaigns
+```
+
+### orbit
+
+Accepts: items: `Part | note` (up to eight); props: center (the middle label)
+
+```markdown
+# One platform, six parts around it
+layout: orbit
+center: Platform
+- Ingest | streams in
+- Store | keeps history
+- Score | models
+- Serve | APIs
+- Watch | monitoring
+- Learn | retraining
+```
+
+### podium
+
+Accepts: items: `Name | value | note` first place first (two or three); set `source:` when a number appears
+
+```markdown
+# Boosting wins, the forest is close behind
+layout: podium
+source: runs/log.jsonl
+- Boosting | 0.61 | PR-AUC on the holdout
+- Forest | 0.55 | PR-AUC on the holdout
+- Linear | 0.48 | PR-AUC on the holdout
+```
+
+### sankey
+
+Accepts: items: `Source | Target | value` (up to ten flows); steps are found from the links, left to right; set `source:`
+
+```markdown
+# Most trial users never reach a paid plan
+layout: sankey
+source: crm/export.csv
+- Visitors | Trial | 4200
+- Visitors | Left | 5800
+- Trial | Paid | 1100
+- Trial | Free | 1400
+- Trial | Left | 1700
+```
+
+### terminal
+
+Accepts: a fenced code block (or items) with one line per row: `$ command`, `# comment`, lines with OK, PASS, WARN or ERROR are colored; props: window (the title bar text), takeaway
+
+```markdown
+# One command builds, lints and ships the deck
+layout: terminal
+window: deck-master
+takeaway: Lint blocks the build until the findings are fixed.
+```
+$ python scripts/cli.py lint deck.md
+[High] slide 4: text overflows its box
+ERROR 1 blocking finding
+$ python scripts/cli.py build deck.md --pptx --pdf
+OK wrote deck.pptx and deck.pdf
+```
+```
+
+### treemap
+
+Accepts: items: `Name | value | note` (up to twelve, areas follow the values); set `source:`
+
+```markdown
+# Two thirds of the loss sits in three categories
+layout: treemap
+source: finance/loss.csv
+- Card not present | 420
+- Account takeover | 260
+- Refund abuse | 180
+- Chargebacks | 120
+- Other | 90
+```
+
 ## 3. Themes
 
 | Theme | Mode | bg | surface | primary | accent | text | Text/bg | Muted/bg | Corner | Pattern |
@@ -1140,16 +1348,19 @@ layout: tech_stack
 | `conference-dark` | dark | #0E1621 | #172433 | #6FA8DC | #F2C14E | #EEF2F6 | 16.16 | 8.99 | square | rules |
 | `consulting` | light | #FFFFFF | #F3F4F6 | #0B5D3B | #8A5A00 | #111827 | 17.74 | 7.56 | square | clean |
 | `coral-market` | light | #FFF8F4 | #FFE8DF | #D93A52 | #B3263E | #2B1620 | 16.14 | 7.57 | round | dots |
+| `cyber-hud` | dark | #03080D | #0A1824 | #0FB5D6 | #4DE8FF | #E3F6FF | 18.09 | 9.01 | square | hud |
 | `datablue` | dark | #060B2B | #0F1A52 | #3B82FF | #00FFDE | #F1F5FF | 17.65 | 9.86 | round | hatch |
 | `deep-ocean` | dark | #031126 | #0A2342 | #00B4D8 | #90E0EF | #EAF8FF | 17.42 | 9.39 | round | rings |
 | `deep-space` | dark | #0A0F2C | #141B45 | #6C5CE7 | #FF4F9A | #FFFFFF | 18.79 | 9.17 | round | grid |
 | `editorial` | light | #F6F1E7 | #EBE3D0 | #161616 | #B03A0E | #141414 | 16.36 | 7.21 | square | rules |
 | `ember` | dark | #0B0707 | #1D1212 | #E5332A | #FFB4A2 | #FFF1EC | 18.18 | 9.44 | round | bars |
 | `forest` | light | #F7FAF5 | #E4EFDD | #1F5D3A | #8A4B00 | #14231A | 15.52 | 7.23 | round | clean |
+| `glass-dusk` | dark | #0B0920 | #1B1740 | #8B7CFF | #5EEAD4 | #F1EEFF | 17.14 | 9.29 | round | orbs3d |
 | `graphite-cyan` | dark | #14161B | #1F232B | #00B8D9 | #7DF9FF | #E8EAED | 15.02 | 7.11 | round | grid |
 | `harbor` | light | #F1FAEE | #DDEBE2 | #1D3557 | #B3141F | #122338 | 14.85 | 6.14 | round | corner |
 | `lavender` | light | #FBF8FF | #EFE6FA | #6B43B5 | #8C2F7E | #2A2140 | 14.37 | 7.03 | round | mesh |
 | `ledger` | light | #F6F7F9 | #FFFFFF | #12355B | #1D6B52 | #0F1B2D | 16.12 | 7.07 | square | band |
+| `liquid-light` | light | #EEF1FF | #FFFFFF | #4F46E5 | #0B7285 | #12123A | 15.9 | 6.89 | round | mesh |
 | `matrix-green` | dark | #06100A | #0D1F14 | #19E58C | #B6F500 | #E8FFF1 | 18.42 | 8.85 | square | blueprint |
 | `midnight-navy` | dark | #0B1220 | #131C31 | #3B82F6 | #22D3EE | #F1F5F9 | 17.09 | 7.3 | round | grid |
 | `navy-gold` | dark | #000814 | #0A1D3A | #FFC300 | #FFD60A | #F5F7FA | 18.73 | 9.88 | round | rules |

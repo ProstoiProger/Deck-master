@@ -16,7 +16,8 @@ observations as indicative. Add your own references in `design/inspiration/`.
 5. The block-game themes
 6. Dark versus light
 7. Mesh gradients
-8. Using references
+8. Futuristic, 3D and advanced visuals
+9. Using references
 
 ---
 
@@ -51,15 +52,16 @@ A theme's `style:` block tells the layouts how to draw:
 | `corner` | `round`, `square`, `pixel` | card corners; `pixel` draws stepped bevelled blocks |
 | `border` | `thin`, `none`, `bevel` | outline treatment |
 | `shadow` | `soft`, `hard`, `none` | soft blurred-looking offset, hard pixel offset, or flat |
-| `card` | `fill`, `outline`, `flat` | filled panel, hairline outline on the page colour, or flat surface with no border |
+| `card` | `fill`, `outline`, `flat`, `glass`, `bracket` | filled panel, hairline outline on the page colour, flat surface with no border, a frosted glass pane, or an opaque HUD panel with corner brackets |
 | `title_rule` | `bar`, `line`, `none` | short accent bar, full hairline plus bar, or nothing under titles |
 | `footer` | `plain`, `rule` | footer text only, or a hairline above it |
 | `chips` | `pill`, `text` | rounded labels, or plain uppercase text with a hairline |
 | `show_source` | true, false | print the slide's `source:` as a footnote |
 | `radius` | inches | corner radius of cards |
-| `pattern` | `clean`, `rules`, `band`, `grid`, `none`, `mesh`, `hatch`, `corner`, `dots`, `blueprint`, `rings`, `bars`, and the game packs `blocks`, `obsidian`, `classic` | title, cover and closing backdrop |
+| `pattern` | `clean`, `rules`, `band`, `grid`, `none`, `mesh`, `hatch`, `corner`, `dots`, `blueprint`, `rings`, `bars`, `hud`, `orbs3d`, and the game packs `blocks`, `obsidian`, `classic` | title, cover and closing backdrop |
 | `mesh`, `mesh_veil` | four hex colours, 0 to 1 | colours and page-colour veil of the `mesh` backdrop (default: the first four `series` colours, veil 0.5) |
-| `deco` | `none`, `tri`, `tab` | a small accent triangle in the top-right corner, or an accent tab on the left edge, of every content slide |
+| `deco` | `none`, `tri`, `tab`, `glow`, `hud` | furniture on every content slide: a corner triangle, a left edge tab, two soft color blooms behind the content, or a tick scale in the top-right corner |
+| `hero3d` | `orbs`, `ring`, `cube`, `stack` | the object the `orbs3d` cover shows |
 | `metaphor` | `none`, `game` | game variants: hotbar agenda, XP bars, "press start" closing |
 | `heading_scale`, `heading_line_h` | numbers | size and leading for wide fonts |
 | `min_font` | points | lint floor for heading text |
@@ -79,6 +81,7 @@ images are the ones you add, including the optional character images (`design/en
 | IT | `midnight-navy`, `ultraviolet-core`, `graphite-cyan`, `deep-space`, `terminal-slate` | the patterns in section 1 |
 | Hackathon and data (2026-10) | `aurora-mesh`, `datablue`, `matrix-green`, `synthwave`, `cobalt-pop`, `blueprint` | mesh-gradient covers, hatched panel, monospaced headings with a drafting grid, concentric rings; see `design/research-2026-10.md` |
 | Product and brand (2026-10) | `signal-yellow`, `coral-market`, `sunset-mesh`, `plum`, `ember` | one loud accent, corner triangles, dot fields, wide display headings, bar-chart silhouette |
+| Futuristic (2026-10) | `cyber-hud`, `glass-dusk`, `liquid-light` | bracketed HUD cards and a wireframe globe; glass cards with soft blooms and shaded 3D orbs; frosted white glass on a pastel mesh; see section 8 |
 | Calm and institutional (2026-10) | `quantum-teal`, `deep-ocean`, `petrol`, `harbor`, `navy-gold`, `sage`, `terracotta`, `lavender`, `swiss` | pale aqua or pastel mesh, concentric rings, serif display, hairline rules, outline cards |
 
 ## 5. The block-game themes (on request only)
@@ -115,7 +118,25 @@ the page colour is strongest under the text zone (the left two thirds), so the l
 there. Change the colours with `mesh: ["#...", ...]` and `mesh_veil:` in a custom theme. Content slides stay flat: a gradient behind
 body text costs contrast and file size. Mesh needs numpy; without it the cover falls back to the glow pattern and lint reports a Low finding.
 
-## 8. Using references
+## 8. Futuristic, 3D and advanced visuals
+
+Components that look three-dimensional or futuristic, all drawn as flat vector shapes except the shaded object:
+
+- **Isometric** (`iso_stack`, `iso_bars`): boxes are three polygons (top, left, right) shaded from the theme color by `scripts/deckkit/core/shapes3d.py`;
+  they stay editable and identical in PPTX and PDF.
+- **Oblique blocks** (`podium`): a front face with a visible top and side.
+- **Wireframe globe** (`globe`, the `hud` cover): parallels and meridians projected orthographically from a centre latitude and longitude;
+  pins and great-circle arcs use the same projection and are hidden on the far side.
+- **Shaded 3D object** (`hero_3d`, the `orbs3d` cover): spheres, a torus, rounded boxes ray-marched with numpy by `scripts/deckkit/charts/render3d.py`
+  in the theme's primary, secondary and accent colors, with a soft contact shadow, then cached as a transparent PNG (3 to 8 seconds the first time).
+  It is decoration: it carries no text, so the contrast lint skips it. Needs numpy; without it lint reports a Low finding and the slide stays valid.
+- **Glass and HUD cards**: theme card styles `glass` and `bracket` (section 3); every layout that draws `surface` cards picks them up.
+- **Bento, treemap, sankey, gauges, network, activity grid, terminal**: vector layouts for advanced visualisation; see `design/layouts.md`.
+
+Rules: one hero object per deck; glass cards need a calm background (the content-slide `glow` deco is deliberately faint); keep labels at 14 pt or
+more; prefer a flat bar chart to `iso_bars` when there are more than six values.
+
+## 9. Using references
 
 Add links and screenshots as described in `design/inspiration/README.md`. Extract palette, grid, density and
 motifs; never reproduce a template's artwork or text.

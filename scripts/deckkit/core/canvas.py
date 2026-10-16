@@ -2,7 +2,7 @@
 import math
 from pathlib import Path
 
-from . import color, entities, pixelart, textfit
+from . import color, entities, pixelart, shapes3d, textfit
 from .scene import H, W, Image, Line, Poly, SceneSlide, Shape, Text
 
 MARGIN = 0.7
@@ -82,6 +82,10 @@ class Canvas:
         shadow = (self.style["shadow"] != "none") if shadow is None else shadow
         card = self.style["card"]
         force_line = False
+        if fill == "surface" and not self.pixel and card == "glass":
+            return self._glass(x, y, w, h, radius)
+        if fill == "surface" and not self.pixel and card == "bracket":
+            return self._bracket(x, y, w, h)
         if fill == "surface" and not self.pixel and card in ("outline", "flat"):
             shadow = False
             if card == "outline":
@@ -108,6 +112,33 @@ class Canvas:
             self.rect(x + 0.03, y + 0.05, w, h, color.darken(self.t.c("bg"), 0.45), None, kind=kind, radius=radius, alpha=0.55)
         draw_line = line if (self.style["border"] != "none" or force_line) else None
         self.rect(x, y, w, h, f, draw_line, 1.25 if force_line else 1.0, kind, min(radius, h / 2, w / 2))
+
+    def _glass(self, x, y, w, h, radius):
+        """Glassmorphism card: a frosted pane, a light edge and a highlight along the top."""
+        t = self.t
+        dark = t.mode == "dark"
+        kind = "rect" if self.style["corner"] == "square" else "round"
+        r = min(radius, h / 2, w / 2)
+        if not dark:
+            self.rect(x + 0.03, y + 0.06, w, h, color.mix(t.c("bg"), t.c("primary"), 0.35), None, 1.0, kind, r, 0.22)
+        # the pane is the color a translucent layer would give over the page, drawn opaque so text on it keeps a known contrast
+        # even where a card sits on a colored band
+        pane = color.mix(t.c("bg"), t.c("text"), 0.09) if dark else color.mix(t.c("bg"), "#FFFFFF", 0.65)
+        self.rect(x, y, w, h, pane, None, 1.0, kind, r)
+        edge = color.mix(t.c("bg"), t.c("text"), 0.30) if dark else color.mix("#FFFFFF", t.c("primary"), 0.25)
+        self.rect(x, y, w, h, None, edge, 1.0, kind, r)
+        inset = r * 0.8
+        self.rect(x + inset, y + 0.015, max(w - 2 * inset, 0.01), 0.02, "#FFFFFF", None, 1.0, "rect", 0, 0.38 if dark else 0.95)
+
+    def _bracket(self, x, y, w, h):
+        """HUD card: an opaque panel with a hairline edge and bright corner brackets."""
+        t = self.t
+        self.rect(x, y, w, h, t.c("surface"))
+        self.rect(x, y, w, h, None, color.mix(t.c("surface"), t.c("accent"), 0.30), 0.75)
+        ln = min(0.24, w / 4, h / 4)
+        for cx, cy, dx, dy in ((x, y, 1, 1), (x + w, y, -1, 1), (x, y + h, 1, -1), (x + w, y + h, -1, -1)):
+            self.line(cx, cy, cx + dx * ln, cy, t.c("accent"), 1.75)
+            self.line(cx, cy, cx, cy + dy * ln, t.c("accent"), 1.75)
 
     def badge(self, cx, cy, r, label, fill="primary", size=None):
         """Round number badge, a square block in pixel themes."""
@@ -322,6 +353,16 @@ class Canvas:
             self.poly([(W - 0.7, 0), (W, 0), (W, 0.7)], self.t.c("accent"))
         elif deco == "tab":
             self.rect(0, 0.62, 0.16, 0.95, "accent")
+        elif deco == "glow":     # two soft color blooms behind the content, drawn first so they sit under everything
+            for cx, cy, r, col in ((W - 1.0, 0.4, 3.6, "primary"), (1.2, H - 0.2, 3.2, "accent")):
+                for k in (1.0, 0.88, 0.76, 0.64, 0.52, 0.4, 0.28, 0.16):
+                    s = self.rect(cx - r * k, cy - r * k, 2 * r * k, 2 * r * k, col, kind="ellipse", alpha=0.02)
+                    self.items.remove(s)
+                    self.items.insert(0, s)
+        elif deco == "hud":      # a short scale of ticks in the top-right corner
+            for i in range(16):
+                hh = 0.1 + 0.12 * ((i * 5) % 4) / 3 + (0.08 if i % 5 == 0 else 0)
+                self.rect(W - MARGIN - 1.6 + i * 0.1, 0.45 - hh, 0.035, hh, "accent", alpha=0.85 if i % 5 == 0 else 0.45)
 
     def accent_rule(self, x=MARGIN, y=1.76, w=0.9):
         mode = self.style["title_rule"] if abs(y - 1.76) < 0.01 else "bar"  # title and closing slides always use the short bar
@@ -421,7 +462,7 @@ class Canvas:
         for r, a in ((1.9, 0.05), (1.2, 0.08)):
             self.rect(W - 1.2 - r, H - 1.3 - r, 2 * r, 2 * r, acc, kind="ellipse", alpha=a)
 
-    PATTERNS = ("mesh", "hatch", "corner", "dots", "blueprint", "rings", "bars")
+    PATTERNS = ("mesh", "hatch", "corner", "dots", "blueprint", "rings", "bars", "hud", "orbs3d")
 
     def _hatch(self, x0, y0, w, h, step=0.3, col=None, width=0.75, alpha_col=None):
         """Diagonal lines (45 degrees, rising to the right) clipped to a rectangle."""
@@ -500,6 +541,33 @@ class Canvas:
         for ang, r, col in ((0.6, 1.8, "accent"), (2.3, 1.2, "primary"), (4.0, 3.0, "secondary"), (5.2, 0.6, "accent")):
             self.rect(cx + r * math.cos(ang) - 0.11, cy + r * math.sin(ang) - 0.11, 0.22, 0.22, col, kind="ellipse")
         self.rect(MARGIN, 0.72, 0.9, 0.07, "accent")
+        return True
+
+    def _pat_hud(self):
+        t = self.t
+        shapes3d.wire_globe(self, W - 3.0, H / 2, 2.4, color.mix(t.c("bg"), t.c("text"), 0.22), t.c("accent"), lat0=22, lon0=66)
+        for ang, lat, lon, col in ((0, 43, 77, "accent"), (1, 51, 7, "secondary"), (2, 28, 117, "accent")):
+            x, y, vis = shapes3d.project_globe(lat, lon, 22, 66, 2.4)
+            if vis:
+                self.rect(W - 3.0 + x - 0.07, H / 2 + y - 0.07, 0.14, 0.14, col, kind="ellipse")
+                self.rect(W - 3.0 + x - 0.16, H / 2 + y - 0.16, 0.32, 0.32, None, t.c(col), 1.0, "ellipse")
+        edge = t.c("accent")
+        for cx, cy, dx, dy in ((0.3, 0.3, 1, 1), (W - 0.3, 0.3, -1, 1), (0.3, H - 0.3, 1, -1), (W - 0.3, H - 0.3, -1, -1)):
+            self.line(cx, cy, cx + dx * 0.55, cy, edge, 1.75)
+            self.line(cx, cy, cx, cy + dy * 0.55, edge, 1.75)
+        for i in range(24):
+            self.rect(MARGIN + i * 0.07, 6.9, 0.02, 0.1 if i % 4 else 0.18, color.mix(t.c("bg"), t.c("accent"), 0.6))
+        self.rect(MARGIN, 0.72, 0.9, 0.07, "accent")
+        return True
+
+    def _pat_orbs3d(self):
+        try:
+            from ..charts.render3d import render_hero
+            path = render_hero(self.t, self.style.get("hero3d", "orbs"), self.deck)
+        except Exception as e:  # numpy or Pillow missing
+            self.scene.problems.append(f"[Low] 3D object not drawn ({type(e).__name__}); install scripts/requirements/charts.txt")
+            return False
+        self.items.append(Image(W - 6.4, 0.45, 6.1, 6.1, path))
         return True
 
     def _pat_bars(self):

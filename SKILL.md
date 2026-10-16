@@ -1,6 +1,6 @@
 ---
 name: deck-master
-description: Presentation designer and speaker coach that turns a brief, a project or analysis results into a finished PPTX and PDF deck with speaker notes, a time plan and requirement traceability. Use for scientific talks and thesis defenses, hackathon, demo-day and datathon pitches, investor pitches, product launches, roadmaps, OKR reviews, go-to-market and market analyses, UX research readouts, model, architecture and post-mortem reviews, keynotes, business and strategy reviews, grant proposals, lectures and workshops, tech talks, design portfolios and case studies, assignment and coursework presentations; when asked for slides, a deck, a pitch, a presentation, pptx or pdf slides; when a deck must fit a time limit or a judging rubric; or when an existing deck needs restyling, trimming, translating or a visual review. Formal by default, with 39 scope-specific themes (IT dark and light, mesh-gradient covers, academic, boardroom, consulting, venture, product, data, portfolio, editorial and more) and 74 layouts. Game styles (Minecraft-like obsidian and classic themes with characters such as Steve and Creeper) are used only when the user asks for them.
+description: Presentation designer and speaker coach that turns a brief, a project or analysis results into a finished PPTX and PDF deck with speaker notes, a time plan and requirement traceability. Use for scientific talks and thesis defenses, hackathon, demo-day and datathon pitches, investor pitches, product launches, roadmaps, OKR reviews, go-to-market and market analyses, UX research readouts, model, architecture and post-mortem reviews, keynotes, futuristic tech showcases and data-viz reports, business and strategy reviews, grant proposals, lectures and workshops, tech talks, design portfolios and case studies, assignment and coursework presentations; when asked for slides, a deck, a pitch, a presentation, pptx or pdf slides; when a deck must fit a time limit or a judging rubric; or when an existing deck needs restyling, trimming, translating or a visual review. Formal by default, with 42 scope-specific themes (IT dark and light, mesh-gradient covers, glass and HUD looks, academic, boardroom, consulting, venture, product, data, portfolio, editorial and more) and 87 layouts including isometric 3D, shaded 3D objects, bento dashboards, sankey and globe visuals. Game styles (Minecraft-like obsidian and classic themes with characters such as Steve and Creeper) are used only when the user asks for them.
 ---
 
 # deck-master
@@ -119,7 +119,7 @@ After stage 0, detect four axes; each is optional.
 | Axis | Detect from | Load |
 |---|---|---|
 | Scope and event mode | brief, rules, rubric, audience | `design/scopes.md` picks the scope, theme and layouts; `modes/` assignment, hackathon, datathon, research-talk, scientific, business, portfolio; bank events with ML, AI and DS tracks also load `modes/hackathon-tracks/` |
-| Playbook | what the user has (results, product, report, thesis) | `playbooks/` hackathon-pitch, demo-day, datathon-findings, data-story, assignment-report, project-defense, tech-talk, keynote, investor-pitch, business-review, product-launch, product-planning, ux-research, engineering-review, portfolio-case; `novel` when nothing fits |
+| Playbook | what the user has (results, product, report, thesis) | `playbooks/` hackathon-pitch, demo-day, datathon-findings, data-story, assignment-report, project-defense, tech-talk, keynote, investor-pitch, business-review, product-launch, product-planning, ux-research, engineering-review, visual-showcase, portfolio-case; `novel` when nothing fits |
 | Style | user request, brand, references | `design/palettes.md`, `design/visual-style.md`; user references in `design/inspiration/`; game styles only on request |
 | Domain | topic of the project | `domains/cards/` data-science, ai-llm, web-mobile, cybersecurity, fintech, healthtech, edtech, iot; new ones via `domains/_template.md` |
 
@@ -171,6 +171,7 @@ Paths in this table are under `references/` unless they start with `assets/` or 
 | UX research readout | question and method, persona, the journey with its low point, three insights with evidence, recommendations |
 | Model, architecture or post-mortem review | the decision requested, the evidence, the alternatives, risks and readiness, actions with owners |
 | Keynote | one idea, one story, one number, one demo, one action |
+| Tech showcase or data-viz report | one idea, then the visual that answers each question: layers, parts, flow, goals, reach (`playbooks/visual-showcase.md`) |
 | Portfolio or case study | who you are in one slide, then one case: brief, process, screens, measured result |
 | Lecture or workshop | learning goals first, one idea per slide, a task slide after every block |
 | Defense | what was asked, what was done, what was proved, what remains; appendix for questions |
@@ -188,6 +189,7 @@ Paths in this table are under `references/` unless they start with `assets/` or 
 | Which theme and components for this kind of deck | `design/scopes.md`, `design/palettes.md`; `cli.py themes --scope <scope>` |
 | Colors, fonts, "make it look like IT" | `design/palettes.md`, `design/typography.md`, `design/visual-style.md` |
 | A bolder opener, poster cover, gradient cover | `design/visual-style.md` (patterns, mesh), layouts `cover_poster`, `cover_split`, `statement`; themes `aurora-mesh`, `sunset-mesh`, `datablue`, `cobalt-pop` |
+| 3D look, isometric, glass cards, HUD, bento, sankey, treemap, globe | `design/visual-style.md` section 8, `design/layouts.md` (visual family), `playbooks/visual-showcase.md`; themes `cyber-hud`, `glass-dusk`, `liquid-light` |
 | Persona, journey, how-might-we, kanban, checklist | `design/layouts.md` (product family), `playbooks/ux-research.md` |
 | Why these palettes and layouts exist | `design/research-2026-10.md` |
 | Scientific talk: hypotheses, equations, figures, references | `modes/scientific.md`, `design/layouts.md` (science family) |
@@ -206,12 +208,12 @@ All paths above are under `references/`. The full map is `references/00-index.md
 ## Tools
 
 - `scripts/cli.py`: `env` (environment and fonts), `themes` (`--scope` filters), `layouts`, `new` (`--list` shows the
-  31 events; scaffolds an outline from an event template), `lint` (overflow, contrast, fonts, density, number sources, notes, timing, rubric), `build`
+  33 events; scaffolds an outline from an event template), `lint` (overflow, contrast, fonts, density, number sources, notes, timing, rubric), `build`
   (lint gate, then `.pptx` and `.pdf`), `preview` (PNG per slide and a contact sheet), `inspire` (palette from a
   screenshot), `entities` (list or download character images for the game themes), `notes`, `timing`, `trace`,
   `catalog`. Add `--json` where offered for machine-readable output.
 - `scripts/deckkit/`: `core` (spec parser, themes, scene, canvas, layout registry, text fitting, entities, timing,
-  trace, run log), `layouts` (74 layouts in 11 families: frame, content, story, tech, data, business, product, science, portfolio, people, game), `backends` (`pptx_backend`, `pdf_backend`), `charts` (themed matplotlib),
+  trace, run log), `layouts` (87 layouts in 12 families: frame, content, story, tech, data, business, product, visual, science, portfolio, people, game), `backends` (`pptx_backend`, `pdf_backend`), `charts` (themed matplotlib),
   `lint` (one module per check).
 - `scripts/install.py`: install or update the skill for Claude Code, Codex, Cursor, Copilot, Gemini, Windsurf.
 - `scripts/build_adapters.py`: regenerate `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` and `adapters/` from this file.

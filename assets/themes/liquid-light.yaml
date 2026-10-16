@@ -1,0 +1,19 @@
+name: liquid-light
+mode: light
+scopes: [product, design, tech, business, futuristic]
+description: "Pale periwinkle with frosted white glass cards, a pastel mesh cover and indigo, pink and teal accents. For bright, modern product and design decks."
+colors:
+  bg: "#EEF1FF"
+  surface: "#FFFFFF"
+  primary: "#4F46E5"
+  secondary: "#D6347F"
+  accent: "#0B7285"
+  text: "#12123A"
+  muted: "#4C4F7A"
+  success: "#0F7B5C"
+  warning: "#8A5A00"
+  danger: "#B42318"
+  info: "#2F6BDE"
+series: ["#4F46E5", "#D6347F", "#0B7285", "#E0A32E", "#4C4F7A"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: none, card: glass, title_rule: bar, footer: plain, chips: pill, show_source: false, radius: 0.24, pattern: mesh, deco: glow, mesh: ["#C7D2FE", "#FBCFE8", "#BAE6FD", "#DDD6FE"], mesh_veil: 0.2}

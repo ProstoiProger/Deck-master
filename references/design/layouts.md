@@ -70,6 +70,19 @@ shrink to fit their boxes, down to a floor; if the floor is reached the slide ha
 | options side by side | `columns` | two or three `##` groups |
 | a divider | `section` | `number:`, one line |
 | a full-slide picture | `image_full` | `image:`, `credit:` |
+| a stack of layers or parts, seen in 3D | `iso_stack` | `Layer | description` items, `highlight:` |
+| a few values as 3D columns | `iso_bars` | `Label | value` items, `takeaway:` |
+| ranked winners or options | `podium` | `Name | value | note` items, first place first |
+| reach across places | `globe` | `Place | note | lat | lon` items, `arcs: yes` |
+| a concept and the parts around it | `orbit` | `center:`, `Part | note` items |
+| progress to goals as rings | `gauges` | `Label | value | maximum | note` items |
+| a dashboard in tiles | `bento` | `stat`, `spark`, `bars`, `ring`, `text` tile rows |
+| composition by area | `treemap` | `Name | value` items |
+| a quantity flowing through steps | `sankey` | `Source | Target | value` items |
+| dependencies between parts | `network` | `A -> B` items, `takeaway:` |
+| activity over weeks | `activity_grid` | `values:` seven per week, `value | label` side cards |
+| a command-line session | `terminal` | fenced code block, `window:` |
+| one shaded 3D object beside a message | `hero_3d` | `object:`, lede, up to four points |
 | the whole business on one page | `canvas9` | nine `##` groups named like the canvas blocks |
 | objectives with progress bars | `okr` | `##` objective, bullets `Key result | current | target` |
 | metrics with change and status | `kpi_table` | `Metric | value | delta | status | note` items |
@@ -92,13 +105,14 @@ shrink to fit their boxes, down to a floor; if the floor is reached the slide ha
 
 ## 3. Families
 
-Seventy-four layouts in eleven families (the generated list with every input is `design/catalog.md`).
+Eighty-seven layouts in twelve families (the generated list with every input is `design/catalog.md`).
 
 - **frame**: `title`, `cover_poster`, `cover_split`, `agenda`, `closing`, `section`, `quote`, `statement`, `big_number`, `image_full`, `columns`. Decorated backdrop on title, cover and closing only.
 - **story**: `problem`, `solution`, `feature_grid`, `impact`.
 - **tech**: `architecture`, `pipeline`, `demo`, `tech_stack`, `roadmap`.
 - **data**: `kpi`, `chart_insight`, `comparison`, `schema`, `model_card`, `insight_cards`. Chart kinds: bar, hbar, line, area, stacked, waterfall, donut, scatter, confusion, heatmap, radar, lollipop, slope.
 - **business**: `exec_summary`, `matrix`, `funnel`, `market`, `pricing`, `gantt`, `org`, `scorecard`, `risk`, `feature_matrix`, `process`, `canvas9`, `okr`, `kpi_table`, `customer_case`, `ask`, `proof_wall`.
+- **visual**: `iso_stack`, `iso_bars`, `podium`, `globe`, `orbit`, `gauges`, `bento`, `treemap`, `sankey`, `network`, `activity_grid`, `terminal`, `hero_3d`: 3D-looking and advanced visuals (`playbooks/visual-showcase.md`).
 - **product**: `persona`, `journey`, `hmw`, `kanban`, `checklist`, `links` (UX research, hackathon delivery, product work).
 - **science**: `abstract`, `hypotheses`, `equation`, `figure`, `figures2`, `references`, `factsheet`.
 - **portfolio**: `case_header`, `gallery`, `before_after`, `profile`, `skills`, `timeline`.

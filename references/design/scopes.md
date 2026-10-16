@@ -27,13 +27,13 @@ A hackathon or a student project is not a reason to use them.
 
 | Scope | Events | Default theme | Other fitting themes | Tone |
 |---|---|---|---|---|
-| Competition | `hackathon`, `demo-day`, `datathon`, `data-story` | `midnight-navy`, `aurora-mesh`, `ultraviolet-core`, `datablue` | `deep-space`, `graphite-cyan`, `terminal-slate`, `matrix-green`, `synthwave`, `cobalt-pop` | confident, demo first, one number per claim |
+| Competition | `hackathon`, `demo-day`, `datathon`, `data-story`, `data-viz-report` | `midnight-navy`, `aurora-mesh`, `ultraviolet-core`, `datablue`, `glass-dusk` | `deep-space`, `graphite-cyan`, `terminal-slate`, `matrix-green`, `synthwave`, `cobalt-pop`, `cyber-hud` | confident, demo first, one number per claim |
 | Science | `research-talk`, `thesis-defense`, `conference-paper` | `academic`, `conference-dark` | `clinical`, `quantum-teal`, `deep-ocean`, `petrol`, `graphite-cyan`, `cloud-light` | precise, claims bounded by the data, limits shown |
 | Business | `investor-pitch`, `business-review`, `strategy-proposal`, `sales-pitch`, `project-status`, `grant-proposal` | `venture-dark`, `boardroom`, `consulting`, `startup-bright`, `ledger`, `forest` | `signal-yellow`, `navy-gold`, `harbor`, `cloud-light`, `editorial` | answer first, numbers with sources, one decision per deck |
 | Product and planning | `product-launch`, `product-roadmap`, `okr-review`, `market-analysis`, `go-to-market` | `sunset-mesh`, `signal-yellow`, `harbor`, `coral-market`, `plum` | `startup-bright`, `venture-dark`, `navy-gold`, `ledger` | outcome first, priorities and owners, honest status |
 | Design and research | `ux-research` | `lavender` | `terracotta`, `swiss`, `quantum-teal` | evidence from users, quotes, a clear recommendation |
 | Education | `assignment`, `lecture`, `workshop` | `cloud-light`, `chalkboard`, `forest` | `academic`, `clinical`, `sage`, `terracotta`, `lavender` | clear structure, goals first, examples |
-| Tech | `tech-talk`, `keynote`, `model-review`, `architecture-review`, `postmortem`, `sprint-review` | `terminal-slate`, `ember`, `matrix-green`, `blueprint`, `petrol`, `deep-ocean` | `midnight-navy`, `graphite-cyan`, `swiss` | technical depth, diagrams, a demo, blameless tone in reviews |
+| Tech | `tech-talk`, `keynote`, `tech-showcase`, `model-review`, `architecture-review`, `postmortem`, `sprint-review` | `terminal-slate`, `ember`, `cyber-hud`, `matrix-green`, `blueprint`, `petrol`, `deep-ocean` | `midnight-navy`, `graphite-cyan`, `swiss` | technical depth, diagrams, a demo, blameless tone in reviews |
 | Portfolio | `portfolio`, `case-study` | `portfolio-mono`, `portfolio-warm` | `editorial`, `swiss`, `plum` | visual, spacious, a story per project |
 | Game (on request) | `gamified` | `obsidian-craft` | `classic-craft` | playful, still one message per slide |
 
@@ -44,7 +44,7 @@ A hackathon or a student project is not a reason to use them.
 3. Check the audience: conservative (board, regulator, faculty) -> `boardroom`, `academic`, `consulting`, `ledger`;
    startup or product audience -> `startup-bright`, `venture-dark`, `signal-yellow`; consumer or brand -> `sunset-mesh`, `plum`, `coral-market`;
    creative -> `editorial`, `portfolio-*`, `swiss`; hackathon and data crowd -> `aurora-mesh`, `datablue`, `matrix-green`, `synthwave`;
-   research and health -> `quantum-teal`, `clinical`, `academic`.
+   research and health -> `quantum-teal`, `clinical`, `academic`; futuristic or glossy -> `cyber-hud`, `glass-dusk`, `liquid-light`.
 4. A brand colour or an organisation template overrides the table: add a custom theme (`extending.md`).
 5. Run `cli.py preview --sheet` with two candidate themes (`--theme`) and look before choosing.
 
@@ -57,7 +57,7 @@ A hackathon or a student project is not a reason to use them.
 | Business | `exec_summary`, `scorecard`, `kpi_table`, `okr`, `matrix`, `market`, `funnel`, `pricing`, `feature_matrix`, `risk`, `gantt`, `process`, `org`, `canvas9`, `customer_case`, `ask`, `proof_wall` |
 | Product and design | `statement`, `persona`, `journey`, `hmw`, `kanban`, `checklist`, `okr`, `roadmap`, `proof_wall`, `quote` |
 | Education | `agenda`, `section`, `bullets`, `columns`, `equation`, `figure`, `quote`, `references` |
-| Tech | `architecture`, `schema`, `tech_stack`, `pipeline`, `demo`, `model_card`, `kanban`, `checklist`, `risk`, `chart_insight`, `comparison`, `roadmap` |
+| Tech and visual | `iso_stack`, `globe`, `bento`, `gauges`, `network`, `terminal`, `hero_3d`, `architecture`, `schema`, `tech_stack`, `pipeline`, `demo`, `model_card`, `kanban`, `checklist`, `risk`, `chart_insight`, `comparison`, `roadmap` |
 | Portfolio | `profile`, `skills`, `timeline`, `case_header`, `gallery`, `before_after`, `quote`, `image_full` |
 | Game | `boss`, `crafting`, `strata`, `hud`, `inventory`, `advancements`, `leaderboard`, `trade`, `chat`, `book` |
 

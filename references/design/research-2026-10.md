@@ -11,7 +11,8 @@ file when you add a theme or layout and want to know why the current ones look a
 3. Behance: looks that became themes and patterns
 4. Palettes: where each new theme comes from
 5. Meshy: mesh gradients
-6. Not done, ideas
+6. Figma Community: 3D, advanced visualisation, futuristic components
+7. Not done, ideas
 
 ---
 
@@ -103,9 +104,32 @@ Meshy blends four colours into a soft mesh and gives each result an id; the pres
 strongest where text sits. It does not call Meshy and uses none of its images. Where the mesh is used and how to tune it:
 `design/visual-style.md`, section 7.
 
-## 6. Not done, ideas
+## 6. Figma Community: 3D, advanced visualisation, futuristic components
+
+Searched on 2026-10-16 in the Community library (files, sorted by popularity): "3d presentation", "futuristic ui", "data visualization charts",
+"glassmorphism", "isometric", "hud sci-fi dashboard", "ai presentation template dark", "bento grid". Result titles and thumbnails only;
+no file was opened or duplicated. Figma's own template pages for presentations returned 404, so Community files were the source.
+
+| Seen in the results | Became |
+|---|---|
+| Glossy 3D shapes and "mix and match 3D shapes" packs, 3D icons, podium backgrounds | `hero_3d`, the `orbs3d` cover, `podium` |
+| Isometric illustration packs, isometric layered and 3D journey maps | `iso_stack`, `iso_bars` |
+| A pitch deck with 3D glass bar charts; chart packs with donut, radar, heatmap, bar and line components | `iso_bars`, `gauges`, chart kinds `heatmap`, `radar` (2026-10 first pass), `activity_grid` |
+| Glassmorphism cards, glass icon sets, "liquid glass" | card style `glass`, themes `glass-dusk` and `liquid-light`, the `glow` deco |
+| HUD and futuristic UI kits: corner brackets, ring gauges, data-matrix dots, wireframe globes, scale ticks | card style `bracket`, the `hud` pattern and deco, `globe`, `gauges`, theme `cyber-hud` |
+| Bento grid layouts and bento dashboards (big number, sparkline, ring and text tiles of different sizes) | `bento` |
+| Dashboard kits: sparklines, mini bars, KPI tiles, dark analytics dashboards | `bento` tiles, `kpi_table` |
+| Network and flow diagrams, charting plugins (sankey, treemap) | `network`, `sankey`, `treemap` |
+| Terminal and code window mockups in dev-tool landing pages | `terminal` |
+| Device mockups (phones, laptops, boxes) | not built: `demo` and `solution` already frame a screenshot; a vector device set is an idea below |
+
+Notes: Figma Community files carry their authors' licences; nothing was copied, only the kinds of components and looks. Real 3D is rendered
+by our own ray marcher in the theme's colors, not taken from any 3D pack.
+
+## 7. Not done, ideas
 
 - Native PowerPoint charts (the charts are pictures); native gradient fills instead of a picture.
+- A vector device set (laptop, phone, browser window) and a rendered 3D device; a land mask for the globe; more hero objects (capsule, pyramid, knot).
 - A QR code on `links` (needs a QR library; left out to keep the dependency list short).
 - More Pitch templates (Board Deck, Event Report, Market Research, Employee Onboarding) could become events.
 - A per-slide mesh section divider; today the mesh is only on title, cover and closing slides.

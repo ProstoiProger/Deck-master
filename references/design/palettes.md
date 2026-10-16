@@ -1,6 +1,6 @@
 # Palettes
 
-41 themes live in `assets/themes/*.yaml`. 39 are formal and grouped by scope (technology and data, science, business,
+44 themes live in `assets/themes/*.yaml`. 42 are formal and grouped by scope (technology and data, science, business,
 education, portfolio and creative); two are block-game style packs that the skill uses only when the user asks for Minecraft or a
 gamified deck. Hex values are our own tuned versions of common palette conventions, not sampled artwork (provenance of the
 2026-10 additions: `design/research-2026-10.md`); every theme passes the contrast checks in section 3. Live figures:
@@ -35,6 +35,9 @@ gamified deck. Hex values are our own tuned versions of common palette conventio
 | `synthwave` | Indigo-black with hot pink, violet and cyan, mesh cover | #0F0524 | #C21CA8 | #4CC9F0 | demo days, creative-tech and community events |
 | `cobalt-pop` | Saturated cobalt with yellow, pink and mint, concentric rings | #1A2BC8 | #FFE14D | #7CF5E0 | hackathon openings, event talks, loud youth-oriented decks |
 | `blueprint` | Drafting-sheet blue with white linework and a title block | #0B2A5C | #7FD4FF | #FFD54A | architecture reviews, hardware, systems design |
+| `cyber-hud` | Near-black blue with cyan, amber and red; bracketed HUD cards, monospaced headings, a wireframe globe cover | #03080D | #0FB5D6 | #4DE8FF | futuristic IT, security, systems and tech showcases |
+| `glass-dusk` | Deep indigo with translucent glass cards, violet, pink and aqua blooms, and shaded 3D orbs on the cover | #0B0920 | #8B7CFF | #5EEAD4 | AI products and data stories with glass cards and 3D orbs |
+| `liquid-light` | Pale periwinkle with frosted white glass cards, a pastel mesh cover and indigo, pink and teal accents | #EEF1FF | #4F46E5 | #0B7285 | bright modern product and design decks with frosted glass |
 
 ### Science and research
 
@@ -110,16 +113,19 @@ The style block changes the component design, not only the colours.
 | `conference-dark` | SourceSerif4 | outline | line | rule | rules | none |
 | `consulting` | Inter | outline | line | rule | clean | none |
 | `coral-market` | Manrope | fill | bar | plain | dots | none |
+| `cyber-hud` | IBMPlexMono | bracket | line | rule | hud | hud |
 | `datablue` | Manrope | fill | bar | plain | hatch | none |
 | `deep-ocean` | Manrope | fill | bar | plain | rings | none |
 | `deep-space` | Inter | fill | bar | plain | grid | none |
 | `editorial` | PlayfairDisplay | flat | line | rule | rules | none |
 | `ember` | Unbounded | fill | bar | plain | bars | none |
 | `forest` | SourceSerif4 | fill | bar | plain | clean | none |
+| `glass-dusk` | Manrope | glass | bar | plain | orbs3d | glow |
 | `graphite-cyan` | Inter | fill | bar | plain | grid | none |
 | `harbor` | Manrope | fill | bar | plain | corner | tri |
 | `lavender` | Manrope | fill | bar | plain | mesh | none |
 | `ledger` | Inter | flat | bar | rule | band | none |
+| `liquid-light` | Manrope | glass | bar | plain | mesh | glow |
 | `matrix-green` | IBMPlexMono | outline | line | plain | blueprint | none |
 | `midnight-navy` | Inter | fill | bar | plain | grid | none |
 | `navy-gold` | PlayfairDisplay | fill | line | rule | rules | none |
@@ -146,7 +152,8 @@ The style block changes the component design, not only the colours.
 - Pattern: backdrop on the title and closing slides. Flat motifs: `clean`, `rules`, `band`, `grid`, `none`, `hatch` (hatched side panel),
   `corner` (diagonal corner triangles), `dots` (dot field), `blueprint` (drafting grid and title block), `rings` (concentric circles),
   `bars` (bar-chart silhouette). `mesh` is a four-colour mesh-gradient picture rendered once and cached (needs numpy). Game packs: `blocks`, `obsidian`, `classic`.
-- Deco: `tri` puts a small accent triangle in the top-right corner of content slides, `tab` an accent tab on the left edge, `none` nothing.
+- Deco: `tri` puts a small accent triangle in the top-right corner of content slides, `tab` an accent tab on the left edge, `glow` two soft color blooms behind the content, `hud` a tick scale in the top-right corner, `none` nothing.
+- Cards (futuristic): `glass` is a frosted pane with a light edge and a top highlight, `bracket` an opaque HUD panel with bright corner brackets. Pattern `hud` draws a wireframe globe with pins and corner brackets; `orbs3d` embeds a rendered 3D object (`hero3d: orbs, ring, cube or stack`).
 
 ## 3. Contrast figures
 
@@ -166,16 +173,19 @@ WCAG 2.x ratios computed from the theme files. Body text needs 4.5 or more, larg
 | `conference-dark` | 16.16 | 8.99 | 7.77 | 7.19 | 10.83 | 8.31 |
 | `consulting` | 17.74 | 7.56 | 6.87 | 7.95 | 5.93 | 7.95 |
 | `coral-market` | 16.14 | 7.57 | 6.76 | 4.27 | 6.12 | 4.68 |
+| `cyber-hud` | 18.09 | 9.01 | 8.05 | 8.24 | 13.69 | 8.6 |
 | `datablue` | 17.65 | 9.86 | 8.34 | 5.34 | 15.0 | 5.82 |
 | `deep-ocean` | 17.42 | 9.39 | 7.84 | 7.66 | 12.67 | 8.52 |
 | `deep-space` | 18.79 | 9.17 | 8.05 | 3.87 | 6.12 | 4.86 |
 | `editorial` | 16.36 | 7.21 | 6.35 | 16.08 | 5.4 | 18.1 |
 | `ember` | 18.18 | 9.44 | 8.62 | 4.62 | 11.74 | 4.84 |
 | `forest` | 15.52 | 7.23 | 6.41 | 7.43 | 6.46 | 7.82 |
+| `glass-dusk` | 17.14 | 9.29 | 8.02 | 5.98 | 13.22 | 6.42 |
 | `graphite-cyan` | 15.02 | 7.11 | 6.19 | 7.63 | 14.54 | 8.86 |
 | `harbor` | 14.85 | 6.14 | 5.33 | 11.56 | 6.47 | 12.36 |
 | `lavender` | 14.37 | 7.03 | 6.12 | 6.45 | 7.08 | 6.78 |
 | `ledger` | 16.12 | 7.07 | 7.58 | 11.62 | 5.98 | 12.46 |
+| `liquid-light` | 15.9 | 6.89 | 7.76 | 5.59 | 4.96 | 6.29 |
 | `matrix-green` | 18.42 | 8.85 | 7.86 | 11.63 | 14.78 | 12.63 |
 | `midnight-navy` | 17.09 | 7.3 | 6.61 | 5.09 | 10.36 | 5.71 |
 | `navy-gold` | 18.73 | 9.88 | 8.26 | 12.5 | 14.24 | 13.06 |

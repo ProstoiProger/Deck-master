@@ -1,0 +1,19 @@
+name: cyber-hud
+mode: dark
+scopes: [tech, security, hackathon, futuristic]
+description: "Near-black blue with cyan, amber and red; bracketed HUD cards, monospaced headings, a wireframe globe cover. For futuristic IT, security and systems talks."
+colors:
+  bg: "#03080D"
+  surface: "#0A1824"
+  primary: "#0FB5D6"
+  secondary: "#FFB020"
+  accent: "#4DE8FF"
+  text: "#E3F6FF"
+  muted: "#8FB3C4"
+  success: "#3DDC97"
+  warning: "#FFB020"
+  danger: "#FF4D6D"
+  info: "#0FB5D6"
+series: ["#0FB5D6", "#FFB020", "#FF4D6D", "#3DDC97", "#8FB3C4"]
+fonts: {heading: IBMPlexMono, body: Inter, mono: IBMPlexMono}
+style: {corner: square, border: thin, shadow: none, card: bracket, title_rule: line, footer: rule, chips: text, show_source: false, radius: 0.04, pattern: hud, deco: hud, hero3d: ring}

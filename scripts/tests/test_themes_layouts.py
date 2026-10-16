@@ -13,7 +13,7 @@ NO_LOW_LEVEL = ("overflow", "contrast", "unknown layout", "failed", "glyph", "no
 
 def test_all_themes_ship_and_have_readable_text():
     names = theme_names()
-    assert len(names) == 41 and {"obsidian-craft", "classic-craft", "midnight-navy"} <= set(names)
+    assert len(names) == 44 and {"obsidian-craft", "classic-craft", "midnight-navy"} <= set(names)
     for n in names:
         t = load_theme(n)
         ratios = dict(contrast_table(t))
@@ -35,7 +35,7 @@ def test_on_picks_the_readable_color_for_a_fill(theme):
 
 def test_all_layouts_have_metadata_and_are_listed():
     layout_registry.ensure_loaded()
-    assert len(layout_registry.LAYOUTS) == 74
+    assert len(layout_registry.LAYOUTS) == 87
     for spec in layout_registry.LAYOUTS.values():
         assert spec.purpose and spec.max_words and spec.accepts and spec.example, spec.name
 

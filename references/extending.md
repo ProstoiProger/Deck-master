@@ -39,7 +39,9 @@ optionally `metaphor: game`. New corner or pattern kinds are drawn in `scripts/d
 To add a backdrop pattern: add its name to `Canvas.PATTERNS`, write `_pat_<name>(self)` that draws with `self.rect`, `self.line` and `self.poly` and
 returns True (return False to fall back to the default glow), keep it clear of the title zone (x from 0.7 to 8.3 in) or of the bottom meta row,
 and check `cli.py lint` for "leaves the slide" and contrast findings. The `mesh` pattern is the one exception: it embeds a generated picture and
-supplies a `tone` so the contrast lint still checks text over it (`scripts/deckkit/charts/mesh.py`). Content-slide furniture is the `deco` style key (`Canvas._deco`).
+supplies a `tone` so the contrast lint still checks text over it (`scripts/deckkit/charts/mesh.py`). Content-slide furniture is the `deco` style key (`Canvas._deco`); card looks are the `card` key (`Canvas.box`, `_glass`, `_bracket`).
+Geometry for 3D-looking components (isometric boxes, ring segments, globe projection, treemap, flow bands) is in `scripts/deckkit/core/shapes3d.py`; the shaded 3D
+objects are ray-marched in `scripts/deckkit/charts/render3d.py` (add a kind by adding a scene in `_scene`).
 New chart kinds go in `scripts/deckkit/charts/themed.py` (`KINDS` and a branch in `render_chart`) with a test in `tests/test_scopes.py`.
 
 ## 3. Add a layout

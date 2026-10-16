@@ -276,6 +276,24 @@ sprint-review:
   theme: deep-ocean
   skeleton: [title, kpi_table, demo, kanban, chart_insight, risk, roadmap, closing]
   judged_on: [demo of done work, metrics, blockers, next sprint]
+tech-showcase:
+  scope: tech
+  max_slides: 12
+  min_slides: 8
+  minutes: 10
+  wpm: 140
+  theme: cyber-hud
+  skeleton: [cover_poster, statement, hero_3d, iso_stack, bento, globe, gauges, network, terminal, links]
+  judged_on: [vision, technical credibility, visual clarity, proof]
+data-viz-report:
+  scope: competition
+  max_slides: 10
+  min_slides: 7
+  minutes: 8
+  wpm: 150
+  theme: glass-dusk
+  skeleton: [cover_split, statement, bento, treemap, sankey, activity_grid, gauges, insight_cards, links]
+  judged_on: [insight quality, visual clarity, method soundness, actionability]
 # --- on request only ---
 gamified:
   scope: game

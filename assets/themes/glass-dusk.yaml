@@ -1,0 +1,19 @@
+name: glass-dusk
+mode: dark
+scopes: [tech, data, product, futuristic]
+description: "Deep indigo with translucent glass cards, violet, pink and aqua blooms, and shaded 3D orbs on the cover. For AI products and data stories with a modern gloss."
+colors:
+  bg: "#0B0920"
+  surface: "#1B1740"
+  primary: "#8B7CFF"
+  secondary: "#FF7AC6"
+  accent: "#5EEAD4"
+  text: "#F1EEFF"
+  muted: "#B5ADDC"
+  success: "#5EEAD4"
+  warning: "#FFD166"
+  danger: "#FF8FA3"
+  info: "#8B7CFF"
+series: ["#8B7CFF", "#FF7AC6", "#5EEAD4", "#FFD166", "#B5ADDC"]
+fonts: {heading: Manrope, body: Inter, mono: IBMPlexMono}
+style: {corner: round, border: thin, shadow: none, card: glass, title_rule: bar, footer: plain, chips: pill, show_source: false, radius: 0.22, pattern: orbs3d, deco: glow, hero3d: orbs}
